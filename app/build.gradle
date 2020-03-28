@@ -72,6 +72,11 @@ dependencies {
 
     //viewPager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    //lifecycle
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    kapt "android.arch.lifecycle:compiler:1.1.1"
+    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
 }
 
 kapt {
