@@ -2,5 +2,7 @@
 <resources>
 
     <string name="wall_cat_toolbar_title">Стена котов</string>
+    <string name="wall_menu_search_cat">Поиск породы</string>
+    <string name="wall_menu_settings">Настройки</string>
 
 </resources>

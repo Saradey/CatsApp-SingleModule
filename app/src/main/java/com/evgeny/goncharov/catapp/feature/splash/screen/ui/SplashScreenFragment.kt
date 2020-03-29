@@ -68,5 +68,4 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
 
     override fun initBaseView(content: View) {}
 
-    override fun initLiveData() {}
 }

@@ -6,4 +6,6 @@ interface IBaseView {
 
     fun attachView(view: View)
 
+    fun init()
+
 }

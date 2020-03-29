@@ -10,5 +10,6 @@ abstract class BaseViewImpl : IBaseView {
         content = view
     }
 
+    protected abstract fun initLiveData()
 
 }

@@ -26,6 +26,4 @@ abstract class BaseFragment<V : IBaseView> : Fragment(), IBaseFragment {
 
     protected abstract fun initBaseView(content: View)
 
-    protected abstract fun initLiveData()
-
 }

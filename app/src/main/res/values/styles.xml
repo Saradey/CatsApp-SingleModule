@@ -6,4 +6,9 @@
         <item name="android:background">@color/color_toolbar_background</item>
     </style>
 
+
+    <style name="MyPopupToolbarStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:background">@color/white</item>
+    </style>
+
 </resources>

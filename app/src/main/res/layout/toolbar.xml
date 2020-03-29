@@ -4,5 +4,6 @@
     android:id="@+id/toolbar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/MyToolbarStyle"
+    app:popupTheme="@style/MyPopupToolbarStyle"
     android:elevation="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android" />
