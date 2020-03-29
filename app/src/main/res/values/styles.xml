@@ -1,5 +1,9 @@
 <resources>
 
-
+    <style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColorPrimary">@color/text_toolbar_title_light</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/color_toolbar_background</item>
+    </style>
 
 </resources>

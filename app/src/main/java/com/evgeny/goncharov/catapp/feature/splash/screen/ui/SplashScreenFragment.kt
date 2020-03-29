@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
 
-class SplashScreenFragment : BaseFragment() {
+class SplashScreenFragment : BaseFragment<ISplashScreen>() {
 
     companion object {
         fun getInstance() = SplashScreenFragment().apply {
@@ -48,8 +48,8 @@ class SplashScreenFragment : BaseFragment() {
 
     private fun animationView(content: View) {
         mainScope.launch {
-            startAnimation(content)
-            delay(2500)
+//            startAnimation(content)
+//            delay(2500)
             goToTheNextFragment()
         }
     }
@@ -66,7 +66,7 @@ class SplashScreenFragment : BaseFragment() {
         router.gotoTheWallCatFragment()
     }
 
-    override fun initBaseView() {}
+    override fun initBaseView(content: View) {}
 
-    override fun initViewModel() {}
+    override fun initLiveData() {}
 }

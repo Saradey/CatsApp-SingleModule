@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<V : IBaseView> : Fragment(), IBaseFragment {
 
-    protected lateinit var view: BaseView
-
+    protected lateinit var view: V
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,15 +24,8 @@ abstract class BaseFragment : Fragment() {
 
     protected abstract fun init(content: View)
 
-    protected abstract fun initBaseView()
+    protected abstract fun initBaseView(content: View)
 
-    protected abstract fun initViewModel()
+    protected abstract fun initLiveData()
 
-    protected fun showProgress() {
-
-    }
-
-    protected fun hideProgress() {
-
-    }
 }

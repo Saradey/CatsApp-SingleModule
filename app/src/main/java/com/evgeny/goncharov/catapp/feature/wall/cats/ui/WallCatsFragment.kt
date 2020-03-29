@@ -4,13 +4,13 @@ import android.view.View
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
 
-class WallCatsFragment : BaseFragment() {
+class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
     companion object {
         fun getInstance() = WallCatsFragment()
             .apply {
-            //TODO inject
-        }
+                //TODO inject
+            }
     }
 
 
@@ -20,11 +20,20 @@ class WallCatsFragment : BaseFragment() {
 
 
     override fun init(content: View) {
+        initBaseView(content)
+        initLiveData()
     }
 
-    override fun initBaseView() {
+
+    override fun initBaseView(content: View) {
+        view = WallCatsViewImpl()
+        view.attachView(content)
     }
 
-    override fun initViewModel() {
+
+    override fun initLiveData() {
+
     }
+
+
 }
