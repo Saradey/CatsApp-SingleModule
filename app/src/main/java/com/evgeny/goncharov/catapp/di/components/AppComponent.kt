@@ -2,10 +2,7 @@ package com.evgeny.goncharov.catapp.di.components
 
 import com.evgeny.goncharov.catapp.App
 import com.evgeny.goncharov.catapp.MainActivity
-import com.evgeny.goncharov.catapp.di.module.AppBindsModule
-import com.evgeny.goncharov.catapp.di.module.CreateSubActivityComponent
-import com.evgeny.goncharov.catapp.di.module.DatabaseModule
-import com.evgeny.goncharov.catapp.di.module.RestModule
+import com.evgeny.goncharov.catapp.di.module.*
 import com.evgeny.goncharov.catapp.di.scope.AppScope
 import dagger.BindsInstance
 import dagger.Component
@@ -16,7 +13,8 @@ import dagger.Component
         DatabaseModule::class,
         RestModule::class,
         CreateSubActivityComponent::class,
-        AppBindsModule::class
+        AppBindsModule::class,
+        CommonModule::class
     ]
 )
 interface AppComponent {

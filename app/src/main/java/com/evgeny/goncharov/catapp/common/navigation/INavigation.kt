@@ -8,4 +8,6 @@ interface INavigation {
 
     fun detachActivity()
 
+    fun goTo(destination: Destination)
+
 }

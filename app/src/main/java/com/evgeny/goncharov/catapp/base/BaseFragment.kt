@@ -10,12 +10,13 @@ abstract class BaseFragment : Fragment() {
 
     protected lateinit var view: BaseView
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(getLayoutId(), container)
+        val view = inflater.inflate(getLayoutId(), container, false)
         init(view)
         return view
     }

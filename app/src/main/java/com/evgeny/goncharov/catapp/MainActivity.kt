@@ -3,6 +3,7 @@ package com.evgeny.goncharov.catapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.evgeny.goncharov.catapp.common.ActivityLifeCycle
+import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.common.navigation.INavigation
 import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
@@ -22,13 +23,18 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var themeManager: IThemeManager
-    
+
+    @Inject
+    lateinit var router: IMainRouter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initDaggerGraph()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initLifeCycle()
+        navigation.attachActivity(this)
+        router.showSlashScreen()
     }
 
 
