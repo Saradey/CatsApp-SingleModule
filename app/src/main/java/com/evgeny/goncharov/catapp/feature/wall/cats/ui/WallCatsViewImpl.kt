@@ -2,13 +2,19 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
 import kotlinx.android.synthetic.main.toolbar.view.*
+import javax.inject.Inject
 
 class WallCatsViewImpl : BaseViewImpl(), IWallCatsView {
+
+    @Inject
+    lateinit var viewModel: IWallCatsViewModel
 
 
     override fun init() {
         initUi()
+        WallCatsFragment.component.inject(this)
     }
 
 

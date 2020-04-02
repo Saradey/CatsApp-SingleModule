@@ -66,6 +66,6 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
         router.gotoTheWallCatFragment()
     }
 
-    override fun initBaseView(content: View) {}
+    override fun initView(content: View) {}
 
 }

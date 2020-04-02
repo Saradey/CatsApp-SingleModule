@@ -4,7 +4,7 @@ import android.view.View
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
-import com.evgeny.goncharov.catapp.feature.wall.cats.di.WallCatsSubcomponent
+import com.evgeny.goncharov.catapp.feature.wall.cats.di.component.WallCatsSubcomponent
 import javax.inject.Inject
 
 class WallCatsFragment : BaseFragment<IWallCatsView>() {
@@ -29,13 +29,13 @@ class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
 
     override fun init(content: View) {
-        component = factory.plus()
-        initBaseView(content)
+        component = factory.plus(this)
+        initView(content)
         view.init()
     }
 
 
-    override fun initBaseView(content: View) {
+    override fun initView(content: View) {
         view = WallCatsViewImpl()
         view.attachView(content)
     }

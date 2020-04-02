@@ -24,6 +24,6 @@ abstract class BaseFragment<V : IBaseView> : Fragment(), IBaseFragment {
 
     protected abstract fun init(content: View)
 
-    protected abstract fun initBaseView(content: View)
+    protected abstract fun initView(content: View)
 
 }
