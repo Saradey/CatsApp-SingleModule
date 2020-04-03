@@ -2,7 +2,7 @@ package com.evgeny.goncharov.catapp.di.components
 
 import com.evgeny.goncharov.catapp.App
 import com.evgeny.goncharov.catapp.MainActivity
-import com.evgeny.goncharov.catapp.di.module.*
+import com.evgeny.goncharov.catapp.di.module.app.*
 import com.evgeny.goncharov.catapp.di.scope.AppScope
 import dagger.BindsInstance
 import dagger.Component

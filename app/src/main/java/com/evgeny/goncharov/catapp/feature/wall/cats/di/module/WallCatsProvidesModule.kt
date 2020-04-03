@@ -1,9 +1,9 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.di.module
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
+import com.evgeny.goncharov.catapp.db.AppDatabase
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
@@ -21,7 +21,10 @@ class WallCatsProvidesModule {
 
     @Provides
     @FragmentScope
-    fun provideLiveDataEventsUi(): LiveData<BaseEventsUi> = MutableLiveData<BaseEventsUi>()
+    fun provideLiveDataEventsUi(): MutableLiveData<BaseEventsUi> = MutableLiveData<BaseEventsUi>()
 
+    @Provides
+    fun provideCatsWallDao(appDatabase: AppDatabase) =
+        appDatabase.createCatsWallDao()
 
 }

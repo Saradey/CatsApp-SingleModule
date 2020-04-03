@@ -6,3 +6,6 @@ const val CONNECTION_TIMEOUT = 30L
 const val READ_TIMEOUT = 30L
 const val WRITE_TIMEOUT = 30L
 
+const val VERSION_DATA_BASE = 1
+
+const val LIMIT_PAGE_SIZE_CAT_WALL = 15

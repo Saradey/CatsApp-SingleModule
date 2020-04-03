@@ -5,6 +5,8 @@ import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.component.WallCatsSubcomponent
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.IWallCatsView
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsViewImpl
 import javax.inject.Inject
 
 class WallCatsFragment : BaseFragment<IWallCatsView>() {
@@ -36,7 +38,8 @@ class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
 
     override fun initView(content: View) {
-        view = WallCatsViewImpl()
+        view =
+            WallCatsViewImpl()
         view.attachView(content)
     }
 

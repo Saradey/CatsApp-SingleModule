@@ -1,4 +1,4 @@
-package com.evgeny.goncharov.catapp.di.module
+package com.evgeny.goncharov.catapp.di.module.activity
 
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.component.WallCatsSubcomponent
 import dagger.Module

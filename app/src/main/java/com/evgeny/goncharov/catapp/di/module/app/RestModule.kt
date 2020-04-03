@@ -1,4 +1,4 @@
-package com.evgeny.goncharov.catapp.di.module
+package com.evgeny.goncharov.catapp.di.module.app
 
 import android.content.Context
 import com.evgeny.goncharov.catapp.BuildConfig

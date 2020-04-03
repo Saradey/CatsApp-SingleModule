@@ -1,8 +1,8 @@
 package com.evgeny.goncharov.catapp.di.components
 
 import com.evgeny.goncharov.catapp.MainActivity
-import com.evgeny.goncharov.catapp.di.module.ActivityBindsModule
-import com.evgeny.goncharov.catapp.di.module.CreateSubFragmentComponents
+import com.evgeny.goncharov.catapp.di.module.activity.ActivityBindsModule
+import com.evgeny.goncharov.catapp.di.module.activity.CreateSubFragmentComponents
 import com.evgeny.goncharov.catapp.di.scope.ActivityScope
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
