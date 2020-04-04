@@ -38,8 +38,7 @@ class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
 
     override fun initView(content: View) {
-        view =
-            WallCatsViewImpl()
+        view = WallCatsViewImpl()
         view.attachView(content)
     }
 

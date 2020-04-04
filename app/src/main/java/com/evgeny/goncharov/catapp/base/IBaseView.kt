@@ -8,4 +8,8 @@ interface IBaseView {
 
     fun init()
 
+    fun showProgress()
+
+    fun hideProgress()
+
 }
