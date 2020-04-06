@@ -11,4 +11,6 @@
     <color name="text_toolbar_title_light">#433434</color>
     <color name="color_toolbar_background">#BFBFBF</color>
 
+    <color name="color_placeholder">#B0B0B0</color>
+
 </resources>

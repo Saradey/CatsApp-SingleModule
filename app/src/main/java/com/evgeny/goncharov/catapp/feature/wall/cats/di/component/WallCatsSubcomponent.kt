@@ -1,6 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.di.component
 
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
+import com.evgeny.goncharov.catapp.feature.wall.cats.common.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.module.RestModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.module.WallCatsBindsModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.module.WallCatsProvidesModule
@@ -23,6 +24,9 @@ interface WallCatsSubcomponent {
     fun inject(view: WallCatsViewImpl)
 
     fun inject(viewModel: WallCatsViewModelImpl)
+
+    fun inject(adapter: PageKeyedDataSourceCatBreeds)
+
 
     @Subcomponent.Factory
     interface Factory {

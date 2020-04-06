@@ -1,12 +1,11 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
@@ -19,19 +18,10 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
     }
 
 
-    override fun initWallCat() {
-        viewModelScope.launch {
-            loadWallCat()
-        }
+    override suspend fun initWallCat() = withContext<List<CatBreedModel>>(Dispatchers.Main) {
+        val result = interactor.initWallCat()
+        result
     }
 
 
-    private suspend fun loadWallCat() = withContext(Dispatchers.IO) {
-        interactor.initWallCat()
-    }
-
-
-    override fun getCatWallLiveData(): LiveData<List<CatBreedModel>> {
-        return interactor.getLiveDataCatBreedModel()
-    }
 }
