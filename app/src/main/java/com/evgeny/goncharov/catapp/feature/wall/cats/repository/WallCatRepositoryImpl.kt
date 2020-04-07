@@ -8,9 +8,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImag
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.coroutines.resume
@@ -57,10 +55,17 @@ class WallCatRepositoryImpl @Inject constructor(
 
 
     private suspend fun loadAllImage(result: List<CatBreedModelResponse>) {
+        val jobs = mutableListOf<Job>()
         result.forEach { response ->
-            response.urlImageCat = getUrlImage(
-                GetImageRequest(response.id)
-            )
+            val job = coroutineScopeIo.launch {
+                response.urlImageCat = getUrlImage(
+                    GetImageRequest(response.id)
+                )
+            }
+            jobs.add(job)
+        }
+        jobs.forEach {
+            it.join()
         }
     }
 
