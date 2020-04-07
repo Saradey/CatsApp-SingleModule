@@ -37,6 +37,7 @@ class PageKeyedDataSourceCatBreeds(
         }
     }
 
+
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, CatBreedModel>) {
         mainScope.launch(CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
@@ -46,6 +47,7 @@ class PageKeyedDataSourceCatBreeds(
             callback.onResult(result, page)
         }
     }
+
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, CatBreedModel>) {}
 

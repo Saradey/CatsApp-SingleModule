@@ -19,6 +19,7 @@ class WallCatInteractorImpl @Inject constructor(
 
 
     override suspend fun loadWallCat(): List<CatBreedModel> {
+        showProgress()
         var listModels: List<CatBreedModel> = listOf()
         listModels = try {
             loadFromInternet()
@@ -27,8 +28,16 @@ class WallCatInteractorImpl @Inject constructor(
         } finally {
             hideProgress()
         }
+        changeStateView(listModels)
         return suspendCoroutine { continuation ->
             continuation.resume(listModels)
+        }
+    }
+
+
+    private fun changeStateView(listModels: List<CatBreedModel>) {
+        if (listModels.isEmpty()) {
+            liveDataUiEvents.postValue(BaseEventsUi.EventsListWallCatEmpty)
         }
     }
 
@@ -55,7 +64,6 @@ class WallCatInteractorImpl @Inject constructor(
 
 
     private suspend fun loadFromInternet(): List<CatBreedModel> {
-        showProgress()
         return repository.loadWallCatFromInternet(
             WallCatRequest(
                 limit = LIMIT_PAGE_SIZE_CAT_WALL,

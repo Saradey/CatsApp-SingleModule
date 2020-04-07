@@ -22,6 +22,7 @@ interface AppBindsModule {
     fun bindNavigation(navigation: NavigationImpl): INavigation
 
     @Binds
+    @AppScope
     fun bindThemeManager(manager: ThemeManagerImpl): IThemeManager
 
     @Binds

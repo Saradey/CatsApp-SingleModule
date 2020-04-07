@@ -4,4 +4,6 @@ interface IMainRouter {
 
     fun showSlashScreen()
 
+    fun onBackPressed()
+
 }

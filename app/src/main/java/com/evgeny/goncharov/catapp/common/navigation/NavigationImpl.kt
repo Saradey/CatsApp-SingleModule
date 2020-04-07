@@ -46,4 +46,17 @@ class NavigationImpl @Inject constructor() : INavigation {
     }
 
 
+    override fun getNowMatchFromStack(): Int {
+        return activity?.supportFragmentManager?.backStackEntryCount ?: 1
+    }
+
+
+    override fun appFinish() {
+        activity?.finish()
+    }
+
+
+    override fun popStack() {
+        activity?.supportFragmentManager?.popBackStack()
+    }
 }

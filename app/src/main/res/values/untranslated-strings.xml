@@ -4,5 +4,7 @@
     <string name="wall_cat_toolbar_title">Стена котов</string>
     <string name="wall_menu_search_cat">Поиск породы</string>
     <string name="wall_menu_settings">Настройки</string>
+    <string name="back_pressed_common">Нажмине еще раз для выхода из приложения</string>
+    <string name="message_stub_wall_cat">Упс! Что то пошло не так :(</string>
 
 </resources>

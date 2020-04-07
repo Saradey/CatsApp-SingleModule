@@ -1,7 +1,9 @@
 package com.evgeny.goncharov.catapp.di.components
 
 import com.evgeny.goncharov.catapp.MainActivity
+import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.di.module.activity.ActivityBindsModule
+import com.evgeny.goncharov.catapp.di.module.activity.ActivityProvidesModule
 import com.evgeny.goncharov.catapp.di.module.activity.CreateSubFragmentComponents
 import com.evgeny.goncharov.catapp.di.scope.ActivityScope
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
@@ -14,7 +16,8 @@ import dagger.Subcomponent
 @Subcomponent(
     modules = [
         ActivityBindsModule::class,
-        CreateSubFragmentComponents::class
+        CreateSubFragmentComponents::class,
+        ActivityProvidesModule::class
     ]
 )
 interface ActivitySubcomponent {
@@ -26,7 +29,10 @@ interface ActivitySubcomponent {
 
     @Subcomponent.Factory
     interface Factory {
-        fun plus(@BindsInstance activity: MainActivity): ActivitySubcomponent
+        fun plus(
+            @BindsInstance activity: MainActivity,
+            @BindsInstance router: IMainRouter
+        ): ActivitySubcomponent
     }
 
 }

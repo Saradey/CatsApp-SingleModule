@@ -10,4 +10,11 @@ interface INavigation {
 
     fun goTo(destination: Destination)
 
+    fun getNowMatchFromStack(): Int
+
+    fun appFinish()
+
+    fun popStack()
+
+
 }

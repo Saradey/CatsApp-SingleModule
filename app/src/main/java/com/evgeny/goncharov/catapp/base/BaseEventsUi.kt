@@ -6,5 +6,6 @@ sealed class BaseEventsUi {
 
     object EventsHideProgress : BaseEventsUi()
 
+    object EventsListWallCatEmpty : BaseEventsUi()
 
 }

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initDaggerGraph() {
         App.component.inject(this)
-        component = factory.plus(this)
+        component = factory.plus(this, router)
     }
 
 
@@ -48,5 +48,12 @@ class MainActivity : AppCompatActivity() {
         val cycle = ActivityLifeCycle(this, navigation)
         lifecycle.addObserver(cycle)
     }
+
+
+    override fun onBackPressed() {
+        router.onBackPressed()
+    }
+
+
 }
 

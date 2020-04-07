@@ -11,6 +11,7 @@ import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
 import com.evgeny.goncharov.catapp.consts.TAG_ACTIVITY_CONTEXT
+import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
@@ -113,9 +114,19 @@ class WallCatsViewImpl :
             when (event) {
                 BaseEventsUi.EventsShowProgress -> showProgress()
                 BaseEventsUi.EventsHideProgress -> hideProgress()
+                BaseEventsUi.EventsListWallCatEmpty -> {
+                    showStubWallCatEmpty()
+                    hideProgress()
+                }
             }
         })
     }
 
+
+    private fun showStubWallCatEmpty() {
+        content?.apply {
+            grpStubWallCat.setVisibilityBool(true)
+        }
+    }
 
 }
