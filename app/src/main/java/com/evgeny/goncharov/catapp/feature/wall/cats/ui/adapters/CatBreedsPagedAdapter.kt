@@ -15,7 +15,7 @@ class CatBreedsPagedAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatBreedViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_cat_breed, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.holder_cat_breed, parent, false)
         return CatBreedViewHolder(view)
     }
 

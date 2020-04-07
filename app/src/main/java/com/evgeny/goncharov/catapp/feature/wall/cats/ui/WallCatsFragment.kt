@@ -14,12 +14,13 @@ class WallCatsFragment : BaseFragment<IWallCatsView>() {
     @Inject
     lateinit var factory: WallCatsSubcomponent.Factory
 
+    init {
+        MainActivity.component.inject(this)
+    }
+
 
     companion object {
         fun getInstance() = WallCatsFragment()
-            .apply {
-                MainActivity.component.inject(this)
-            }
 
         lateinit var component: WallCatsSubcomponent
     }

@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
-import kotlinx.android.synthetic.main.item_cat_breed.view.*
+import kotlinx.android.synthetic.main.holder_cat_breed.view.*
 
 class CatBreedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

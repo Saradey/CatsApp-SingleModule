@@ -17,24 +17,37 @@ class WallCatInteractorImpl @Inject constructor(
     private val liveDataUiEvents: MutableLiveData<BaseEventsUi>
 ) : IWallCatInteractor {
 
-    private var listModels: List<CatBreedModel> = listOf()
 
-
-    override suspend fun initWallCat(): List<CatBreedModel> {
-        repository.getLiveDataCatBreedModel().observeForever {
-            listModels = it
-        }
-        try {
-            showProgress()
-            repository.loadWallCat(WallCatRequest(limit = LIMIT_PAGE_SIZE_CAT_WALL, page = 0))
+    override suspend fun loadWallCat(): List<CatBreedModel> {
+        var listModels: List<CatBreedModel> = listOf()
+        listModels = try {
+            loadFromInternet()
         } catch (exp: Exception) {
-            exp.printStackTrace()
+            loadFromDatabase(exp)
         } finally {
             hideProgress()
         }
         return suspendCoroutine { continuation ->
             continuation.resume(listModels)
         }
+    }
+
+
+    private suspend fun loadFromDatabase(exp: Exception): List<CatBreedModel> {
+        exp.printStackTrace()
+        val result = repository.loadWallCatFromDatabase()
+        return result
+    }
+
+
+    private suspend fun loadFromInternet(): List<CatBreedModel> {
+        showProgress()
+        return repository.loadWallCatFromInternet(
+            WallCatRequest(
+                limit = LIMIT_PAGE_SIZE_CAT_WALL,
+                page = 0
+            )
+        )
     }
 
 

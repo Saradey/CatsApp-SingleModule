@@ -14,6 +14,6 @@ interface CatsWallDao {
     fun insertWallCat(model: List<CatBreedModelResponse>)
 
     @Query("SELECT * FROM cat_breed")
-    fun getCatBreed(): LiveData<List<CatBreedModelResponse>>
+    fun getCatBreed(): List<CatBreedModelResponse>
 
 }

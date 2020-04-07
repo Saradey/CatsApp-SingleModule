@@ -4,6 +4,6 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 
 interface IWallCatInteractor {
 
-    suspend fun initWallCat(): List<CatBreedModel>
+    suspend fun loadWallCat(): List<CatBreedModel>
 
 }

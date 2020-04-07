@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
 
@@ -17,11 +17,10 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
         WallCatsFragment.component.inject(this)
     }
 
-
-    override suspend fun initWallCat() = withContext<List<CatBreedModel>>(Dispatchers.Main) {
-        val result = interactor.initWallCat()
-        result
+    override suspend fun initWallCat(): List<CatBreedModel> {
+        val result = interactor.loadWallCat()
+        return suspendCoroutine { continuation ->
+            continuation.resume(result)
+        }
     }
-
-
 }

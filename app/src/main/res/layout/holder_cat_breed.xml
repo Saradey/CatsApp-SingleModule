@@ -62,7 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_wikipedia"
+            android:src="@drawable/ic_wikipedia"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toTopOf="@+id/txvBreedDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
