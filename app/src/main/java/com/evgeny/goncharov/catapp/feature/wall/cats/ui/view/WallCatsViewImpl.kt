@@ -11,14 +11,13 @@ import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
 import com.evgeny.goncharov.catapp.consts.TAG_ACTIVITY_CONTEXT
-import com.evgeny.goncharov.catapp.feature.wall.cats.common.DiffUtilsCatBreeds
-import com.evgeny.goncharov.catapp.feature.wall.cats.common.PageKeyedDataSourceCatBreeds
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
-import kotlinx.android.synthetic.main.toolbar.view.*
 import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
 import javax.inject.Inject

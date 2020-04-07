@@ -33,10 +33,24 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
+    override suspend fun loadNexPage(key: Int): List<CatBreedModel> {
+        val result = repository.loadWallCatFromInternet(
+            WallCatRequest(
+                limit = LIMIT_PAGE_SIZE_CAT_WALL,
+                page = key
+            )
+        )
+        return suspendCoroutine { continuation ->
+            continuation.resume(
+                result
+            )
+        }
+    }
+
+
     private suspend fun loadFromDatabase(exp: Exception): List<CatBreedModel> {
         exp.printStackTrace()
-        val result = repository.loadWallCatFromDatabase()
-        return result
+        return repository.loadWallCatFromDatabase()
     }
 
 

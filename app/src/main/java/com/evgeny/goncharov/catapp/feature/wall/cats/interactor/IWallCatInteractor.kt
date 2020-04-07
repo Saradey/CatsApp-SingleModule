@@ -6,4 +6,6 @@ interface IWallCatInteractor {
 
     suspend fun loadWallCat(): List<CatBreedModel>
 
+    suspend fun loadNexPage(key: Int): List<CatBreedModel>
+
 }

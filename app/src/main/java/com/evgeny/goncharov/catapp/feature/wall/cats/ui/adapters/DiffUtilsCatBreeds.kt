@@ -1,4 +1,4 @@
-package com.evgeny.goncharov.catapp.feature.wall.cats.common
+package com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel

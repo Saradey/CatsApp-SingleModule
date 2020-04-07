@@ -23,4 +23,13 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
             continuation.resume(result)
         }
     }
+
+
+    override suspend fun loadNextCats(key: Int): List<CatBreedModel> {
+        val result = interactor.loadNexPage(key)
+        return suspendCoroutine { continuation ->
+            continuation.resume(result)
+        }
+    }
+
 }
