@@ -4,7 +4,7 @@ import android.view.View
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
-import com.evgeny.goncharov.catapp.feature.wall.cats.di.component.WallCatsSubcomponent
+import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.IWallCatsView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsViewImpl
 import javax.inject.Inject

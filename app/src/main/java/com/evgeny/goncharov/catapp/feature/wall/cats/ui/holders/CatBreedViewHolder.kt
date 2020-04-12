@@ -7,7 +7,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import kotlinx.android.synthetic.main.holder_cat_breed.view.*
 
-class CatBreedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderListener) :
+    RecyclerView.ViewHolder(view) {
 
     fun bind(item: CatBreedModel?) {
         item?.let {
@@ -24,8 +25,16 @@ class CatBreedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             itemView.imbWiki.setOnClickListener {
                 //TODO попытаться открыть неявным интентом
             }
+
+            itemView.setOnClickListener {
+                listener.clickCatBreed(adapterPosition)
+            }
         }
     }
 
+
+    interface CatBreedViewHolderListener {
+        fun clickCatBreed(position: Int)
+    }
 
 }

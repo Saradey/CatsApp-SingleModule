@@ -1,0 +1,41 @@
+package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.ICatDescriptionInteractor
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
+
+    private val catDescriptionLiveData = MutableLiveData<CatDescriptionModel>()
+
+    init {
+        CatDescriptionFragment.component.inject(this)
+    }
+
+    @Inject
+    lateinit var interactor: ICatDescriptionInteractor
+
+
+    override fun setCatId(catId: String) {
+        interactor.setCatId(catId)
+    }
+
+
+    override fun loadChooseCat() {
+        viewModelScope.launch {
+
+        }
+    }
+
+
+    override fun getCatDescriptionLiveData(): LiveData<CatDescriptionModel> {
+        return catDescriptionLiveData
+    }
+
+}

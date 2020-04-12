@@ -11,12 +11,14 @@ import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
 import com.evgeny.goncharov.catapp.consts.TAG_ACTIVITY_CONTEXT
+import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_WALL_CAT
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import kotlinx.android.synthetic.main.toolbar.view.toolbar
@@ -26,12 +28,13 @@ import javax.inject.Named
 
 class WallCatsViewImpl :
     BaseViewImpl(),
-    IWallCatsView {
+    IWallCatsView,
+    CatBreedViewHolder.CatBreedViewHolderListener {
 
     @Inject
     lateinit var viewModel: IWallCatsViewModel
 
-    @Inject
+    @field:[Inject Named(TAG_LIFECYCLE_WALL_CAT)]
     lateinit var lifecycleOwner: LifecycleOwner
 
     @Inject
@@ -47,7 +50,7 @@ class WallCatsViewImpl :
     lateinit var context: Context
 
 
-    private val adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds())
+    private val adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), this)
 
 
     override fun init() {
@@ -127,6 +130,11 @@ class WallCatsViewImpl :
         content?.apply {
             grpStubWallCat.setVisibilityBool(true)
         }
+    }
+
+
+    override fun clickCatBreed(position: Int) {
+
     }
 
 }

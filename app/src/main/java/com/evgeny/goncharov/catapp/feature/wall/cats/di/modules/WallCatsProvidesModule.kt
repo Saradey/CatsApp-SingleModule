@@ -1,4 +1,4 @@
-package com.evgeny.goncharov.catapp.feature.wall.cats.di.module
+package com.evgeny.goncharov.catapp.feature.wall.cats.di.modules
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
@@ -32,8 +32,6 @@ class WallCatsProvidesModule {
     fun providePageKeyedDataSourceCatBreeds(
         viewModel: IWallCatsViewModel
     ) =
-        PageKeyedDataSourceCatBreeds(
-            viewModel
-        )
+        PageKeyedDataSourceCatBreeds(viewModel)
 
 }
