@@ -10,3 +10,5 @@ const val WRITE_TIMEOUT = 30L
 const val VERSION_DATA_BASE = 1
 
 const val LIMIT_PAGE_SIZE_CAT_WALL = 15
+
+const val KEY_BUNDLE_CAT_ID = "KEY_BUNDLE_CAT_ID"

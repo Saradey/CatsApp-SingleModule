@@ -1,7 +1,9 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_CAT_DESC
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
@@ -16,6 +18,9 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
 
     @field:[Inject Named(TAG_LIFECYCLE_CAT_DESC)]
     lateinit var lifecycleOwner: LifecycleOwner
+
+    @Inject
+    lateinit var liveDataUiEvents: MutableLiveData<BaseEventsUi>
 
 
     override fun init() {

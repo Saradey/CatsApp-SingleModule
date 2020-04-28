@@ -32,4 +32,8 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
         }
     }
 
+
+    override fun clickCatBreed(id: String) {
+        interactor.clickCatBreed(id)
+    }
 }

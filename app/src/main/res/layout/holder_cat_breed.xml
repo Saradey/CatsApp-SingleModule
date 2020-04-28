@@ -12,6 +12,7 @@
     app:cardCornerRadius="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cnlContainerCat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"

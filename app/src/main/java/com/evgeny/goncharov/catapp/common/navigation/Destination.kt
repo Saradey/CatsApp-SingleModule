@@ -6,4 +6,6 @@ sealed class Destination {
 
     object CatWallScreen : Destination()
 
+    object CatDescription : Destination()
+
 }

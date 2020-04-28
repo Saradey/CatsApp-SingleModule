@@ -1,8 +1,10 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
 import android.content.Context
+import android.os.Bundle
 import android.widget.Toast
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
 import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
 import com.evgeny.goncharov.catapp.consts.TAG_MAIN_SCOPE_GET_FROM_APP
 import kotlinx.coroutines.CoroutineScope
@@ -48,6 +50,13 @@ class MainRouterImpl @Inject constructor(
             delay(2000)
             countBackPressed = 0
         }
+    }
+
+
+    override fun showCatDescription(idCat: String) {
+        val bundle = Bundle()
+        bundle.putString(KEY_BUNDLE_CAT_ID, idCat)
+        navigation.goTo(Destination.CatDescription, bundle)
     }
 
 }

@@ -24,17 +24,18 @@ class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderLis
                 .into(itemView.imvShowCat)
             itemView.imbWiki.setOnClickListener {
                 //TODO попытаться открыть неявным интентом
+                println()
             }
 
-            itemView.setOnClickListener {
-                listener.clickCatBreed(adapterPosition)
+            itemView.cnlContainerCat.setOnClickListener {
+                listener.clickCatBreed(item.id)
             }
         }
     }
 
 
     interface CatBreedViewHolderListener {
-        fun clickCatBreed(position: Int)
+        fun clickCatBreed(id: String?)
     }
 
 }

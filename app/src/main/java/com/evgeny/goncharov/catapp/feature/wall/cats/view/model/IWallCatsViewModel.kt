@@ -8,4 +8,6 @@ interface IWallCatsViewModel {
 
     suspend fun loadNextCats(key: Int): List<CatBreedModel>
 
+    fun clickCatBreed(id: String)
+
 }

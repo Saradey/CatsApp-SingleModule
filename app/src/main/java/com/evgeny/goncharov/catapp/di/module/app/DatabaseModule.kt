@@ -6,6 +6,7 @@ import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
 import com.evgeny.goncharov.catapp.consts.TAG_IO_SCOPE_GET_FROM_APP
 import com.evgeny.goncharov.catapp.db.AppDatabase
 import com.evgeny.goncharov.catapp.di.scope.AppScope
+import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -17,5 +18,13 @@ class DatabaseModule {
     @Provides
     fun provideDataBase(@Named(TAG_APPLICATION_CONTEXT) context: Context) =
         Room.databaseBuilder(context, AppDatabase::class.java, "pisa").build()
+
+    @Provides
+    fun provideCatDescriptionDAO(appDatabase: AppDatabase): CatDescriptionDAO =
+        appDatabase.createCatDescriptionDAO()
+
+    @Provides
+    fun provideCatsWallDao(appDatabase: AppDatabase) =
+        appDatabase.createCatsWallDao()
 
 }

@@ -11,4 +11,6 @@ interface ICatDescriptionViewModel {
 
     fun getCatDescriptionLiveData(): LiveData<CatDescriptionModel>
 
+    fun initInjection()
+
 }

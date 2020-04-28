@@ -1,5 +1,6 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 
+import android.os.Bundle
 import android.view.View
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
@@ -16,9 +17,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     companion object {
         lateinit var component: CatDescriptionSubcomponent
 
-        fun getInstance(idCat: String) = CatDescriptionFragment().apply {
-            setCatId(idCat)
-        }
+        fun getInstance() = CatDescriptionFragment()
     }
 
     @Inject
@@ -28,8 +27,11 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     lateinit var viewModel: ICatDescriptionViewModel
 
 
-    init {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         MainActivity.component.inject(this)
+        component = factory.plus()
+        viewModel.initInjection()
     }
 
 
@@ -39,8 +41,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
 
     override fun init(content: View) {
-        component = factory.plus()
-
+        initView(content)
     }
 
 
@@ -50,7 +51,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     }
 
 
-    private fun setCatId(catId: String) {
+    fun setCatId(catId: String) {
         viewModel.setCatId(catId)
     }
 

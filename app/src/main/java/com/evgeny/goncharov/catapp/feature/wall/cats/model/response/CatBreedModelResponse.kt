@@ -7,15 +7,12 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "cat_breed")
 data class CatBreedModelResponse(
-    @SerializedName("description") var description: String? = null,
-    @SerializedName("name") var name: String? = null,
-    @SerializedName("life_span") var lifeSpan: String? = null,
-    @SerializedName("id") @PrimaryKey var id: String = "",
-    @SerializedName("origin") var origin: String? = null,
-    @SerializedName("temperament") var temperament: String? = null,
-    @SerializedName("wikipedia_url") var wikipediaUrl: String? = null,
+    @SerializedName("description") val description: String? = null,
+    @SerializedName("name") val name: String? = null,
+    @SerializedName("life_span") val lifeSpan: String? = null,
+    @SerializedName("id") @PrimaryKey val id: String = "",
+    @SerializedName("origin") val origin: String? = null,
+    @SerializedName("temperament") val temperament: String? = null,
+    @SerializedName("wikipedia_url") val wikipediaUrl: String? = null,
     @Expose(serialize = false) var urlImageCat: String? = null
 )
-
-
-

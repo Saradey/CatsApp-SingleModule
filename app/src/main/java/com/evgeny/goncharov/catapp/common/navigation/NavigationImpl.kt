@@ -1,8 +1,11 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
+import android.os.Bundle
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import javax.inject.Inject
 
@@ -30,6 +33,26 @@ class NavigationImpl @Inject constructor() : INavigation {
     }
 
 
+    override fun goTo(destination: Destination, bundle: Bundle) {
+        activity?.let {
+            when (destination) {
+                Destination.CatDescription -> goToTheCatDescription(bundle)
+            }
+        }
+    }
+
+
+    private fun goToTheCatDescription(bundle: Bundle) {
+        val id = bundle.getString(KEY_BUNDLE_CAT_ID)
+        val fragment = CatDescriptionFragment.getInstance()
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.hide(activity?.supportFragmentManager?.fragments?.last()!!)
+            ?.add(R.id.frmRootField, fragment, CatDescriptionFragment::class.java.name)
+            ?.addToBackStack(CatDescriptionFragment::class.java.name)
+            ?.commit()
+    }
+
+
     private fun goToSplashScreenScreen() {
         val fragment = SplashScreenFragment.getInstance()
         activity?.supportFragmentManager?.beginTransaction()
@@ -47,7 +70,7 @@ class NavigationImpl @Inject constructor() : INavigation {
 
 
     override fun getNowMatchFromStack(): Int {
-        return activity?.supportFragmentManager?.backStackEntryCount ?: 1
+        return activity?.supportFragmentManager?.fragments?.size ?: 0
     }
 
 

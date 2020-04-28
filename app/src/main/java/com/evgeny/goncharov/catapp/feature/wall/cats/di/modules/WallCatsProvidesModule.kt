@@ -24,14 +24,10 @@ class WallCatsProvidesModule {
     @FragmentScope
     fun provideLiveDataEventsUi(): MutableLiveData<BaseEventsUi> = MutableLiveData<BaseEventsUi>()
 
-    @Provides
-    fun provideCatsWallDao(appDatabase: AppDatabase) =
-        appDatabase.createCatsWallDao()
 
     @Provides
     fun providePageKeyedDataSourceCatBreeds(
         viewModel: IWallCatsViewModel
-    ) =
-        PageKeyedDataSourceCatBreeds(viewModel)
+    ) = PageKeyedDataSourceCatBreeds(viewModel)
 
 }

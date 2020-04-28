@@ -33,8 +33,7 @@ interface ActivitySubcomponent {
     @Subcomponent.Factory
     interface Factory {
         fun plus(
-            @BindsInstance activity: MainActivity,
-            @BindsInstance router: IMainRouter
+            @BindsInstance activity: MainActivity
         ): ActivitySubcomponent
     }
 

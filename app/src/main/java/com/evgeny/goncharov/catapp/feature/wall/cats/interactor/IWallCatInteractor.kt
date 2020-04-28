@@ -8,4 +8,6 @@ interface IWallCatInteractor {
 
     suspend fun loadNexPage(key: Int): List<CatBreedModel>
 
+    fun clickCatBreed(id: String)
+
 }

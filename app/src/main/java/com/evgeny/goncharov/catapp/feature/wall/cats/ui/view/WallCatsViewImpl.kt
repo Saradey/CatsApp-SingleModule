@@ -10,6 +10,7 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
+import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.consts.TAG_ACTIVITY_CONTEXT
 import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_WALL_CAT
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
@@ -117,7 +118,7 @@ class WallCatsViewImpl :
             when (event) {
                 BaseEventsUi.EventsShowProgress -> showProgress()
                 BaseEventsUi.EventsHideProgress -> hideProgress()
-                BaseEventsUi.EventsListWallCatEmpty -> {
+                BaseEventsUi.SomethingWrong -> {
                     showStubWallCatEmpty()
                     hideProgress()
                 }
@@ -133,8 +134,11 @@ class WallCatsViewImpl :
     }
 
 
-    override fun clickCatBreed(position: Int) {
-
+    override fun clickCatBreed(id: String?) {
+        id?.let {
+            viewModel.clickCatBreed(id)
+        }
     }
+
 
 }

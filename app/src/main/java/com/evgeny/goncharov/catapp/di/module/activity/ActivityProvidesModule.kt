@@ -15,10 +15,6 @@ import dagger.Provides
 @Module
 class ActivityProvidesModule {
 
-    @Provides
-    @ActivityScope
-    fun provideMainRouter(router: IMainRouter) = router
-
 
     @Provides
     @ActivityScope
@@ -29,8 +25,7 @@ class ActivityProvidesModule {
 
     @Provides
     fun provideCatDescriptionFragment(fragmentManager: FragmentManager): CatDescriptionFragment {
-        return fragmentManager.getFragment(
-            Bundle(),
+        return fragmentManager.findFragmentByTag(
             CatDescriptionFragment::class.java.name
         ) as CatDescriptionFragment
     }

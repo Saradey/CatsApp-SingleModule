@@ -14,9 +14,6 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
 
     private val catDescriptionLiveData = MutableLiveData<CatDescriptionModel>()
 
-    init {
-        CatDescriptionFragment.component.inject(this)
-    }
 
     @Inject
     lateinit var interactor: ICatDescriptionInteractor
@@ -29,13 +26,21 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
 
     override fun loadChooseCat() {
         viewModelScope.launch {
-
+            val cat = interactor.loadChooseCat()
+            cat?.let {
+                catDescriptionLiveData.postValue(cat)
+            }
         }
     }
 
 
     override fun getCatDescriptionLiveData(): LiveData<CatDescriptionModel> {
         return catDescriptionLiveData
+    }
+
+
+    override fun initInjection() {
+        CatDescriptionFragment.component.inject(this)
     }
 
 }

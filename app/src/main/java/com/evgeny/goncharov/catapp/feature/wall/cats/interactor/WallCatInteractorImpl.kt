@@ -2,6 +2,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.MutableLiveData
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
+import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.consts.LIMIT_PAGE_SIZE_CAT_WALL
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
@@ -14,7 +15,8 @@ import kotlin.coroutines.suspendCoroutine
 
 class WallCatInteractorImpl @Inject constructor(
     private val repository: IWallCatRepository,
-    private val liveDataUiEvents: MutableLiveData<BaseEventsUi>
+    private val liveDataUiEvents: MutableLiveData<BaseEventsUi>,
+    private val mainRouter: IMainRouter
 ) : IWallCatInteractor {
 
 
@@ -37,7 +39,7 @@ class WallCatInteractorImpl @Inject constructor(
 
     private fun changeStateView(listModels: List<CatBreedModel>) {
         if (listModels.isEmpty()) {
-            liveDataUiEvents.postValue(BaseEventsUi.EventsListWallCatEmpty)
+            liveDataUiEvents.postValue(BaseEventsUi.SomethingWrong)
         }
     }
 
@@ -83,5 +85,8 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
+    override fun clickCatBreed(id: String) {
+        mainRouter.showCatDescription(id)
+    }
 }
 

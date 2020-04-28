@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initDaggerGraph() {
         App.component.inject(this)
-        component = factory.plus(this, router)
+        component = factory.plus(this)
     }
 
 

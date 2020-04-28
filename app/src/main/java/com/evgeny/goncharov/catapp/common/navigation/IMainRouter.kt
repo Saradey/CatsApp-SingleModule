@@ -6,4 +6,6 @@ interface IMainRouter {
 
     fun onBackPressed()
 
+    fun showCatDescription(idCat: String)
+
 }
