@@ -1,27 +1,15 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters
 
 import androidx.paging.PageKeyedDataSource
-import com.evgeny.goncharov.catapp.consts.TAG_MAIN_SCOPE_GET_FROM_APP
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-import javax.inject.Named
+import kotlinx.coroutines.*
 
 class PageKeyedDataSourceCatBreeds(
     private val viewModel: IWallCatsViewModel
-) :
-    PageKeyedDataSource<Int, CatBreedModel>() {
+) : PageKeyedDataSource<Int, CatBreedModel>() {
 
-    init {
-        WallCatsFragment.component.inject(this)
-    }
-
-    @field:[Inject Named(TAG_MAIN_SCOPE_GET_FROM_APP)]
-    lateinit var mainScope: CoroutineScope
+    private var mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private var page = 0
 

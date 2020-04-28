@@ -1,6 +1,5 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.repository
 
-import com.evgeny.goncharov.catapp.consts.TAG_IO_SCOPE_GET_FROM_APP
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetImageRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
@@ -10,15 +9,15 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import javax.inject.Named
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class WallCatRepositoryImpl @Inject constructor(
     private val api: ApiBreeds,
-    private val daoWallCat: CatsWallDao,
-    @Named(TAG_IO_SCOPE_GET_FROM_APP) private val coroutineScopeIo: CoroutineScope
+    private val daoWallCat: CatsWallDao
 ) : IWallCatRepository {
+
+    private val coroutineScopeIo = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
 
     override suspend fun loadWallCatFromInternet(request: WallCatRequest) =

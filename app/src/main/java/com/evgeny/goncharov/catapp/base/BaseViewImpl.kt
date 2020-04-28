@@ -12,8 +12,6 @@ abstract class BaseViewImpl : IBaseView {
         content = view
     }
 
-    protected abstract fun initLiveData()
-
 
     override fun showProgress() {
         content?.prgLoad?.setVisibilityBool(true)
@@ -23,6 +21,13 @@ abstract class BaseViewImpl : IBaseView {
     override fun hideProgress() {
         content?.prgLoad?.setVisibilityBool(false)
     }
+
+
+    override fun showStubSomethingWrong() {
+        content?.prgLoad?.setVisibilityBool(false)
+        content?.grpStubWallCat?.setVisibilityBool(true)
+    }
+
 }
 
 

@@ -25,9 +25,6 @@ interface WallCatsSubcomponent {
 
     fun inject(viewModel: WallCatsViewModelImpl)
 
-    fun inject(adapter: PageKeyedDataSourceCatBreeds)
-
-
     @Subcomponent.Factory
     interface Factory {
         fun plus(@BindsInstance fragment: WallCatsFragment): WallCatsSubcomponent

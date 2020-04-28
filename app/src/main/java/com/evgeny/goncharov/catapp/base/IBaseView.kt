@@ -12,4 +12,6 @@ interface IBaseView {
 
     fun hideProgress()
 
+    fun showStubSomethingWrong()
+
 }

@@ -1,26 +1,18 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
-import android.content.Context
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
-import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
-import com.evgeny.goncharov.catapp.consts.TAG_ACTIVITY_CONTEXT
 import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_WALL_CAT
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
@@ -29,17 +21,10 @@ import javax.inject.Named
 
 class WallCatsViewImpl :
     BaseViewImpl(),
-    IWallCatsView,
-    CatBreedViewHolder.CatBreedViewHolderListener {
-
-    @Inject
-    lateinit var viewModel: IWallCatsViewModel
+    IWallCatsView {
 
     @field:[Inject Named(TAG_LIFECYCLE_WALL_CAT)]
     lateinit var lifecycleOwner: LifecycleOwner
-
-    @Inject
-    lateinit var uiEventsLD: MutableLiveData<BaseEventsUi>
 
     @Inject
     lateinit var dataSource: PageKeyedDataSourceCatBreeds
@@ -47,17 +32,12 @@ class WallCatsViewImpl :
     @Inject
     lateinit var mainThreadExecutor: MainThreadExecutor
 
-    @field:[Inject Named(TAG_ACTIVITY_CONTEXT)]
-    lateinit var context: Context
-
-
-    private val adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), this)
+    private lateinit var adapter: CatBreedsPagedAdapter
 
 
     override fun init() {
         WallCatsFragment.component.inject(this)
         initUi()
-        initLiveData()
     }
 
 
@@ -68,6 +48,7 @@ class WallCatsViewImpl :
 
 
     private fun initPagedAdapterAndRecycle() {
+        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), lifecycleOwner as WallCatsFragment)
         val pagedConfig = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(15)
@@ -106,39 +87,5 @@ class WallCatsViewImpl :
             }
         }
     }
-
-
-    override fun initLiveData() {
-        initEventsUILiveData()
-    }
-
-
-    private fun initEventsUILiveData() {
-        uiEventsLD.observe(lifecycleOwner, Observer { event ->
-            when (event) {
-                BaseEventsUi.EventsShowProgress -> showProgress()
-                BaseEventsUi.EventsHideProgress -> hideProgress()
-                BaseEventsUi.SomethingWrong -> {
-                    showStubWallCatEmpty()
-                    hideProgress()
-                }
-            }
-        })
-    }
-
-
-    private fun showStubWallCatEmpty() {
-        content?.apply {
-            grpStubWallCat.setVisibilityBool(true)
-        }
-    }
-
-
-    override fun clickCatBreed(id: String?) {
-        id?.let {
-            viewModel.clickCatBreed(id)
-        }
-    }
-
 
 }

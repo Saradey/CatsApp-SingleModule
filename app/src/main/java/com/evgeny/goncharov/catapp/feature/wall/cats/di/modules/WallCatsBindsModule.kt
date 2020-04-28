@@ -23,8 +23,4 @@ interface WallCatsBindsModule {
     @FragmentScope
     fun bindWallCatRepository(repository: WallCatRepositoryImpl): IWallCatRepository
 
-    @Binds
-    @Named(TAG_LIFECYCLE_WALL_CAT)
-    fun bindLifeCycleOwner(fragment: WallCatsFragment): LifecycleOwner
-
 }

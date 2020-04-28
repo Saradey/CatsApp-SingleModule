@@ -64,7 +64,7 @@ class NavigationImpl @Inject constructor() : INavigation {
     private fun goToCatWallScreen() {
         val fragment = WallCatsFragment.getInstance()
         activity?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.frmRootField, fragment)
+            ?.replace(R.id.frmRootField, fragment, WallCatsFragment::class.java.name)
             ?.commit()
     }
 

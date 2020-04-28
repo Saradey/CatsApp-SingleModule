@@ -2,8 +2,10 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionViewImpl
@@ -13,10 +15,8 @@ import javax.inject.Inject
 
 class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
-
     companion object {
         lateinit var component: CatDescriptionSubcomponent
-
         fun getInstance() = CatDescriptionFragment()
     }
 
@@ -42,6 +42,18 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     override fun init(content: View) {
         initView(content)
+        initLiveData()
+    }
+
+
+    private fun initLiveData() {
+        viewModel.getLiveDataUiEvents().observe(this, Observer {
+            when (it) {
+                BaseEventsUi.EventsShowProgress -> view.showProgress()
+                BaseEventsUi.EventsHideProgress -> view.hideProgress()
+                BaseEventsUi.SomethingWrong -> view.showStubSomethingWrong()
+            }
+        })
     }
 
 

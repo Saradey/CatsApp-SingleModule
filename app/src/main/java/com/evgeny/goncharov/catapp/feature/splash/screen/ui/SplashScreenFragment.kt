@@ -6,12 +6,9 @@ import android.view.animation.AnimationUtils
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
-import com.evgeny.goncharov.catapp.consts.TAG_MAIN_SCOPE_GET_FROM_APP
 import com.evgeny.goncharov.catapp.feature.splash.screen.router.ISplashScreenRouter
 import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -23,8 +20,7 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
         }
     }
 
-    @field:[Inject Named(TAG_MAIN_SCOPE_GET_FROM_APP)]
-    lateinit var mainScope: CoroutineScope
+    val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     @Inject
     lateinit var router: ISplashScreenRouter

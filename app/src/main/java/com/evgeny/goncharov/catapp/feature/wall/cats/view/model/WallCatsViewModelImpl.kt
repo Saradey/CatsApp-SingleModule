@@ -1,6 +1,8 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
@@ -13,9 +15,11 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
     @Inject
     lateinit var interactor: IWallCatInteractor
 
-    init {
+
+    override fun initInject() {
         WallCatsFragment.component.inject(this)
     }
+
 
     override suspend fun initWallCat(): List<CatBreedModel> {
         val result = interactor.loadWallCat()
@@ -35,5 +39,10 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
 
     override fun clickCatBreed(id: String) {
         interactor.clickCatBreed(id)
+    }
+
+
+    override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
+        return interactor.getUiEventsLiveData()
     }
 }

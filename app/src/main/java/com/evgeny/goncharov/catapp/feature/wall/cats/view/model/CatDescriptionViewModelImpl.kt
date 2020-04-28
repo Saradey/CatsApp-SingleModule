@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.ICatDescriptionInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
@@ -41,6 +42,11 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
 
     override fun initInjection() {
         CatDescriptionFragment.component.inject(this)
+    }
+
+
+    override fun getLiveDataUiEvents(): LiveData<BaseEventsUi> {
+        return interactor.getLiveDataUiEvents()
     }
 
 }

@@ -1,20 +1,21 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
+import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.repository.ICatDescriptionRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 import javax.inject.Inject
 
 class CatDescriptionInteractorImpl @Inject constructor(
-    private val repository: ICatDescriptionRepository,
-    private val liveDataUiEvents: MutableLiveData<BaseEventsUi>
+    private val repository: ICatDescriptionRepository
 ) : ICatDescriptionInteractor {
 
     private var catId = ""
+
+    private var liveDataUiEvents = SingleLiveEvent<BaseEventsUi>()
 
 
     override fun setCatId(catId: String) {
@@ -42,6 +43,11 @@ class CatDescriptionInteractorImpl @Inject constructor(
         if (model == null) {
             liveDataUiEvents.postValue(BaseEventsUi.SomethingWrong)
         }
+    }
+
+
+    override fun getLiveDataUiEvents(): LiveData<BaseEventsUi> {
+        return liveDataUiEvents
     }
 
 }
