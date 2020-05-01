@@ -25,9 +25,10 @@ interface WallCatsSubcomponent {
 
     fun inject(viewModel: WallCatsViewModelImpl)
 
+
     @Subcomponent.Factory
     interface Factory {
-        fun plus(@BindsInstance fragment: WallCatsFragment): WallCatsSubcomponent
+        fun plus(): WallCatsSubcomponent
     }
 
 }

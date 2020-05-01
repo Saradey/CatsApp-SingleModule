@@ -26,13 +26,13 @@ class CatDescriptionInteractorImpl @Inject constructor(
     override suspend fun loadChooseCat(): CatDescriptionModel? = withContext(Dispatchers.Main) {
         var cat: CatDescriptionModel? = null
         cat = try {
-            liveDataUiEvents.postValue(BaseEventsUi.EventsShowProgress)
+            liveDataUiEvents.postValue(BaseEventsUi.EventShowProgress)
             repository.loadChooseCatFromInternet(catId)
         } catch (exception: Exception) {
             exception.printStackTrace()
             repository.loadChooseCatFromDatabase(catId)
         } finally {
-            liveDataUiEvents.postValue(BaseEventsUi.EventsHideProgress)
+            liveDataUiEvents.postValue(BaseEventsUi.EventHideProgress)
         }
         validateData(cat)
         cat
@@ -41,7 +41,7 @@ class CatDescriptionInteractorImpl @Inject constructor(
 
     private suspend fun validateData(model: CatDescriptionModel?) {
         if (model == null) {
-            liveDataUiEvents.postValue(BaseEventsUi.SomethingWrong)
+            liveDataUiEvents.postValue(BaseEventsUi.EventSomethingWrong)
         }
     }
 

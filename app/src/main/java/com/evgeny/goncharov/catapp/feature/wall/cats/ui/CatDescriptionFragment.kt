@@ -49,9 +49,9 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     private fun initLiveData() {
         viewModel.getLiveDataUiEvents().observe(this, Observer {
             when (it) {
-                BaseEventsUi.EventsShowProgress -> view.showProgress()
-                BaseEventsUi.EventsHideProgress -> view.hideProgress()
-                BaseEventsUi.SomethingWrong -> view.showStubSomethingWrong()
+                BaseEventsUi.EventShowProgress -> view.showProgress()
+                BaseEventsUi.EventHideProgress -> view.hideProgress()
+                BaseEventsUi.EventSomethingWrong -> view.showStubSomethingWrong()
             }
         })
     }

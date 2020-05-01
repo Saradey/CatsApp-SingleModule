@@ -1,7 +1,6 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
@@ -31,7 +30,7 @@ class WallCatInteractorImpl @Inject constructor(
         } catch (exp: Exception) {
             loadFromDatabase(exp)
         } finally {
-            hideProgress()
+            hideProgressAndInitRefreshLayout()
         }
         changeStateView(listModels)
         return suspendCoroutine { continuation ->
@@ -42,7 +41,7 @@ class WallCatInteractorImpl @Inject constructor(
 
     private fun changeStateView(listModels: List<CatBreedModel>) {
         if (listModels.isEmpty()) {
-            liveDataUiEvents.postValue(BaseEventsUi.SomethingWrong)
+            liveDataUiEvents.postValue(BaseEventsUi.EventSomethingWrong)
         }
     }
 
@@ -79,12 +78,12 @@ class WallCatInteractorImpl @Inject constructor(
 
 
     private suspend fun showProgress() = withContext(Dispatchers.Main) {
-        liveDataUiEvents.postValue(BaseEventsUi.EventsShowProgress)
+        liveDataUiEvents.postValue(BaseEventsUi.EventShowProgress)
     }
 
 
-    private suspend fun hideProgress() = withContext(Dispatchers.Main) {
-        liveDataUiEvents.postValue(BaseEventsUi.EventsHideProgress)
+    private suspend fun hideProgressAndInitRefreshLayout() = withContext(Dispatchers.Main) {
+        liveDataUiEvents.postValue(BaseEventsUi.EventHideProgressAndInitRefreshLayout)
     }
 
 

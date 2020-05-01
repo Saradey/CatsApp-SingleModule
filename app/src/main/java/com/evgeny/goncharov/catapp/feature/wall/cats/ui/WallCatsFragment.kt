@@ -33,7 +33,7 @@ class WallCatsFragment : BaseFragment<IWallCatsView>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivity.component.inject(this)
-        component = factory.plus(this)
+        component = factory.plus()
     }
 
 
@@ -59,9 +59,12 @@ class WallCatsFragment : BaseFragment<IWallCatsView>(),
     private fun initLiveData() {
         viewModel.getUiEventsLiveData().observe(this, Observer {
             when (it) {
-                BaseEventsUi.EventsShowProgress -> view.showProgress()
-                BaseEventsUi.EventsHideProgress -> view.hideProgress()
-                BaseEventsUi.SomethingWrong -> view.showStubSomethingWrong()
+                BaseEventsUi.EventShowProgress -> view.showProgress()
+                BaseEventsUi.EventSomethingWrong -> view.showStubSomethingWrong()
+                BaseEventsUi.EventHideProgressAndInitRefreshLayout -> {
+                    view.hideProgress()
+                    view.initSwipeRefreshLayout()
+                }
             }
         })
     }
@@ -71,5 +74,15 @@ class WallCatsFragment : BaseFragment<IWallCatsView>(),
         id?.let {
             viewModel.clickCatBreed(id)
         }
+    }
+
+
+    fun clickMenuSearchCat() {
+
+    }
+
+
+    fun clickMenuSettings() {
+
     }
 }

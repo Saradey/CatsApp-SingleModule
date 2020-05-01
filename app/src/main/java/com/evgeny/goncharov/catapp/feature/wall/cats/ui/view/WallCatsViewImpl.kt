@@ -1,13 +1,10 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
-import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_WALL_CAT
-import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
@@ -17,14 +14,13 @@ import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
 import javax.inject.Inject
-import javax.inject.Named
 
 class WallCatsViewImpl :
     BaseViewImpl(),
     IWallCatsView {
 
-    @field:[Inject Named(TAG_LIFECYCLE_WALL_CAT)]
-    lateinit var lifecycleOwner: LifecycleOwner
+    @Inject
+    lateinit var fragment: WallCatsFragment
 
     @Inject
     lateinit var dataSource: PageKeyedDataSourceCatBreeds
@@ -44,11 +40,32 @@ class WallCatsViewImpl :
     private fun initUi() {
         initToolbar()
         initPagedAdapterAndRecycle()
+        initFirstSwipeRefreshLayout()
+    }
+
+
+    private fun initFirstSwipeRefreshLayout() {
+        content?.apply {
+            swrlContainer.setOnRefreshListener {
+                swrlContainer.isRefreshing = false
+            }
+        }
+    }
+
+
+    override fun initSwipeRefreshLayout() {
+        content?.apply {
+            swrlContainer.setOnRefreshListener {
+                initPagedAdapterAndRecycle()
+                swrlContainer.isRefreshing = false
+                initFirstSwipeRefreshLayout()
+            }
+        }
     }
 
 
     private fun initPagedAdapterAndRecycle() {
-        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), lifecycleOwner as WallCatsFragment)
+        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), fragment)
         val pagedConfig = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(15)
@@ -72,15 +89,14 @@ class WallCatsViewImpl :
             toolbar.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
                     R.id.menuSearchCat -> {
-
+                        fragment.clickMenuSearchCat()
                         true
                     }
                     R.id.menuSettings -> {
-
+                        fragment.clickMenuSettings()
                         true
                     }
                     else -> {
-
                         false
                     }
                 }
