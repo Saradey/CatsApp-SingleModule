@@ -23,7 +23,7 @@ class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderLis
                 )
                 .into(itemView.imvShowCat)
             itemView.imbWiki.setOnClickListener {
-                //TODO попытаться открыть неявным интентом
+                listener.clickCatUrlBreed(item.wikipediaUrl)
             }
 
             itemView.cnlContainerCat.setOnClickListener {
@@ -35,6 +35,7 @@ class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderLis
 
     interface CatBreedViewHolderListener {
         fun clickCatBreed(id: String?)
+        fun clickCatUrlBreed(urlImage: String?)
     }
 
 }

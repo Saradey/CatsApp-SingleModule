@@ -1,5 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -73,6 +75,17 @@ class WallCatsFragment : BaseFragment<IWallCatsView>(),
     override fun clickCatBreed(id: String?) {
         id?.let {
             viewModel.clickCatBreed(id)
+        }
+    }
+
+
+    override fun clickCatUrlBreed(urlImage: String?) {
+        urlImage?.let {
+            val uri = Uri.parse(urlImage)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            if (intent.resolveActivity(activity?.packageManager!!) != null) {
+                startActivity(intent)
+            }
         }
     }
 
