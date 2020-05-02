@@ -22,6 +22,7 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
 
     override fun setCatId(catId: String) {
         interactor.setCatId(catId)
+        loadChooseCat()
     }
 
 

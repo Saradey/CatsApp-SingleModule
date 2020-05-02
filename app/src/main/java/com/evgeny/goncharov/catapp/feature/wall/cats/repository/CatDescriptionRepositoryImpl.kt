@@ -37,10 +37,19 @@ class CatDescriptionRepositoryImpl @Inject constructor(
     private fun mapModel(model: ChooseCatBreedResponse?): CatDescriptionModel? {
         return if (model != null) {
             CatDescriptionModel(
-                name = model.name ?: "null"
+                name = model.name ?: "null",
+                urlImage = "",
+                origin = model.origin ?: "null",
+                lifeSpan = model.lifeSpan ?: "null",
+                weight = model.weight?.metric ?: "null",
+                temperament = model.temperament ?: "null",
+                description = model.description ?: "null",
+                urlWiki = model.wikipediaUrl ?: "null"
             )
         } else {
             null
         }
     }
+
+
 }

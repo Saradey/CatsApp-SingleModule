@@ -1,5 +1,6 @@
 package com.evgeny.goncharov.catapp.di.module.activity
 
+import android.content.res.Resources
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders

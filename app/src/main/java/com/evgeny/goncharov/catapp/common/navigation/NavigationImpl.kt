@@ -44,7 +44,7 @@ class NavigationImpl @Inject constructor() : INavigation {
 
     private fun goToTheCatDescription(bundle: Bundle) {
         val id = bundle.getString(KEY_BUNDLE_CAT_ID)
-        val fragment = CatDescriptionFragment.getInstance()
+        val fragment = CatDescriptionFragment.getInstance(id)
         activity?.supportFragmentManager?.beginTransaction()
             ?.hide(activity?.supportFragmentManager?.fragments?.last()!!)
             ?.add(R.id.frmRootField, fragment, CatDescriptionFragment::class.java.name)

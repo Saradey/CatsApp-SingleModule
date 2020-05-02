@@ -7,4 +7,12 @@
     <string name="back_pressed_common">Нажмине еще раз для выхода из приложения</string>
     <string name="message_stub_wall_cat">Упс! Что то пошло не так :(</string>
 
+    <string name="name_cat_title">Имя породы: %s</string>
+    <string name="origin_cat_title">Происхождение: %s</string>
+    <string name="weight_cat_title">Вес: %s кг</string>
+    <string name="temperament_cat_title">Темперамент: %s</string>
+    <string name="description_cat_title">Описание: %s</string>
+    <string name="life_span_cat_title">Жизненный цикл: %s лет</string>
+    <string name="wiki_cat_description_title">Show me Wikipedia</string>
+
 </resources>

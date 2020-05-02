@@ -17,7 +17,9 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     companion object {
         lateinit var component: CatDescriptionSubcomponent
-        fun getInstance() = CatDescriptionFragment()
+        fun getInstance(idCat: String?) = CatDescriptionFragment().apply {
+            setCatId(idCat ?: "")
+        }
     }
 
     @Inject
@@ -26,6 +28,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     @Inject
     lateinit var viewModel: ICatDescriptionViewModel
 
+    private var catId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +46,24 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     override fun init(content: View) {
         initView(content)
         initLiveData()
+        viewModel.setCatId(catId ?: "")
     }
 
 
     private fun initLiveData() {
+        initUiEventsLiveData()
+        initCatDescriptionLiveData()
+    }
+
+
+    private fun initCatDescriptionLiveData() {
+        viewModel.getCatDescriptionLiveData().observe(this, Observer {
+            view.setCatDescription(it)
+        })
+    }
+
+
+    private fun initUiEventsLiveData() {
         viewModel.getLiveDataUiEvents().observe(this, Observer {
             when (it) {
                 BaseEventsUi.EventShowProgress -> view.showProgress()
@@ -64,7 +81,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
 
     fun setCatId(catId: String) {
-        viewModel.setCatId(catId)
+        this.catId = catId
     }
 
 }
