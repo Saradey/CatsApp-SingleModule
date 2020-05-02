@@ -34,7 +34,11 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
         super.onCreate(savedInstanceState)
         MainActivity.component.inject(this)
         component = factory.plus()
-        viewModel.initInjection()
+        if (savedInstanceState == null) {
+            viewModel.initInjection()
+            viewModel.setCatId(catId ?: "")
+        }
+        viewModel.loadChooseCat()
     }
 
 
@@ -47,7 +51,6 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
         initView(content)
         initLiveData()
         view.init()
-        viewModel.setCatId(catId ?: "")
     }
 
 

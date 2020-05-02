@@ -59,7 +59,7 @@ class CatDescriptionRepositoryImpl @Inject constructor(
     }
 
 
-    private fun getUrlImageFromDataBase(id: String) = daoWallCat.getCatFromId(id).urlImageCat
+    private fun getUrlImageFromDataBase(id: String?) = daoWallCat.getCatFromId(id ?: "")?.urlImageCat
 
 
     override suspend fun loadChooseCatFromDatabaseSpare(catId: String) =
@@ -69,16 +69,16 @@ class CatDescriptionRepositoryImpl @Inject constructor(
         }
 
 
-    private fun mapModel(model: CatBreedModelResponse): CatDescriptionModel? {
+    private fun mapModel(model: CatBreedModelResponse?): CatDescriptionModel? {
         return CatDescriptionModel(
-            name = model.name ?: "-",
-            urlImage = getUrlImageFromDataBase(model.id) ?: "null",
-            origin = model.origin ?: "-",
-            lifeSpan = model.lifeSpan ?: "-",
-            weight = model.weight?.metric ?: "-",
-            temperament = model.temperament ?: "-",
-            description = model.description ?: "-",
-            urlWiki = model.wikipediaUrl ?: "-"
+            name = model?.name ?: "-",
+            urlImage = getUrlImageFromDataBase(model?.id) ?: "null",
+            origin = model?.origin ?: "-",
+            lifeSpan = model?.lifeSpan ?: "-",
+            weight = model?.weight?.metric ?: "-",
+            temperament = model?.temperament ?: "-",
+            description = model?.description ?: "-",
+            urlWiki = model?.wikipediaUrl ?: "-"
         )
     }
 

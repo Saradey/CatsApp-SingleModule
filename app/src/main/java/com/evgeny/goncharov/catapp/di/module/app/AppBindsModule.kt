@@ -30,6 +30,7 @@ interface AppBindsModule {
     fun bindAppContext(app: App): Context
 
     @Binds
+    @AppScope
     fun bindMainRouter(routerImpl: MainRouterImpl): IMainRouter
 
 }

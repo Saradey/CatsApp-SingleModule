@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initLifeCycle()
         navigation.attachActivity(this)
-        router.showSlashScreen()
+        if (savedInstanceState == null) {
+            router.showSlashScreen()
+        }
     }
 
 

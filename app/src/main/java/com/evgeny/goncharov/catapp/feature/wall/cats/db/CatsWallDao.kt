@@ -16,6 +16,6 @@ interface CatsWallDao {
     fun getCatBreed(): List<CatBreedModelResponse>
 
     @Query("SELECT * FROM cat_breed WHERE id = :id")
-    fun getCatFromId(id: String): CatBreedModelResponse
+    fun getCatFromId(id: String): CatBreedModelResponse?
 
 }
