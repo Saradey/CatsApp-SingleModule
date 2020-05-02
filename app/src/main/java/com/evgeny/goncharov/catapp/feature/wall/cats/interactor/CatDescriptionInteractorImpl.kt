@@ -32,10 +32,18 @@ class CatDescriptionInteractorImpl @Inject constructor(
             repository.loadChooseCatFromInternet(catId)
         } catch (exception: Exception) {
             exception.printStackTrace()
-            repository.loadChooseCatFromDatabase(catId)
+            loadChooseCatFromDatabase()
         }
         validateData(cat)
         cat
+    }
+
+
+    private suspend fun loadChooseCatFromDatabase(): CatDescriptionModel? {
+        val model = repository.loadChooseCatFromDatabase(catId)
+        return model ?: kotlin.run {
+            repository.loadChooseCatFromDatabaseSpare(catId)
+        }
     }
 
 

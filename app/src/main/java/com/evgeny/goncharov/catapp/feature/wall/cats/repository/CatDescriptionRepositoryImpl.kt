@@ -4,6 +4,7 @@ import com.evgeny.goncharov.catapp.exception.ChooseCateNullPointerException
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedResponse
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
@@ -40,17 +41,17 @@ class CatDescriptionRepositoryImpl @Inject constructor(
         }
 
 
-    private suspend fun mapModel(model: ChooseCatBreedResponse?): CatDescriptionModel? {
+    private fun mapModel(model: ChooseCatBreedResponse?): CatDescriptionModel? {
         return if (model != null) {
             CatDescriptionModel(
-                name = model.name ?: "null",
+                name = model.name ?: "-",
                 urlImage = getUrlImageFromDataBase(model.id) ?: "null",
-                origin = model.origin ?: "null",
-                lifeSpan = model.lifeSpan ?: "null",
-                weight = model.weight?.metric ?: "null",
-                temperament = model.temperament ?: "null",
-                description = model.description ?: "null",
-                urlWiki = model.wikipediaUrl ?: "null"
+                origin = model.origin ?: "-",
+                lifeSpan = model.lifeSpan ?: "-",
+                weight = model.weight?.metric ?: "-",
+                temperament = model.temperament ?: "-",
+                description = model.description ?: "-",
+                urlWiki = model.wikipediaUrl ?: "-"
             )
         } else {
             null
@@ -58,9 +59,27 @@ class CatDescriptionRepositoryImpl @Inject constructor(
     }
 
 
-    private suspend fun getUrlImageFromDataBase(id: String) = withContext(Dispatchers.IO) {
-        val url = daoWallCat.getCatFromId(id).urlImageCat
-        url
+    private fun getUrlImageFromDataBase(id: String) = daoWallCat.getCatFromId(id).urlImageCat
+
+
+    override suspend fun loadChooseCatFromDatabaseSpare(catId: String) =
+        withContext(Dispatchers.IO) {
+            val model = daoWallCat.getCatFromId(catId)
+            mapModel(model)
+        }
+
+
+    private fun mapModel(model: CatBreedModelResponse): CatDescriptionModel? {
+        return CatDescriptionModel(
+            name = model.name ?: "-",
+            urlImage = getUrlImageFromDataBase(model.id) ?: "null",
+            origin = model.origin ?: "-",
+            lifeSpan = model.lifeSpan ?: "-",
+            weight = model.weight?.metric ?: "-",
+            temperament = model.temperament ?: "-",
+            description = model.description ?: "-",
+            urlWiki = model.wikipediaUrl ?: "-"
+        )
     }
 
 }

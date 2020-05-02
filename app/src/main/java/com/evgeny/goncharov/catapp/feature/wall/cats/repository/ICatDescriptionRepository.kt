@@ -8,4 +8,6 @@ interface ICatDescriptionRepository {
 
     suspend fun loadChooseCatFromDatabase(catId: String): CatDescriptionModel?
 
+    suspend fun loadChooseCatFromDatabaseSpare(catId: String): CatDescriptionModel?
+
 }

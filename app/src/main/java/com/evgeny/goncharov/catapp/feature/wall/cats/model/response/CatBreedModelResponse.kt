@@ -14,5 +14,6 @@ data class CatBreedModelResponse(
     @SerializedName("origin") val origin: String? = null,
     @SerializedName("temperament") val temperament: String? = null,
     @SerializedName("wikipedia_url") val wikipediaUrl: String? = null,
+    @SerializedName("weight") val weight: WeightResponse? = null,
     @Expose(serialize = false) var urlImageCat: String? = null
 )
