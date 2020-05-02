@@ -50,4 +50,8 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
         return interactor.getLiveDataUiEvents()
     }
 
+
+    override fun clickBack() {
+        interactor.clickBack()
+    }
 }

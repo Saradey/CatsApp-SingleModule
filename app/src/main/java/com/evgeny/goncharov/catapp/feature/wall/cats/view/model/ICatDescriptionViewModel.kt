@@ -16,4 +16,6 @@ interface ICatDescriptionViewModel {
 
     fun getLiveDataUiEvents(): LiveData<BaseEventsUi>
 
+    fun clickBack()
+
 }

@@ -7,4 +7,6 @@ interface ICatDescriptionView : IBaseView {
 
     fun setCatDescription(model: CatDescriptionModel?)
 
+    fun showAllContent()
+
 }

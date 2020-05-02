@@ -12,4 +12,10 @@ sealed class BaseEventsUi {
     //WallCats
     object EventHideProgressAndInitRefreshLayout : BaseEventsUi()
 
+
+    //CatDescription
+    object EventHideProgressAndShowSomethingWrong : BaseEventsUi()
+
+    object EventHideProgressAndShowContent : BaseEventsUi()
+
 }

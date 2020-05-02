@@ -1,5 +1,6 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.repository
 
+import com.evgeny.goncharov.catapp.exception.ChooseCateNullPointerException
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
@@ -8,6 +9,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptio
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class CatDescriptionRepositoryImpl @Inject constructor(
@@ -24,6 +26,8 @@ class CatDescriptionRepositoryImpl @Inject constructor(
             ).await().firstOrNull()
             model?.let {
                 dao.insert(model)
+            } ?: let {
+                throw ChooseCateNullPointerException()
             }
             mapModel(model)
         }

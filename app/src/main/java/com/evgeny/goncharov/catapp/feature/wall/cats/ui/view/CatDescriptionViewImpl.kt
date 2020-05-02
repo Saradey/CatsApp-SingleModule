@@ -3,9 +3,12 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
+import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
@@ -13,9 +16,37 @@ import javax.inject.Inject
 
 class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
 
+    @Inject
+    lateinit var fragment: CatDescriptionFragment
+
 
     override fun init() {
         CatDescriptionFragment.component.inject(this)
+        initUi()
+    }
+
+
+    private fun initUi() {
+        initToolbar()
+    }
+
+
+    private fun initToolbar() {
+        content?.apply {
+            (toolbar as Toolbar).apply {
+                setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+                setNavigationOnClickListener {
+                    fragment.clickBack()
+                }
+                setTitle(R.string.description_cat_title_toolbar)
+                setTitleTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.text_toolbar_title_light
+                    )
+                )
+            }
+        }
     }
 
 
@@ -46,4 +77,10 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
     }
 
 
+    override fun showAllContent() {
+        hideProgress()
+        content?.apply {
+            grpAllContent.setVisibilityBool(true)
+        }
+    }
 }

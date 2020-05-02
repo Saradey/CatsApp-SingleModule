@@ -46,6 +46,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     override fun init(content: View) {
         initView(content)
         initLiveData()
+        view.init()
         viewModel.setCatId(catId ?: "")
     }
 
@@ -67,8 +68,8 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
         viewModel.getLiveDataUiEvents().observe(this, Observer {
             when (it) {
                 BaseEventsUi.EventShowProgress -> view.showProgress()
-                BaseEventsUi.EventHideProgress -> view.hideProgress()
-                BaseEventsUi.EventSomethingWrong -> view.showStubSomethingWrong()
+                BaseEventsUi.EventHideProgressAndShowContent -> view.showAllContent()
+                BaseEventsUi.EventHideProgressAndShowSomethingWrong -> view.showStubSomethingWrong()
             }
         })
     }
@@ -82,6 +83,11 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     fun setCatId(catId: String) {
         this.catId = catId
+    }
+
+
+    fun clickBack() {
+        viewModel.clickBack()
     }
 
 }

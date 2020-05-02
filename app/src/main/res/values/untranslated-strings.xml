@@ -14,5 +14,6 @@
     <string name="description_cat_title">Описание: %s</string>
     <string name="life_span_cat_title">Жизненный цикл: %s лет</string>
     <string name="wiki_cat_description_title">Show me Wikipedia</string>
+    <string name="description_cat_title_toolbar">Описание кота</string>
 
 </resources>
