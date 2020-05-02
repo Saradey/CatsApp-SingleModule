@@ -1,6 +1,5 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,5 +14,8 @@ interface CatsWallDao {
 
     @Query("SELECT * FROM cat_breed")
     fun getCatBreed(): List<CatBreedModelResponse>
+
+    @Query("SELECT * FROM cat_breed WHERE id = :id")
+    fun getCatFromId(id: String): CatBreedModelResponse
 
 }

@@ -1,6 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.repository
 
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
+import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedResponse
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
@@ -11,7 +12,8 @@ import javax.inject.Inject
 
 class CatDescriptionRepositoryImpl @Inject constructor(
     private val api: ApiCatSearch,
-    private val dao: CatDescriptionDAO
+    private val dao: CatDescriptionDAO,
+    private val daoWallCat: CatsWallDao
 ) : ICatDescriptionRepository {
 
 
@@ -34,11 +36,11 @@ class CatDescriptionRepositoryImpl @Inject constructor(
         }
 
 
-    private fun mapModel(model: ChooseCatBreedResponse?): CatDescriptionModel? {
+    private suspend fun mapModel(model: ChooseCatBreedResponse?): CatDescriptionModel? {
         return if (model != null) {
             CatDescriptionModel(
                 name = model.name ?: "null",
-                urlImage = "",
+                urlImage = getUrlImageFromDataBase(model.id) ?: "null",
                 origin = model.origin ?: "null",
                 lifeSpan = model.lifeSpan ?: "null",
                 weight = model.weight?.metric ?: "null",
@@ -51,5 +53,10 @@ class CatDescriptionRepositoryImpl @Inject constructor(
         }
     }
 
+
+    private suspend fun getUrlImageFromDataBase(id: String) = withContext(Dispatchers.IO) {
+        val url = daoWallCat.getCatFromId(id).urlImageCat
+        url
+    }
 
 }

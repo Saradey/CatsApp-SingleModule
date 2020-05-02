@@ -3,6 +3,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
+import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
@@ -36,6 +37,10 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
                         context.startActivity(intent)
                     }
                 }
+                Glide.with(this)
+                    .load(model.urlImage)
+                    .centerCrop()
+                    .into(imvCat)
             }
         }
     }
