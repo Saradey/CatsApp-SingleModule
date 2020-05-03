@@ -18,4 +18,7 @@ interface CatsWallDao {
     @Query("SELECT * FROM cat_breed WHERE id = :id")
     fun getCatFromId(id: String): CatBreedModelResponse?
 
+    @Query("SELECT * FROM cat_breed WHERE name OR id LIKE :value")
+    fun getCatLike(value: String): List<CatBreedModelResponse>?
+
 }

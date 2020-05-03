@@ -8,4 +8,6 @@ interface IMainRouter {
 
     fun showCatDescription(idCat: String)
 
+    fun goToTheSearchCatFragment()
+
 }

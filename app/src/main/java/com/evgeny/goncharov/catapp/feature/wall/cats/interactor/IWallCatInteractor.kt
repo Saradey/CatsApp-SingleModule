@@ -14,4 +14,6 @@ interface IWallCatInteractor {
 
     fun getUiEventsLiveData(): LiveData<BaseEventsUi>
 
+    fun clickMenuSearchCat()
+
 }

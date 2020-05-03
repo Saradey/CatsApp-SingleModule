@@ -10,6 +10,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 class WallCatsViewImpl :
     BaseViewImpl(),
-    IWallCatsView {
+    IWallCatsView,
+    CatBreedViewHolder.CatBreedViewHolderListener {
 
     @Inject
     lateinit var fragment: WallCatsFragment
@@ -65,7 +67,7 @@ class WallCatsViewImpl :
 
 
     private fun initPagedAdapterAndRecycle() {
-        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), fragment)
+        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), this)
         val pagedConfig = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(15)
@@ -104,4 +106,13 @@ class WallCatsViewImpl :
         }
     }
 
+
+    override fun clickCatUrlBreed(urlImage: String?) {
+        fragment.clickCatUrlBreed(urlImage)
+    }
+
+
+    override fun clickCatBreed(id: String?) {
+        fragment.clickCatBreed(id)
+    }
 }

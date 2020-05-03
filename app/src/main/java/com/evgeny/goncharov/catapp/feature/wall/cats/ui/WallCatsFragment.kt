@@ -16,8 +16,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsViewImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
 import javax.inject.Inject
 
-class WallCatsFragment : BaseFragment<IWallCatsView>(),
-    CatBreedViewHolder.CatBreedViewHolderListener {
+class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
     @Inject
     lateinit var factory: WallCatsSubcomponent.Factory
@@ -72,14 +71,7 @@ class WallCatsFragment : BaseFragment<IWallCatsView>(),
     }
 
 
-    override fun clickCatBreed(id: String?) {
-        id?.let {
-            viewModel.clickCatBreed(id)
-        }
-    }
-
-
-    override fun clickCatUrlBreed(urlImage: String?) {
+    fun clickCatUrlBreed(urlImage: String?) {
         urlImage?.let {
             val uri = Uri.parse(urlImage)
             val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -90,8 +82,14 @@ class WallCatsFragment : BaseFragment<IWallCatsView>(),
     }
 
 
-    fun clickMenuSearchCat() {
+    fun clickCatBreed(id: String?) {
+        id?.let {
+            viewModel.clickCatBreed(id)
+        }
+    }
 
+    fun clickMenuSearchCat() {
+        viewModel.clickMenuSearchCat()
     }
 
 

@@ -45,4 +45,9 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
     override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
         return interactor.getUiEventsLiveData()
     }
+
+
+    override fun clickMenuSearchCat() {
+        interactor.clickMenuSearchCat()
+    }
 }

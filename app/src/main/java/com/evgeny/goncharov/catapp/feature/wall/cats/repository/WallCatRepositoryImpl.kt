@@ -35,7 +35,9 @@ class WallCatRepositoryImpl @Inject constructor(
     override suspend fun loadWallCatFromDatabase(): List<CatBreedModel> =
         withContext(Dispatchers.IO) {
             val result = daoWallCat.getCatBreed()
-            val mapResult = mapResponse(result)
+            val mapResult = mapResponse(result.sortedBy {
+                it.name
+            })
             mapResult
         }
 

@@ -18,4 +18,12 @@ sealed class BaseEventsUi {
 
     object EventHideProgressAndShowContent : BaseEventsUi()
 
+
+    //SearchCat
+    object EventShowProgressAndHideStubAndHideModels : BaseEventsUi()
+
+    object EventHideProgressAndShowStub : BaseEventsUi()
+
+    object EventHideProgressAndShowRecycleView : BaseEventsUi()
+
 }

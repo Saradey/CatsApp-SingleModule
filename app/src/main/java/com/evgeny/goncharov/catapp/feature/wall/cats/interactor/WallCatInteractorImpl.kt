@@ -95,5 +95,10 @@ class WallCatInteractorImpl @Inject constructor(
     override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
         return liveDataUiEvents
     }
+
+
+    override fun clickMenuSearchCat() {
+        mainRouter.goToTheSearchCatFragment()
+    }
 }
 

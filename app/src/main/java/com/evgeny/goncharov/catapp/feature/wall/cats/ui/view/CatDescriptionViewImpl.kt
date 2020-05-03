@@ -1,7 +1,6 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -34,7 +33,7 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
     private fun initToolbar() {
         content?.apply {
             (toolbar as Toolbar).apply {
-                setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+                setNavigationIcon(R.drawable.ic_arrow_back_black)
                 setNavigationOnClickListener {
                     fragment.clickBack()
                 }

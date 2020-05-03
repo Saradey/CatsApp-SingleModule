@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
@@ -30,6 +31,7 @@ class NavigationImpl @Inject constructor() : INavigation {
             when (destination) {
                 Destination.SplashScreen -> goToSplashScreenScreen()
                 Destination.CatWallScreen -> goToCatWallScreen()
+                Destination.CatSearchScreen -> goToTheSearchCatScreen()
             }
         }
     }
@@ -71,6 +73,20 @@ class NavigationImpl @Inject constructor() : INavigation {
         val fragment = WallCatsFragment.getInstance()
         activity?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.frmRootField, fragment, WallCatsFragment::class.java.name)
+            ?.commit()
+    }
+
+
+    private fun goToTheSearchCatScreen() {
+        val fragment = SearchCatFragment.getInstance()
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.hide(
+                activity?.supportFragmentManager?.fragments?.find {
+                    it is WallCatsFragment
+                }!!
+            )
+            ?.add(R.id.frmRootField, fragment, SearchCatFragment::class.java.name)
+            ?.addToBackStack(WallCatsFragment::class.java.name)
             ?.commit()
     }
 

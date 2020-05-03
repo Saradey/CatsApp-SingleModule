@@ -8,4 +8,6 @@ sealed class Destination {
 
     object CatDescription : Destination()
 
+    object CatSearchScreen : Destination()
+
 }

@@ -6,6 +6,7 @@ import com.evgeny.goncharov.catapp.di.module.activity.ActivityBindsModule
 import com.evgeny.goncharov.catapp.di.module.activity.ActivityProvidesModule
 import com.evgeny.goncharov.catapp.di.module.activity.CreateSubFragmentComponents
 import com.evgeny.goncharov.catapp.di.scope.ActivityScope
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
@@ -28,6 +29,8 @@ interface ActivitySubcomponent {
     fun inject(fragment: WallCatsFragment)
 
     fun inject(fragment: CatDescriptionFragment)
+
+    fun inject(fragment: SearchCatFragment)
 
 
     @Subcomponent.Factory
