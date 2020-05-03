@@ -56,4 +56,9 @@ class SearchCatInteractorImpl @Inject constructor(
     override fun getLiveDataCatsCathed(): LiveData<List<CatCatched>> {
         return liveDataCatsCathed
     }
+
+
+    override fun chooseCat(id: String) {
+        router.showCatDescription(id)
+    }
 }

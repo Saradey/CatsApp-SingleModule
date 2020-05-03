@@ -5,18 +5,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import kotlinx.android.synthetic.main.holder_cathed_cat.view.*
 
-class CatsCathedHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CatsCathedHolder(private val listener: CatsCathedHolderListener, view: View) :
+    RecyclerView.ViewHolder(view) {
 
     fun bind(catCatched: CatCatched) {
         itemView.apply {
             txvTitleName.text = catCatched.catName
             txvIdTitle.text = catCatched.catId
-
             setOnClickListener {
-                //TODO клик на выбранного кота
+                listener.chooseCat(catCatched.catId)
             }
         }
     }
 
+
+    interface CatsCathedHolderListener {
+        fun chooseCat(id: String)
+    }
 
 }

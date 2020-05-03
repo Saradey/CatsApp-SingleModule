@@ -86,4 +86,8 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
         viewModel.setInputTextSearchView(newText ?: "")
     }
 
+
+    fun chooseCat(id: String) {
+        viewModel.chooseCat(id)
+    }
 }

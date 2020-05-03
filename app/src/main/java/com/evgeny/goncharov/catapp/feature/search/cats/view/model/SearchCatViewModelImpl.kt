@@ -44,4 +44,10 @@ class SearchCatViewModelImpl : ViewModel(), ISearchCatViewModel {
     override fun getLiveDataCatsCathed(): LiveData<List<CatCatched>> {
         return interactor.getLiveDataCatsCathed()
     }
+
+
+    override fun chooseCat(id: String) {
+        interactor.chooseCat(id)
+    }
+
 }

@@ -7,7 +7,9 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolder
 
-class CatsCathedAdapter : RecyclerView.Adapter<CatsCathedHolder>() {
+class CatsCathedAdapter(
+    private val listener: CatsCathedHolder.CatsCathedHolderListener
+) : RecyclerView.Adapter<CatsCathedHolder>() {
 
     var models: List<CatCatched> = listOf()
         set(value) {
@@ -18,6 +20,7 @@ class CatsCathedAdapter : RecyclerView.Adapter<CatsCathedHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsCathedHolder {
         return CatsCathedHolder(
+            listener,
             LayoutInflater.from(parent.context).inflate(R.layout.holder_cathed_cat, parent, false)
         )
     }
@@ -27,6 +30,7 @@ class CatsCathedAdapter : RecyclerView.Adapter<CatsCathedHolder>() {
         return models.size
     }
 
+    
     override fun onBindViewHolder(holder: CatsCathedHolder, position: Int) {
         holder.bind(models[position])
     }

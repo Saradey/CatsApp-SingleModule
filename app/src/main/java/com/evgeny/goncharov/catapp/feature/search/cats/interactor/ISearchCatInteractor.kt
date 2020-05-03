@@ -14,4 +14,6 @@ interface ISearchCatInteractor {
 
     fun getLiveDataCatsCathed(): LiveData<List<CatCatched>>
 
+    fun chooseCat(id: String)
+
 }

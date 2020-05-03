@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
@@ -51,8 +52,8 @@ class NavigationImpl @Inject constructor() : INavigation {
         val fragment = CatDescriptionFragment.getInstance(id)
         activity?.supportFragmentManager?.beginTransaction()
             ?.hide(
-                activity?.supportFragmentManager?.fragments?.find {
-                    it is WallCatsFragment
+                activity?.supportFragmentManager?.fragments?.findLast {
+                    it is BaseFragment<*>
                 }!!
             )
             ?.add(R.id.frmRootField, fragment, CatDescriptionFragment::class.java.name)

@@ -9,10 +9,12 @@ import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdapter
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolder
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
-class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
+class SearchCatViewImpl : BaseViewImpl(), ISearchCatView,
+    CatsCathedHolder.CatsCathedHolderListener {
 
     @Inject
     lateinit var fragment: SearchCatFragment
@@ -34,7 +36,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
 
 
     private fun initAdapterAndRecycle() {
-        adapter = CatsCathedAdapter()
+        adapter = CatsCathedAdapter(this)
         content?.apply {
             rcvCathedCats.layoutManager = LinearLayoutManager(context)
             rcvCathedCats.adapter = adapter
@@ -99,4 +101,10 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
     override fun setCatsCatched(models: List<CatCatched>?) {
         adapter.models = models ?: listOf()
     }
+
+
+    override fun chooseCat(id: String) {
+        fragment.chooseCat(id)
+    }
+
 }

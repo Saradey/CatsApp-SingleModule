@@ -16,4 +16,6 @@ interface ISearchCatViewModel {
 
     fun getLiveDataCatsCathed(): LiveData<List<CatCatched>>
 
+    fun chooseCat(id: String)
+
 }
