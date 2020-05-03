@@ -1,6 +1,7 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class NavigationImpl @Inject constructor() : INavigation {
 
     private var activity: MainActivity? = null
+
 
     override fun attachActivity(mainActivity: MainActivity) {
         activity = mainActivity
@@ -46,7 +48,11 @@ class NavigationImpl @Inject constructor() : INavigation {
         val id = bundle.getString(KEY_BUNDLE_CAT_ID)
         val fragment = CatDescriptionFragment.getInstance(id)
         activity?.supportFragmentManager?.beginTransaction()
-            ?.hide(activity?.supportFragmentManager?.fragments?.last()!!)
+            ?.hide(
+                activity?.supportFragmentManager?.fragments?.find {
+                    it is WallCatsFragment
+                }!!
+            )
             ?.add(R.id.frmRootField, fragment, CatDescriptionFragment::class.java.name)
             ?.addToBackStack(CatDescriptionFragment::class.java.name)
             ?.commit()
