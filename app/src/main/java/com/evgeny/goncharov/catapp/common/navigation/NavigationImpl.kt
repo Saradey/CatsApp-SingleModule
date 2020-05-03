@@ -93,7 +93,9 @@ class NavigationImpl @Inject constructor() : INavigation {
 
 
     override fun getNowMatchFromStack(): Int {
-        return activity?.supportFragmentManager?.fragments?.size ?: 0
+        return activity?.supportFragmentManager?.fragments?.count {
+            it is BaseFragment<*>
+        } ?: 0
     }
 
 
