@@ -10,4 +10,6 @@ sealed class Destination {
 
     object CatSearchScreen : Destination()
 
+    object SettingsScreen : Destination()
+
 }

@@ -16,4 +16,6 @@ interface IWallCatInteractor {
 
     fun clickMenuSearchCat()
 
+    fun clickMenuSettings()
+
 }

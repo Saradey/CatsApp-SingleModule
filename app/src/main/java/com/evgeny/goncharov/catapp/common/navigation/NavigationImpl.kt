@@ -7,6 +7,7 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
+import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
@@ -33,8 +34,23 @@ class NavigationImpl @Inject constructor() : INavigation {
                 Destination.SplashScreen -> goToSplashScreenScreen()
                 Destination.CatWallScreen -> goToCatWallScreen()
                 Destination.CatSearchScreen -> goToTheSearchCatScreen()
+                Destination.SettingsScreen -> goToTheSettingsScreen()
             }
         }
+    }
+
+
+    private fun goToTheSettingsScreen() {
+        val fragment = SettingsFragment.getInstance()
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.hide(
+                activity?.supportFragmentManager?.fragments?.findLast {
+                    it is BaseFragment<*>
+                }!!
+            )
+            ?.add(R.id.frmRootField, fragment, SettingsFragment::class.java.name)
+            ?.addToBackStack(SettingsFragment::class.java.name)
+            ?.commit()
     }
 
 

@@ -18,5 +18,9 @@
     <string name="query_hint_search_cat">Ищем котиков</string>
     <string name="title_toolbar_search_cat">Найди кота</string>
     <string name="title_cats_stub_not_found">Котиков не найдено</string>
+    <string name="settings_light_title">Светлая тема</string>
+    <string name="settings_night_title">Темная тема</string>
+    <string name="settings_to_cat_title">Настрой кота</string>
+
 
 </resources>

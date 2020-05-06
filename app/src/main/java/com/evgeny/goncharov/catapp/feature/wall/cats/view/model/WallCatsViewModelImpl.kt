@@ -50,4 +50,9 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
     override fun clickMenuSearchCat() {
         interactor.clickMenuSearchCat()
     }
+
+
+    override fun clickMenuSettings() {
+        interactor.clickMenuSettings()
+    }
 }

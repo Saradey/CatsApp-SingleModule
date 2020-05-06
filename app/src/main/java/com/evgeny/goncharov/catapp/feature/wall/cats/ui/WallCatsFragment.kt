@@ -94,6 +94,6 @@ class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
 
     fun clickMenuSettings() {
-
+        viewModel.clickMenuSettings()
     }
 }

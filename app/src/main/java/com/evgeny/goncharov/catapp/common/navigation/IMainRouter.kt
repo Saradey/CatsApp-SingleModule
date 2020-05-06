@@ -10,4 +10,6 @@ interface IMainRouter {
 
     fun goToTheSearchCatFragment()
 
+    fun goToTheSettingFragment()
+
 }

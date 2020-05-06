@@ -60,4 +60,9 @@ class MainRouterImpl @Inject constructor(
     override fun goToTheSearchCatFragment() {
         navigation.goTo(Destination.CatSearchScreen)
     }
+
+
+    override fun goToTheSettingFragment() {
+        navigation.goTo(Destination.SettingsScreen)
+    }
 }

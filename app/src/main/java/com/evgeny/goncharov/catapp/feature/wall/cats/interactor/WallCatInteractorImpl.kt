@@ -100,5 +100,10 @@ class WallCatInteractorImpl @Inject constructor(
     override fun clickMenuSearchCat() {
         mainRouter.goToTheSearchCatFragment()
     }
+
+
+    override fun clickMenuSettings() {
+        mainRouter.goToTheSettingFragment()
+    }
 }
 

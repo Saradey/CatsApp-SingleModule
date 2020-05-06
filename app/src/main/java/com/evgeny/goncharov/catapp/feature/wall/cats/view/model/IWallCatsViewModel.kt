@@ -18,4 +18,6 @@ interface IWallCatsViewModel {
 
     fun clickMenuSearchCat()
 
+    fun clickMenuSettings()
+
 }
