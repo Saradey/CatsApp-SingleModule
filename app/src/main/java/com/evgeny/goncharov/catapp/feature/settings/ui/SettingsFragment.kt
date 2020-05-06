@@ -42,6 +42,7 @@ class SettingsFragment : BaseFragment<ISettingsView>() {
         initLiveData()
         viewModel.initInjection()
         view.init()
+        viewModel.initThemeToView()
     }
 
 
@@ -60,6 +61,21 @@ class SettingsFragment : BaseFragment<ISettingsView>() {
 
     fun clickBack() {
         viewModel.clickBack()
+    }
+
+
+    fun onLight() {
+        viewModel.onLight()
+    }
+
+
+    fun onNight() {
+        viewModel.onNight()
+    }
+
+
+    fun clickButtonDone() {
+        viewModel.clickButtonDone()
     }
 
 }

@@ -11,4 +11,12 @@ interface ISettingsViewModel {
 
     fun clickBack()
 
+    fun initThemeToView()
+
+    fun onLight()
+
+    fun onNight()
+
+    fun clickButtonDone()
+
 }

@@ -5,6 +5,6 @@ import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 
 interface ISettingsView : IBaseView {
 
-    fun setThemeModel(it: ThemeModel)
+    fun setThemeModel(value: ThemeModel)
 
 }

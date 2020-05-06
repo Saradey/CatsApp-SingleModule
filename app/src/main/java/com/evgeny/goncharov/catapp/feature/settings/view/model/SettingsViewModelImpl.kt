@@ -29,4 +29,25 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
     override fun clickBack() {
         interactor.clickBack()
     }
+
+
+    override fun initThemeToView() {
+        val theme = interactor.getThemeNow()
+        themeLiveDataModel.postValue(theme)
+    }
+
+
+    override fun onLight() {
+        interactor.onLight()
+    }
+
+
+    override fun onNight() {
+        interactor.onNight()
+    }
+
+
+    override fun clickButtonDone() {
+        interactor.clickButtonDone()
+    }
 }
