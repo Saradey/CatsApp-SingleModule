@@ -20,7 +20,7 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
         }
     }
 
-    val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     @Inject
     lateinit var router: ISplashScreenRouter
@@ -44,21 +44,21 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
 
     private fun animationView(content: View) {
         mainScope.launch {
-//            startAnimation(content)
-//            delay(2500)
+            startAnimation(content)
+            delay(2500)
             goToTheNextFragment()
         }
     }
 
 
-    private suspend fun startAnimation(content: View) {
+    private fun startAnimation(content: View) {
         val animationShow = AnimationUtils.loadAnimation(activity, R.anim.show_logo)
         content.imvCat.startAnimation(animationShow)
         content.txvTitle.startAnimation(animationShow)
     }
 
 
-    private suspend fun goToTheNextFragment() {
+    private fun goToTheNextFragment() {
         router.gotoTheWallCatFragment()
     }
 
