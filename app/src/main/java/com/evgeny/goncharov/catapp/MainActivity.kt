@@ -2,6 +2,7 @@ package com.evgeny.goncharov.catapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.evgeny.goncharov.catapp.common.ActivityLifeCycle
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.common.navigation.INavigation

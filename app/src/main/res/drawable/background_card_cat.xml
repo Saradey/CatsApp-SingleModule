@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="?attr/color_card_background" />
+
+    <item>
+        <selector>
+            <item>
+                <ripple android:color="@color/color_grey" />
+            </item>
+        </selector>
+    </item>
+
+</layer-list>

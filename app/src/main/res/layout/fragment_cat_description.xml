@@ -16,7 +16,7 @@
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:background="@color/color_placeholder"
+        android:background="@color/color_grey"
         android:contentDescription="@null"
         android:elevation="2dp"
         android:outlineProvider="bounds"
@@ -34,8 +34,9 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:lines="1"
-        android:textColor="@color/text_toolbar_title_light"
+        android:textColor="?attr/color_main_text"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toTopOf="@+id/imvCat"
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="14sp"
+        android:textColor="?attr/color_main_text"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvNameCat"
         tools:text="Origin: Greece" />
@@ -58,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="14sp"
+        android:textColor="?attr/color_main_text"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvOrigin"
         tools:text="Life span: 9 - 12 Age" />
@@ -69,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="14sp"
+        android:textColor="?attr/color_main_text"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvLifeSpan"
         tools:text="Weight: 3 - 5 kg" />
@@ -82,6 +86,7 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:lines="3"
+        android:textColor="?attr/color_main_text"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
@@ -96,7 +101,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:textColor="@color/text_toolbar_title_light"
+        android:textColor="?attr/color_text_description"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +134,7 @@
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
             android:text="@string/wiki_cat_description_title"
-            android:textColor="@color/text_toolbar_title_light"
+            android:textColor="?attr/color_text_description"
             android:textSize="24sp" />
 
         <ImageView

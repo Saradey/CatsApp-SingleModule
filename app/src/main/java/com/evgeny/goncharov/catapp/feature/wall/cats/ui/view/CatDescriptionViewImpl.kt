@@ -38,12 +38,6 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
                     fragment.clickBack()
                 }
                 setTitle(R.string.description_cat_title_toolbar)
-                setTitleTextColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.text_toolbar_title_light
-                    )
-                )
             }
         }
     }

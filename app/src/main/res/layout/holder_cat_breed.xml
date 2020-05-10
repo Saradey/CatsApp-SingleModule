@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        android:background="?android:attr/selectableItemBackground">
+        android:background="@drawable/background_card_cat">
 
         <ImageView
             android:id="@+id/imvShowCat"
@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/color_placeholder"
+            android:background="@color/color_grey"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"/>
@@ -37,12 +37,14 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="?attr/color_main_text"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@+id/imvShowCat"
             app:layout_constraintTop_toTopOf="@+id/imvShowCat"
             tools:text="Abyssinian" />
 
         <TextView
+            android:textColor="?attr/color_main_text"
             android:id="@+id/txvBreedDescription"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -3,11 +3,17 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">?attr/color_card_background</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+
+        <item name="color_all_background">@color/color_background_black</item>
+        <item name="color_main_text">@color/white</item>
+        <item name="color_card_background">@color/color_light_black</item>
+        <item name="color_text_description">@color/white</item>
     </style>
 
 

@@ -1,10 +1,15 @@
 package com.evgeny.goncharov.catapp.feature.search.cats.ui.view
 
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
+import com.evgeny.goncharov.catapp.extension.setHintTextColor
+import com.evgeny.goncharov.catapp.extension.setTextColor
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
@@ -69,6 +74,17 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView,
                     }
                 }
             )
+            initEditTextSearchView(srcSearchCat)
+        }
+    }
+
+
+    private fun initEditTextSearchView(searchView: SearchView) {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+            searchView.setHintTextColor(R.color.color_dark_grey_hint)
+        } else {
+            searchView.setHintTextColor(R.color.white_hint)
+            searchView.setTextColor(R.color.white)
         }
     }
 

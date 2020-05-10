@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColorPrimary">?attr/color_main_text</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">?attr/color_card_background</item>
+    </style>
+
+
+    <style name="MyPopupToolbarStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:background">?attr/color_card_background</item>
+    </style>
 
 </resources>
