@@ -39,7 +39,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/holder_cat_breed"/>
 
 
             <ImageView
@@ -59,12 +60,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/message_stub_wall_cat"
-                android:textColor="?attr/color_main_text"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                style="@style/ColorMainText.LargeText.TextTitle"
                 app:layout_constraintEnd_toEndOf="@+id/imvStubWallCat"
                 app:layout_constraintStart_toStartOf="@+id/imvStubWallCat"
                 app:layout_constraintTop_toBottomOf="@+id/imvStubWallCat" />
+
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/grpStubWallCat"

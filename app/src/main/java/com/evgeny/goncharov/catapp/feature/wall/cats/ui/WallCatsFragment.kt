@@ -17,18 +17,16 @@ import javax.inject.Inject
 
 class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
-    @Inject
-    lateinit var factory: WallCatsSubcomponent.Factory
-
-    @Inject
-    lateinit var viewModel: IWallCatsViewModel
-
-
     companion object {
         fun getInstance() = WallCatsFragment()
         lateinit var component: WallCatsSubcomponent
     }
 
+    @Inject
+    lateinit var factory: WallCatsSubcomponent.Factory
+
+    @Inject
+    lateinit var viewModel: IWallCatsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

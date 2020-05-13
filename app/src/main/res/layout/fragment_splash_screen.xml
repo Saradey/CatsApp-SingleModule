@@ -17,12 +17,11 @@
 
     <TextView
         android:id="@+id/txvTitle"
+        style="@style/TextViewSplashScreenStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/splash_screen_title"
-        android:textColor="@color/orange_title"
-        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="@+id/imvCat"
         app:layout_constraintStart_toStartOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/imvCat" />

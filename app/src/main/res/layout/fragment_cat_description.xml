@@ -12,31 +12,23 @@
 
     <ImageView
         android:id="@+id/imvCat"
+        style="@style/ImageBackground.CatAvatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:background="@color/color_grey"
-        android:contentDescription="@null"
-        android:elevation="2dp"
-        android:outlineProvider="bounds"
-        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
     <TextView
         android:id="@+id/txvNameCat"
+        style="@style/ColorMainText.LargeText.TextTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:textColor="?attr/color_main_text"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toTopOf="@+id/imvCat"
@@ -44,11 +36,10 @@
 
     <TextView
         android:id="@+id/txvOrigin"
+        style="@style/ColorMainText.SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textSize="14sp"
-        android:textColor="?attr/color_main_text"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvNameCat"
         tools:text="Origin: Greece" />
@@ -56,11 +47,10 @@
 
     <TextView
         android:id="@+id/txvLifeSpan"
+        style="@style/ColorMainText.SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textSize="14sp"
-        android:textColor="?attr/color_main_text"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvOrigin"
         tools:text="Life span: 9 - 12 Age" />
@@ -68,11 +58,10 @@
 
     <TextView
         android:id="@+id/txvWeight"
+        style="@style/ColorMainText.SmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textSize="14sp"
-        android:textColor="?attr/color_main_text"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvLifeSpan"
         tools:text="Weight: 3 - 5 kg" />
@@ -80,14 +69,13 @@
 
     <TextView
         android:id="@+id/txvTemperament"
+        style="@style/ColorMainText.SmallText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:lines="3"
-        android:textColor="?attr/color_main_text"
-        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imvCat"
         app:layout_constraintTop_toBottomOf="@+id/txvWeight"
@@ -96,13 +84,12 @@
 
     <TextView
         android:id="@+id/txvDescription"
+        style="@style/ColorTextDescription.LargeTextDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:textColor="?attr/color_text_description"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imvCat"
@@ -111,31 +98,23 @@
 
     <LinearLayout
         android:id="@+id/llButtonWiki"
+        style="@style/BackgroundClickAndFocusTrue.LinearLayoutButtonWikiStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/background_wiki_button"
-        android:clickable="true"
-        android:elevation="4dp"
-        android:focusable="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvDescription">
 
         <TextView
+            style="@style/ColorTextDescription.BigTitleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:paddingTop="4dp"
             android:paddingEnd="16dp"
             android:paddingBottom="4dp"
-            android:text="@string/wiki_cat_description_title"
-            android:textColor="?attr/color_text_description"
-            android:textSize="24sp" />
+            android:text="@string/wiki_cat_description_title" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -158,14 +137,14 @@
 
     <TextView
         android:id="@+id/txvMessageStubWallCat"
+        style="@style/ColorMainText.LargeText.TextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/message_stub_wall_cat"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imvStubWallCat"
         app:layout_constraintStart_toStartOf="@+id/imvStubWallCat"
         app:layout_constraintTop_toBottomOf="@+id/imvStubWallCat" />
+
 
     <ProgressBar
         android:id="@+id/prgLoad"
@@ -177,6 +156,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/grpStubWallCat"

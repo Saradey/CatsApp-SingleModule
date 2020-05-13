@@ -25,19 +25,18 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/CostumeBackground"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/color_card_background">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txvTitleValueNow"
+                style="@style/ColorTextDescription.LargeTextDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="6dp"
-                android:textColor="?attr/color_text_description"
-                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -58,14 +57,12 @@
 
     <Button
         android:id="@+id/btnUpdateSettings"
-        android:layout_width="wrap_content"
+        style="@style/ButtonMainStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:textAllCaps="false"
-        android:background="@drawable/background_wiki_button"
-        android:textColor="?attr/color_text_description"
         android:text="@string/settings_update_button_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
