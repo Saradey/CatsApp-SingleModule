@@ -2,7 +2,11 @@ package com.evgeny.goncharov.catapp.di.module.app
 
 import android.content.Context
 import com.evgeny.goncharov.catapp.BuildConfig
-import com.evgeny.goncharov.catapp.consts.*
+import com.evgeny.goncharov.catapp.consts.CONNECTION_TIMEOUT
+import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
+import com.evgeny.goncharov.catapp.consts.READ_TIMEOUT
+import com.evgeny.goncharov.catapp.consts.WRITE_TIMEOUT
+import com.evgeny.goncharov.catapp.consts.BASE_URL
 import com.evgeny.goncharov.catapp.di.scope.AppScope
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.readystatesoftware.chuck.ChuckInterceptor

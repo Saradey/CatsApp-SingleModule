@@ -1,7 +1,6 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment

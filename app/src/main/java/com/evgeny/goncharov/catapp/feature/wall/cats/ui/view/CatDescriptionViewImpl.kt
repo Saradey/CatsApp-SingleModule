@@ -3,7 +3,6 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<V : IBaseView> : Fragment(), IBaseFragment {
+abstract class BaseFragment<V : IBaseView> : Fragment() {
 
     protected lateinit var view: V
 

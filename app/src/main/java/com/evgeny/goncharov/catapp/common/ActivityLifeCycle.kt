@@ -5,7 +5,6 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.common.navigation.INavigation
-import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
 
 class ActivityLifeCycle(
     private val mainActivity: MainActivity,

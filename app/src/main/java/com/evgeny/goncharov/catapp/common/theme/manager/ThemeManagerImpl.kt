@@ -1,9 +1,7 @@
 package com.evgeny.goncharov.catapp.common.theme.manager
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
 import javax.inject.Inject
 import javax.inject.Named

@@ -8,9 +8,12 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.feature.splash.screen.router.ISplashScreenRouter
 import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 import javax.inject.Inject
-import javax.inject.Named
 
 class SplashScreenFragment : BaseFragment<ISplashScreen>() {
 

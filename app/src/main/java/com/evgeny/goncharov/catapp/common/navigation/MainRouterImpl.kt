@@ -6,7 +6,11 @@ import android.widget.Toast
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
 import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 import javax.inject.Named
 

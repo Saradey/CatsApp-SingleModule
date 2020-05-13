@@ -1,12 +1,10 @@
 package com.evgeny.goncharov.catapp.di.module.activity
 
-import android.content.res.Resources
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_WALL_CAT
-import com.evgeny.goncharov.catapp.di.scope.ActivityScope
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModelImpl

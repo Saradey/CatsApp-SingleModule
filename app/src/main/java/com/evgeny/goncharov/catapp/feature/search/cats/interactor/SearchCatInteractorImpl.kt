@@ -8,8 +8,6 @@ import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.repository.ISearchCatRepository
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
-import kotlinx.coroutines.delay
-import java.lang.Exception
 import javax.inject.Inject
 
 class SearchCatInteractorImpl @Inject constructor(
