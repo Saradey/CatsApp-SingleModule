@@ -4,7 +4,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import com.evgeny.goncharov.catapp.MainActivity
-import com.evgeny.goncharov.catapp.consts.TAG_LIFECYCLE_WALL_CAT
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModelImpl
@@ -56,14 +55,6 @@ class ActivityProvidesModule {
     fun provideWallCatsViewModel(fragment: WallCatsFragment): IWallCatsViewModel =
         ViewModelProviders.of(fragment).get(WallCatsViewModelImpl::class.java)
 
-
-    @Provides
-    @Named(TAG_LIFECYCLE_WALL_CAT)
-    fun provideLifeCycleOwner(fragmentManager: FragmentManager): LifecycleOwner {
-        return fragmentManager.findFragmentByTag(
-            WallCatsFragment::class.java.name
-        ) as LifecycleOwner
-    }
 
 
     @Provides

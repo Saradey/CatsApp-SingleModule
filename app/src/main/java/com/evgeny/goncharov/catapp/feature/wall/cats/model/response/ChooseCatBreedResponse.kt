@@ -2,9 +2,10 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.model.response
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.evgeny.goncharov.catapp.consts.CHOOSE_CAT_BREED_TABLE_NAME
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "choose_cat_breed")
+@Entity(tableName = CHOOSE_CAT_BREED_TABLE_NAME)
 data class ChooseCatBreedResponse(
     @SerializedName("id") @PrimaryKey val id: String = "",
     @SerializedName("weight") val weight: WeightResponse? = null,
