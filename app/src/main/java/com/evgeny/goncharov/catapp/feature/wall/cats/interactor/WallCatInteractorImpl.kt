@@ -24,7 +24,7 @@ class WallCatInteractorImpl @Inject constructor(
 
     override suspend fun loadWallCat(): List<CatBreedModel> {
         showProgress()
-        var listModels: List<CatBreedModel> = listOf()
+        var listModels: List<CatBreedModel> = emptyList()
         listModels = try {
             loadFromInternet()
         } catch (exp: Exception) {

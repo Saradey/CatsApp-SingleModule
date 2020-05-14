@@ -78,7 +78,7 @@ class WallCatRepositoryImpl @Inject constructor(
 
 
     private suspend fun getUrlImage(request: GetImageRequest): String? {
-        var result = listOf<CatBreedImageResponse>()
+        var result = emptyList<CatBreedImageResponse>()
         try {
             result = api.getImageUrlAsync(
                 request.createRequest()

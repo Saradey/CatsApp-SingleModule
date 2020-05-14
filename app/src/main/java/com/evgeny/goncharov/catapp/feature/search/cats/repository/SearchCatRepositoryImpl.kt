@@ -18,11 +18,11 @@ class SearchCatRepositoryImpl @Inject constructor(
     override suspend fun loadFromDatabase(text: String): List<CatCatched> =
         withContext(Dispatchers.IO) {
             if (text.isEmpty()) {
-                listOf()
+                emptyList()
             } else {
                 mapModelsFromDatabase(dao.getCatLike("%$text%")?.sortedBy {
                     it.name
-                } ?: listOf())
+                } ?: emptyList())
             }
         }
 

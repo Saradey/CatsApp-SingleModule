@@ -11,7 +11,7 @@ class CatsCathedAdapter(
     private val listener: (id: String) -> Unit
 ) : RecyclerView.Adapter<CatsCathedHolder>() {
 
-    var models: List<CatCatched> = listOf()
+    var models: List<CatCatched> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

@@ -112,7 +112,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
 
 
     override fun setCatsCatched(models: List<CatCatched>?) {
-        adapter.models = models ?: listOf()
+        adapter.models = models ?: emptyList()
     }
 
 
