@@ -16,8 +16,7 @@ import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolde
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
-class SearchCatViewImpl : BaseViewImpl(), ISearchCatView,
-    CatsCathedHolder.CatsCathedHolderListener {
+class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
 
     @Inject
     lateinit var fragment: SearchCatFragment
@@ -39,7 +38,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView,
 
 
     private fun initAdapterAndRecycle() {
-        adapter = CatsCathedAdapter(this)
+        adapter = CatsCathedAdapter(::chooseCat)
         content?.apply {
             rcvCathedCats.layoutManager = LinearLayoutManager(context)
             rcvCathedCats.adapter = adapter
@@ -117,7 +116,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView,
     }
 
 
-    override fun chooseCat(id: String) {
+    fun chooseCat(id: String) {
         fragment.chooseCat(id)
     }
 

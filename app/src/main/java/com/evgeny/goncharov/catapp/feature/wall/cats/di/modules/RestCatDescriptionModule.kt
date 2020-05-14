@@ -7,10 +7,11 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module
-class RestCatDescriptionModule {
+object RestCatDescriptionModule {
 
     @Provides
     @FragmentScope
+    @JvmStatic
     fun provideApiSearchCatFromName(retrofit: Retrofit):
             ApiCatSearch = retrofit.create(ApiCatSearch::class.java)
 

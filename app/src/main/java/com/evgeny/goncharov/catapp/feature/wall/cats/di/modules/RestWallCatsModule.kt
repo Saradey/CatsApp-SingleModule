@@ -6,9 +6,10 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module
-class RestWallCatsModule {
+object RestWallCatsModule {
 
     @Provides
+    @JvmStatic
     fun provideApiBreeds(retrofit: Retrofit): ApiBreeds = retrofit.create(ApiBreeds::class.java)
 
 

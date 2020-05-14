@@ -6,10 +6,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class CommonModule {
+object CommonModule {
 
     @Provides
     @AppScope
+    @JvmStatic
     fun provideHandler() = MainThreadExecutor()
 
 }

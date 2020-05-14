@@ -20,10 +20,11 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
 @Module
-class RestModule {
+object RestModule {
 
     @Provides
     @AppScope
+    @JvmStatic
     fun provideLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(
         if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     )
@@ -31,6 +32,7 @@ class RestModule {
 
     @Provides
     @AppScope
+    @JvmStatic
     fun provideHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
         @Named(TAG_APPLICATION_CONTEXT) context: Context
@@ -45,11 +47,11 @@ class RestModule {
 
     @Provides
     @AppScope
+    @JvmStatic
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
-
 }

@@ -2,7 +2,6 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.di.components
 
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.BindsCatDescriptionModule
-import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.ProvidesCatDescriptionModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.RestCatDescriptionModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionViewImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModelImpl
@@ -12,7 +11,6 @@ import dagger.Subcomponent
 @Subcomponent(
     modules = [
         BindsCatDescriptionModule::class,
-        ProvidesCatDescriptionModule::class,
         RestCatDescriptionModule::class
     ]
 )

@@ -11,18 +11,21 @@ import dagger.Provides
 import javax.inject.Named
 
 @Module
-class DatabaseModule {
+object DatabaseModule {
 
     @AppScope
     @Provides
+    @JvmStatic
     fun provideDataBase(@Named(TAG_APPLICATION_CONTEXT) context: Context) =
         Room.databaseBuilder(context, AppDatabase::class.java, "pisa").build()
 
     @Provides
+    @JvmStatic
     fun provideCatDescriptionDAO(appDatabase: AppDatabase): CatDescriptionDAO =
         appDatabase.createCatDescriptionDAO()
 
     @Provides
+    @JvmStatic
     fun provideCatsWallDao(appDatabase: AppDatabase) =
         appDatabase.createCatsWallDao()
 

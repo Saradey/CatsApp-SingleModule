@@ -6,9 +6,10 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class WallCatsProvidesModule {
+object WallCatsProvidesModule {
 
     @Provides
+    @JvmStatic
     fun providePageKeyedDataSourceCatBreeds(
         viewModel: IWallCatsViewModel
     ) = PageKeyedDataSourceCatBreeds(viewModel)

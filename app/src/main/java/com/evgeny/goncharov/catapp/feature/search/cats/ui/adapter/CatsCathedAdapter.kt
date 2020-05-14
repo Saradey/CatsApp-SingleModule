@@ -8,7 +8,7 @@ import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolder
 
 class CatsCathedAdapter(
-    private val listener: CatsCathedHolder.CatsCathedHolderListener
+    private val listener: (id: String) -> Unit
 ) : RecyclerView.Adapter<CatsCathedHolder>() {
 
     var models: List<CatCatched> = listOf()

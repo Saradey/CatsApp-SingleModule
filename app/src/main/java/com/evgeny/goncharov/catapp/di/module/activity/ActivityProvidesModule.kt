@@ -1,7 +1,6 @@
 package com.evgeny.goncharov.catapp.di.module.activity
 
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
@@ -18,19 +17,21 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewMod
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModelImpl
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
+
 
 @Module
-class ActivityProvidesModule {
+object ActivityProvidesModule {
 
 
     @Provides
+    @JvmStatic
     fun provideFragmentManager(activity: MainActivity): FragmentManager {
         return activity.supportFragmentManager
     }
 
 
     @Provides
+    @JvmStatic
     fun provideCatDescriptionFragment(fragmentManager: FragmentManager): CatDescriptionFragment {
         return fragmentManager.findFragmentByTag(
             CatDescriptionFragment::class.java.name
@@ -39,11 +40,13 @@ class ActivityProvidesModule {
 
 
     @Provides
+    @JvmStatic
     fun provideCatDescriptionViewModel(fragment: CatDescriptionFragment): ICatDescriptionViewModel =
         ViewModelProviders.of(fragment).get(CatDescriptionViewModelImpl::class.java)
 
 
     @Provides
+    @JvmStatic
     fun provideWallCatsFragment(fragmentManager: FragmentManager): WallCatsFragment {
         return fragmentManager.findFragmentByTag(
             WallCatsFragment::class.java.name
@@ -52,29 +55,34 @@ class ActivityProvidesModule {
 
 
     @Provides
+    @JvmStatic
     fun provideWallCatsViewModel(fragment: WallCatsFragment): IWallCatsViewModel =
         ViewModelProviders.of(fragment).get(WallCatsViewModelImpl::class.java)
 
 
 
     @Provides
+    @JvmStatic
     fun provideSearchCatFragment(fragmentManager: FragmentManager): SearchCatFragment {
         return fragmentManager.findFragmentByTag(SearchCatFragment::class.java.name) as SearchCatFragment
     }
 
 
     @Provides
+    @JvmStatic
     fun provideSearchCatViewModel(fragment: SearchCatFragment): ISearchCatViewModel =
         ViewModelProviders.of(fragment).get(SearchCatViewModelImpl::class.java)
 
 
     @Provides
+    @JvmStatic
     fun provideSettingsFragment(fragmentManager: FragmentManager): SettingsFragment {
         return fragmentManager.findFragmentByTag(SettingsFragment::class.java.name) as SettingsFragment
     }
 
 
     @Provides
+    @JvmStatic
     fun provideSettingsViewModel(fragment: SettingsFragment): ISettingsViewModel =
         ViewModelProviders.of(fragment).get(SettingsViewModelImpl::class.java)
 

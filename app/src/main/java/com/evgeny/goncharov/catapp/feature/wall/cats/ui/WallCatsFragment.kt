@@ -13,6 +13,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubco
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.IWallCatsView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsViewImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
+import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 
 class WallCatsFragment : BaseFragment<IWallCatsView>() {

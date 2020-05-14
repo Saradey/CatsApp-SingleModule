@@ -7,7 +7,6 @@ import dagger.Subcomponent
 
 @Subcomponent(
     modules = [
-        SettingsProvideModule::class,
         SettingsBindModule::class
     ]
 )
