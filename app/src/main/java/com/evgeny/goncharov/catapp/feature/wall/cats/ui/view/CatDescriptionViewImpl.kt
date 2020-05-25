@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
+import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
@@ -19,7 +20,7 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
 
 
     override fun init() {
-        CatDescriptionFragment.component.inject(this)
+        CatDescriptionSubcomponent.component?.inject(this)
         initUi()
     }
 

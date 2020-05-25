@@ -9,10 +9,10 @@ import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.extension.setHintTextColor
 import com.evgeny.goncharov.catapp.extension.setTextColor
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
+import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdapter
-import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolder
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
@@ -25,7 +25,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
 
 
     override fun init() {
-        SearchCatFragment.component.inject(this)
+        SearchCatSubcomponent.component?.inject(this)
         initUi()
     }
 

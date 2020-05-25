@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
+import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
@@ -17,7 +18,7 @@ class SettingsViewImpl : BaseViewImpl(), ISettingsView {
 
 
     override fun init() {
-        SettingsFragment.component.inject(this)
+        SettingsSubcomponent.component?.inject(this)
         initUi()
     }
 

@@ -13,6 +13,10 @@ import dagger.Subcomponent
 @FragmentScope
 interface SettingsSubcomponent {
 
+    companion object {
+        var component: SettingsSubcomponent? = null
+    }
+
     fun inject(settingsViewModelImpl: SettingsViewModelImpl)
 
     fun inject(view: SettingsViewImpl)

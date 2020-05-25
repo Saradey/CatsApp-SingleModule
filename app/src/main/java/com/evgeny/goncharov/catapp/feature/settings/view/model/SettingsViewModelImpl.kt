@@ -3,9 +3,9 @@ package com.evgeny.goncharov.catapp.feature.settings.view.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.interactor.ISettingsInteractor
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
-import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
 import javax.inject.Inject
 
 class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
@@ -17,7 +17,7 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
 
 
     override fun initInjection() {
-        SettingsFragment.component.inject(this)
+        SettingsSubcomponent.component?.inject(this)
     }
 
 

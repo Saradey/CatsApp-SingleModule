@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
+import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.interactor.ISearchCatInteractor
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
-import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class SearchCatViewModelImpl : ViewModel(), ISearchCatViewModel {
     private var job: Job? = null
 
     override fun initInject() {
-        SearchCatFragment.component.inject(this)
+        SearchCatSubcomponent.component?.inject(this)
     }
 
 

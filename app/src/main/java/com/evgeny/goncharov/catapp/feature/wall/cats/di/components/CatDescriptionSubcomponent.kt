@@ -16,6 +16,11 @@ import dagger.Subcomponent
 )
 interface CatDescriptionSubcomponent {
 
+    companion object {
+        var component: CatDescriptionSubcomponent? = null
+    }
+
+
     fun inject(catDescriptionViewImpl: CatDescriptionViewImpl)
 
     fun inject(viewModel: CatDescriptionViewModelImpl)

@@ -3,10 +3,10 @@ package com.evgeny.goncharov.catapp.feature.search.cats.ui
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseFragment
+import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.ISearchCatView
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatViewImpl
@@ -24,7 +24,6 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
 
 
     companion object {
-        lateinit var component: SearchCatSubcomponent
         fun getInstance() = SearchCatFragment()
     }
 
@@ -34,8 +33,8 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivity.component.inject(this)
-        component = factory.plus()
+        ActivitySubcomponent.component.inject(this)
+        SearchCatSubcomponent.component = factory.plus()
         viewModel.initInject()
     }
 
@@ -89,5 +88,11 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
 
     fun chooseCat(id: String) {
         viewModel.chooseCat(id)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        SearchCatSubcomponent.component = null
     }
 }

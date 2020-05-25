@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
+import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
@@ -34,7 +35,7 @@ class WallCatsViewImpl :
 
 
     override fun init() {
-        WallCatsFragment.component.inject(this)
+        WallCatsSubcomponent.component?.inject(this)
         initUi()
     }
 

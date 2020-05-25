@@ -7,13 +7,10 @@ import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.common.navigation.INavigation
 import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
+import com.evgeny.goncharov.catapp.di.components.AppComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        lateinit var component: ActivitySubcomponent
-    }
 
     @Inject
     lateinit var factory: ActivitySubcomponent.Factory
@@ -39,8 +36,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initDaggerGraph() {
-        App.component.inject(this)
-        component = factory.plus(this)
+        AppComponent.component.inject(this)
+        ActivitySubcomponent.component = factory.plus(this)
     }
 
 

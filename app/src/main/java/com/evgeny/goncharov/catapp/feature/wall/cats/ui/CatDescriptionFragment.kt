@@ -3,10 +3,10 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseFragment
+import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionViewImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.ICatDescriptionView
@@ -16,7 +16,6 @@ import javax.inject.Inject
 class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     companion object {
-        lateinit var component: CatDescriptionSubcomponent
         fun getInstance(idCat: String?) = CatDescriptionFragment().apply {
             setCatId(idCat ?: "")
         }
@@ -32,8 +31,8 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivity.component.inject(this)
-        component = factory.plus()
+        ActivitySubcomponent.component.inject(this)
+        CatDescriptionSubcomponent.component = factory.plus()
         if (savedInstanceState == null) {
             viewModel.initInjection()
             viewModel.setCatId(catId ?: "")
@@ -91,6 +90,12 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     fun clickBack() {
         viewModel.clickBack()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        CatDescriptionSubcomponent.component = null
     }
 
 }

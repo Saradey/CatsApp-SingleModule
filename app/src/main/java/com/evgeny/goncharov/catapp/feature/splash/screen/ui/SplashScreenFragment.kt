@@ -3,23 +3,19 @@ package com.evgeny.goncharov.catapp.feature.splash.screen.ui
 import android.graphics.Typeface
 import android.view.View
 import android.view.animation.AnimationUtils
-import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
+import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.splash.screen.router.ISplashScreenRouter
 import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 class SplashScreenFragment : BaseFragment<ISplashScreen>() {
 
     companion object {
         fun getInstance() = SplashScreenFragment().apply {
-            MainActivity.component.inject(this)
+            ActivitySubcomponent.component.inject(this)
         }
     }
 

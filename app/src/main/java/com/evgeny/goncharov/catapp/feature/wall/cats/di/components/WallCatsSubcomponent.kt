@@ -18,6 +18,10 @@ import dagger.Subcomponent
 @FragmentScope
 interface WallCatsSubcomponent {
 
+    companion object {
+        var component: WallCatsSubcomponent? = null
+    }
+
     fun inject(view: WallCatsViewImpl)
 
     fun inject(viewModel: WallCatsViewModelImpl)

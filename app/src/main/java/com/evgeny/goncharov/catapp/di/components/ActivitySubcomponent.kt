@@ -24,6 +24,10 @@ import dagger.Subcomponent
 )
 interface ActivitySubcomponent {
 
+    companion object {
+        lateinit var component: ActivitySubcomponent
+    }
+
     fun inject(fragment: SplashScreenFragment)
 
     fun inject(fragment: WallCatsFragment)

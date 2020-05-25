@@ -5,22 +5,20 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.base.BaseFragment
+import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.IWallCatsView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsViewImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
-import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 
 class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
     companion object {
         fun getInstance() = WallCatsFragment()
-        lateinit var component: WallCatsSubcomponent
     }
 
     @Inject
@@ -31,8 +29,8 @@ class WallCatsFragment : BaseFragment<IWallCatsView>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivity.component.inject(this)
-        component = factory.plus()
+        ActivitySubcomponent.component.inject(this)
+        WallCatsSubcomponent.component = factory.plus()
     }
 
 
