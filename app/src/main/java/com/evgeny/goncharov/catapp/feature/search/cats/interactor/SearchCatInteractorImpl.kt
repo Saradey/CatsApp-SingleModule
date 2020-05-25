@@ -2,11 +2,11 @@ package com.evgeny.goncharov.catapp.feature.search.cats.interactor
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.repository.ISearchCatRepository
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class SearchCatInteractorImpl @Inject constructor(
     private val router: IMainRouter
 ) : ISearchCatInteractor {
 
-    private val liveDataUiEvents = SingleLiveEvent<BaseEventsUi>()
+    private val liveDataUiEvents = SingleLiveEvent<SearchCatEvents>()
     private val liveDataCatsCathed = MutableLiveData<List<CatCatched>>()
 
 
@@ -25,7 +25,7 @@ class SearchCatInteractorImpl @Inject constructor(
 
 
     override suspend fun setInputTextSearchView(text: String) {
-        liveDataUiEvents.postValue(BaseEventsUi.EventShowProgressAndHideStubAndHideModels)
+        liveDataUiEvents.postValue(SearchCatEvents.EventShowProgressAndHideStubAndHideModels)
         val models = try {
             repository.loadFromInternet(GetChooseCatRequest(text).createRequest())
         } catch (exp: Exception) {
@@ -38,15 +38,15 @@ class SearchCatInteractorImpl @Inject constructor(
 
     private fun validateData(models: List<CatCatched>) {
         if (models.isEmpty()) {
-            liveDataUiEvents.postValue(BaseEventsUi.EventHideProgressAndShowStub)
+            liveDataUiEvents.postValue(SearchCatEvents.EventHideProgressAndShowStub)
         } else {
-            liveDataUiEvents.postValue(BaseEventsUi.EventHideProgressAndShowRecycleView)
+            liveDataUiEvents.postValue(SearchCatEvents.EventHideProgressAndShowRecycleView)
             liveDataCatsCathed.postValue(models)
         }
     }
 
 
-    override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
+    override fun getUiEventsLiveData(): LiveData<SearchCatEvents> {
         return liveDataUiEvents
     }
 

@@ -2,10 +2,10 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
 import android.content.Intent
 import android.net.Uri
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
@@ -13,13 +13,14 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import javax.inject.Inject
 
-class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
+class CatDescriptionViewImpl {
 
     @Inject
     lateinit var fragment: CatDescriptionFragment
 
+    private var content: View? = null
 
-    override fun init() {
+    fun init() {
         CatDescriptionSubcomponent.component?.inject(this)
         initUi()
     }
@@ -43,7 +44,7 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
     }
 
 
-    override fun setCatDescription(model: CatDescriptionModel?) {
+    fun setCatDescription(model: CatDescriptionModel?) {
         model?.let {
             content?.apply {
                 txvNameCat.text = resources.getString(R.string.name_cat_title, model.name)
@@ -70,10 +71,31 @@ class CatDescriptionViewImpl : BaseViewImpl(), ICatDescriptionView {
     }
 
 
-    override fun showAllContent() {
+    fun showAllContent() {
         hideProgress()
         content?.apply {
             grpAllContent.setVisibilityBool(true)
         }
+    }
+
+
+    fun attachView(view: View) {
+        content = view
+    }
+
+
+    fun showProgress() {
+        content?.prgLoad?.setVisibilityBool(true)
+    }
+
+
+    private fun hideProgress() {
+        content?.prgLoad?.setVisibilityBool(false)
+    }
+
+
+    fun showStubSomethingWrong() {
+        content?.prgLoad?.setVisibilityBool(false)
+        content?.grpStubWallCat?.setVisibilityBool(true)
     }
 }

@@ -1,30 +1,44 @@
 package com.evgeny.goncharov.catapp.feature.settings.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
-import com.evgeny.goncharov.catapp.feature.settings.ui.view.ISettingsView
-import com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsViewImpl
+import com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsView
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
 import javax.inject.Inject
 
-class SettingsFragment : BaseFragment<ISettingsView>() {
+
+class SettingsFragment : Fragment() {
 
 
     companion object {
         fun getInstance() = SettingsFragment()
     }
 
-
     @Inject
     lateinit var factory: SettingsSubcomponent.Factory
 
     @Inject
     lateinit var viewModel: ISettingsViewModel
+
+    private lateinit var myView: SettingsView
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        init(view)
+        return view
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,28 +48,25 @@ class SettingsFragment : BaseFragment<ISettingsView>() {
     }
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_settings
-
-
-    override fun init(content: View) {
+    fun init(content: View) {
         initView(content)
         initLiveData()
         viewModel.initInjection()
-        view.init()
+        myView.init()
         viewModel.initThemeToView()
     }
 
 
     private fun initLiveData() {
         viewModel.getThemeLiveData().observe(this, Observer {
-            view.setThemeModel(it)
+            myView.setThemeModel(it)
         })
     }
 
 
-    override fun initView(content: View) {
-        view = SettingsViewImpl()
-        view.attachView(content)
+    private fun initView(content: View) {
+        myView = SettingsView()
+        myView.attachView(content)
     }
 
 

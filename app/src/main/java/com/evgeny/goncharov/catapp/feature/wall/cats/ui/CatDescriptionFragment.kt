@@ -1,19 +1,20 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
-import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionViewImpl
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.ICatDescriptionView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
 import javax.inject.Inject
 
-class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
+class CatDescriptionFragment : Fragment() {
 
     companion object {
         fun getInstance(idCat: String?) = CatDescriptionFragment().apply {
@@ -29,6 +30,20 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     private var catId: String? = null
 
+    private lateinit var myView: CatDescriptionViewImpl
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_cat_description, container, false)
+        init(view)
+        return view
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
@@ -41,15 +56,10 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     }
 
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_cat_description
-    }
-
-
-    override fun init(content: View) {
+    private fun init(content: View) {
         initView(content)
         initLiveData()
-        view.init()
+        myView.init()
     }
 
 
@@ -61,7 +71,7 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
 
     private fun initCatDescriptionLiveData() {
         viewModel.getCatDescriptionLiveData().observe(this, Observer {
-            view.setCatDescription(it)
+            myView.setCatDescription(it)
         })
     }
 
@@ -69,17 +79,17 @@ class CatDescriptionFragment : BaseFragment<ICatDescriptionView>() {
     private fun initUiEventsLiveData() {
         viewModel.getLiveDataUiEvents().observe(this, Observer {
             when (it) {
-                BaseEventsUi.EventShowProgress -> view.showProgress()
-                BaseEventsUi.EventHideProgressAndShowContent -> view.showAllContent()
-                BaseEventsUi.EventHideProgressAndShowSomethingWrong -> view.showStubSomethingWrong()
+                CatDescriptionEvents.EventShowProgress -> myView.showProgress()
+                CatDescriptionEvents.EventHideProgressAndShowContent -> myView.showAllContent()
+                CatDescriptionEvents.EventHideProgressAndShowSomethingWrong -> myView.showStubSomethingWrong()
             }
         })
     }
 
 
-    override fun initView(content: View) {
-        view = CatDescriptionViewImpl()
-        view.attachView(content)
+    private fun initView(content: View) {
+        myView = CatDescriptionViewImpl()
+        myView.attachView(content)
     }
 
 

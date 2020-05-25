@@ -4,7 +4,7 @@ import com.evgeny.goncharov.catapp.di.scope.FragmentScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.RestWallCatsModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.WallCatsBindsModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.WallCatsProvidesModule
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsViewImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModelImpl
 import dagger.Subcomponent
 
@@ -22,7 +22,7 @@ interface WallCatsSubcomponent {
         var component: WallCatsSubcomponent? = null
     }
 
-    fun inject(view: WallCatsViewImpl)
+    fun inject(view: WallCatsView)
 
     fun inject(viewModel: WallCatsViewModelImpl)
 

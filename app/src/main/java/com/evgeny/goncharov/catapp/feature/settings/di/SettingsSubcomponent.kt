@@ -1,7 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.settings.di
 
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
-import com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsViewImpl
+import com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsView
 import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModelImpl
 import dagger.Subcomponent
 
@@ -19,7 +19,7 @@ interface SettingsSubcomponent {
 
     fun inject(settingsViewModelImpl: SettingsViewModelImpl)
 
-    fun inject(view: SettingsViewImpl)
+    fun inject(view: SettingsView)
 
 
     @Subcomponent.Factory

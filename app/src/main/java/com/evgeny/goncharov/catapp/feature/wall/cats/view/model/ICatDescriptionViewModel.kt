@@ -1,8 +1,8 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
 
 import androidx.lifecycle.LiveData
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 
 interface ICatDescriptionViewModel {
 
@@ -14,7 +14,7 @@ interface ICatDescriptionViewModel {
 
     fun initInjection()
 
-    fun getLiveDataUiEvents(): LiveData<BaseEventsUi>
+    fun getLiveDataUiEvents(): LiveData<CatDescriptionEvents>
 
     fun clickBack()
 

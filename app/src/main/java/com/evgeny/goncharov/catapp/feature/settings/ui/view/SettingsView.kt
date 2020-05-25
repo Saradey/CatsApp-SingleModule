@@ -1,9 +1,9 @@
 package com.evgeny.goncharov.catapp.feature.settings.ui.view
 
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
@@ -11,19 +11,21 @@ import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 import javax.inject.Inject
 
-class SettingsViewImpl : BaseViewImpl(), ISettingsView {
+class SettingsView {
 
     @Inject
     lateinit var fragment: SettingsFragment
 
+    private var content: View? = null
 
-    override fun init() {
+
+    fun init() {
         SettingsSubcomponent.component?.inject(this)
         initUi()
     }
 
 
-    override fun setThemeModel(value: ThemeModel) {
+    fun setThemeModel(value: ThemeModel) {
         if (value.themeValue == AppCompatDelegate.MODE_NIGHT_NO) {
             initLightTheme()
         } else if (value.themeValue == AppCompatDelegate.MODE_NIGHT_YES) {
@@ -89,5 +91,10 @@ class SettingsViewImpl : BaseViewImpl(), ISettingsView {
                 setTitle(R.string.settings_to_cat_title)
             }
         }
+    }
+
+
+    fun attachView(view: View) {
+        content = view
     }
 }

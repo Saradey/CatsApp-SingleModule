@@ -3,10 +3,10 @@ package com.evgeny.goncharov.catapp.feature.search.cats.view.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.interactor.ISearchCatInteractor
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,7 +36,7 @@ class SearchCatViewModelImpl : ViewModel(), ISearchCatViewModel {
     }
 
 
-    override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
+    override fun getUiEventsLiveData(): LiveData<SearchCatEvents> {
         return interactor.getUiEventsLiveData()
     }
 

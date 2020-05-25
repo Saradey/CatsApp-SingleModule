@@ -1,11 +1,11 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.LiveData
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.repository.ICatDescriptionRepository
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class CatDescriptionInteractorImpl @Inject constructor(
 
     private var catId = ""
 
-    private var liveDataUiEvents = SingleLiveEvent<BaseEventsUi>()
+    private var liveDataUiEvents = SingleLiveEvent<CatDescriptionEvents>()
 
 
     override fun setCatId(catId: String) {
@@ -27,7 +27,7 @@ class CatDescriptionInteractorImpl @Inject constructor(
 
     override suspend fun loadChooseCat(): CatDescriptionModel? = withContext(Dispatchers.Main) {
         var cat: CatDescriptionModel? = null
-        liveDataUiEvents.postValue(BaseEventsUi.EventShowProgress)
+        liveDataUiEvents.postValue(CatDescriptionEvents.EventShowProgress)
         cat = try {
             repository.loadChooseCatFromInternet(catId)
         } catch (exception: Exception) {
@@ -49,14 +49,14 @@ class CatDescriptionInteractorImpl @Inject constructor(
 
     private fun validateData(model: CatDescriptionModel?) {
         if (model == null) {
-            liveDataUiEvents.postValue(BaseEventsUi.EventHideProgressAndShowSomethingWrong)
+            liveDataUiEvents.postValue(CatDescriptionEvents.EventHideProgressAndShowSomethingWrong)
         } else {
-            liveDataUiEvents.postValue(BaseEventsUi.EventHideProgressAndShowContent)
+            liveDataUiEvents.postValue(CatDescriptionEvents.EventHideProgressAndShowContent)
         }
     }
 
 
-    override fun getLiveDataUiEvents(): LiveData<BaseEventsUi> {
+    override fun getLiveDataUiEvents(): LiveData<CatDescriptionEvents> {
         return liveDataUiEvents
     }
 

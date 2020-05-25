@@ -1,13 +1,13 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.LiveData
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.consts.LIMIT_PAGE_SIZE_CAT_WALL
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.repository.IWallCatRepository
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class WallCatInteractorImpl @Inject constructor(
     private val mainRouter: IMainRouter
 ) : IWallCatInteractor {
 
-    private val liveDataUiEvents = SingleLiveEvent<BaseEventsUi>()
+    private val liveDataUiEvents = SingleLiveEvent<WallCatsEvents>()
 
 
     override suspend fun loadWallCat(): List<CatBreedModel> {
@@ -41,7 +41,7 @@ class WallCatInteractorImpl @Inject constructor(
 
     private fun changeStateView(listModels: List<CatBreedModel>) {
         if (listModels.isEmpty()) {
-            liveDataUiEvents.postValue(BaseEventsUi.EventSomethingWrong)
+            liveDataUiEvents.postValue(WallCatsEvents.EventSomethingWrong)
         }
     }
 
@@ -78,12 +78,12 @@ class WallCatInteractorImpl @Inject constructor(
 
 
     private suspend fun showProgress() = withContext(Dispatchers.Main) {
-        liveDataUiEvents.postValue(BaseEventsUi.EventShowProgress)
+        liveDataUiEvents.postValue(WallCatsEvents.EventShowProgress)
     }
 
 
     private suspend fun hideProgressAndInitRefreshLayout() = withContext(Dispatchers.Main) {
-        liveDataUiEvents.postValue(BaseEventsUi.EventHideProgressAndInitRefreshLayout)
+        liveDataUiEvents.postValue(WallCatsEvents.EventHideProgressAndInitRefreshLayout)
     }
 
 
@@ -92,7 +92,7 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
-    override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
+    override fun getUiEventsLiveData(): LiveData<WallCatsEvents> {
         return liveDataUiEvents
     }
 

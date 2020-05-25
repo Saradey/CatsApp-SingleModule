@@ -1,11 +1,11 @@
 package com.evgeny.goncharov.catapp.feature.search.cats.ui.view
 
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.extension.setHintTextColor
 import com.evgeny.goncharov.catapp.extension.setTextColor
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
@@ -16,15 +16,17 @@ import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdap
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
-class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
+class SearchCatViewImpl {
 
     @Inject
     lateinit var fragment: SearchCatFragment
 
     private lateinit var adapter: CatsCathedAdapter
 
+    private var content: View? = null
 
-    override fun init() {
+
+    fun init() {
         SearchCatSubcomponent.component?.inject(this)
         initUi()
     }
@@ -86,7 +88,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
     }
 
 
-    override fun hideStubAndListAndShowProgress() {
+    fun hideStubAndListAndShowProgress() {
         content?.apply {
             crvContainerCats.setVisibilityBool(false)
             txvCatsStubNotFound.setVisibilityBool(false)
@@ -95,7 +97,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
     }
 
 
-    override fun hideProgressAndShowStub() {
+    fun hideProgressAndShowStub() {
         content?.apply {
             txvCatsStubNotFound.setVisibilityBool(true)
             hideProgress()
@@ -103,7 +105,7 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
     }
 
 
-    override fun hideProgressAndShowModels() {
+    fun hideProgressAndShowModels() {
         content?.apply {
             hideProgress()
             crvContainerCats.setVisibilityBool(true)
@@ -111,13 +113,27 @@ class SearchCatViewImpl : BaseViewImpl(), ISearchCatView {
     }
 
 
-    override fun setCatsCatched(models: List<CatCatched>?) {
+    fun setCatsCatched(models: List<CatCatched>?) {
         adapter.models = models ?: emptyList()
     }
 
 
-    fun chooseCat(id: String) {
+    private fun chooseCat(id: String) {
         fragment.chooseCat(id)
     }
 
+
+    private fun showProgress() {
+        content?.prgLoad?.setVisibilityBool(true)
+    }
+
+
+    private fun hideProgress() {
+        content?.prgLoad?.setVisibilityBool(false)
+    }
+
+
+    fun attachView(view: View) {
+        content = view
+    }
 }

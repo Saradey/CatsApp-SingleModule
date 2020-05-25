@@ -1,10 +1,11 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
+import android.view.View
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseViewImpl
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
+import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
@@ -17,10 +18,7 @@ import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
-class WallCatsViewImpl :
-    BaseViewImpl(),
-    IWallCatsView,
-    CatBreedViewHolder.CatBreedViewHolderListener {
+class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
 
     @Inject
     lateinit var fragment: WallCatsFragment
@@ -31,10 +29,12 @@ class WallCatsViewImpl :
     @Inject
     lateinit var mainThreadExecutor: MainThreadExecutor
 
+    private var content: View? = null
+
     private lateinit var adapter: CatBreedsPagedAdapter
 
 
-    override fun init() {
+    fun init() {
         WallCatsSubcomponent.component?.inject(this)
         initUi()
     }
@@ -56,7 +56,12 @@ class WallCatsViewImpl :
     }
 
 
-    override fun initSwipeRefreshLayout() {
+    fun attachView(view: View) {
+        content = view
+    }
+
+
+    fun initSwipeRefreshLayout() {
         content?.apply {
             swrlContainer.setOnRefreshListener {
                 initPagedAdapterAndRecycle()
@@ -115,5 +120,21 @@ class WallCatsViewImpl :
 
     override fun clickCatBreed(id: String?) {
         fragment.clickCatBreed(id)
+    }
+
+
+    fun showProgress() {
+        content?.prgLoad?.setVisibilityBool(true)
+    }
+
+
+    fun hideProgress() {
+        content?.prgLoad?.setVisibilityBool(false)
+    }
+
+
+    fun showStubSomethingWrong() {
+        content?.prgLoad?.setVisibilityBool(false)
+        content?.grpStubWallCat?.setVisibilityBool(true)
     }
 }

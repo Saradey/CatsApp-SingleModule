@@ -1,20 +1,21 @@
 package com.evgeny.goncharov.catapp.feature.search.cats.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
-import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
-import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.ISearchCatView
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatViewImpl
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
 import javax.inject.Inject
 
 
-class SearchCatFragment : BaseFragment<ISearchCatView>() {
+class SearchCatFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: ISearchCatViewModel
@@ -22,13 +23,22 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
     @Inject
     lateinit var factory: SearchCatSubcomponent.Factory
 
+    private lateinit var myView: SearchCatViewImpl
 
     companion object {
         fun getInstance() = SearchCatFragment()
     }
 
 
-    override fun getLayoutId(): Int = R.layout.fragment_search_cat
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_search_cat, container, false)
+        init(view)
+        return view
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,9 +49,9 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
     }
 
 
-    override fun init(content: View) {
+    private fun init(content: View) {
         initView(content)
-        view.init()
+        myView.init()
         initLiveData()
     }
 
@@ -54,7 +64,7 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
 
     private fun initCatsCathed() {
         viewModel.getLiveDataCatsCathed().observe(this, Observer {
-            view.setCatsCatched(it)
+            myView.setCatsCatched(it)
         })
     }
 
@@ -62,17 +72,17 @@ class SearchCatFragment : BaseFragment<ISearchCatView>() {
     private fun initUiEvents() {
         viewModel.getUiEventsLiveData().observe(this, Observer {
             when (it) {
-                BaseEventsUi.EventShowProgressAndHideStubAndHideModels -> view.hideStubAndListAndShowProgress()
-                BaseEventsUi.EventHideProgressAndShowStub -> view.hideProgressAndShowStub()
-                BaseEventsUi.EventHideProgressAndShowRecycleView -> view.hideProgressAndShowModels()
+                SearchCatEvents.EventShowProgressAndHideStubAndHideModels -> myView.hideStubAndListAndShowProgress()
+                SearchCatEvents.EventHideProgressAndShowStub -> myView.hideProgressAndShowStub()
+                SearchCatEvents.EventHideProgressAndShowRecycleView -> myView.hideProgressAndShowModels()
             }
         })
     }
 
 
-    override fun initView(content: View) {
-        view = SearchCatViewImpl()
-        view.attachView(content)
+    private fun initView(content: View) {
+        myView = SearchCatViewImpl()
+        myView.attachView(content)
     }
 
 

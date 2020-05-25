@@ -1,17 +1,24 @@
 package com.evgeny.goncharov.catapp.feature.splash.screen.ui
 
 import android.graphics.Typeface
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.splash.screen.router.ISplashScreenRouter
 import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
-class SplashScreenFragment : BaseFragment<ISplashScreen>() {
+class SplashScreenFragment : Fragment() {
 
     companion object {
         fun getInstance() = SplashScreenFragment().apply {
@@ -24,12 +31,19 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
     @Inject
     lateinit var router: ISplashScreenRouter
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_splash_screen
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_splash_screen, container, false)
+        init(view)
+        return view
     }
 
 
-    override fun init(content: View) {
+
+    private fun init(content: View) {
         initFountSplashScreenTitle(content)
         animationView(content)
     }
@@ -60,7 +74,5 @@ class SplashScreenFragment : BaseFragment<ISplashScreen>() {
     private fun goToTheNextFragment() {
         router.gotoTheWallCatFragment()
     }
-
-    override fun initView(content: View) {}
 
 }

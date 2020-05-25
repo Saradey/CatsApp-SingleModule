@@ -2,10 +2,10 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -42,7 +42,7 @@ class WallCatsViewModelImpl : ViewModel(), IWallCatsViewModel {
     }
 
 
-    override fun getUiEventsLiveData(): LiveData<BaseEventsUi> {
+    override fun getUiEventsLiveData(): LiveData<WallCatsEvents> {
         return interactor.getUiEventsLiveData()
     }
 

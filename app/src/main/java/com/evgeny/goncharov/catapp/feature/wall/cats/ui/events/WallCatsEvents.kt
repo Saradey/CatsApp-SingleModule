@@ -1,0 +1,11 @@
+package com.evgeny.goncharov.catapp.feature.wall.cats.ui.events
+
+sealed class WallCatsEvents {
+
+    object EventShowProgress : WallCatsEvents()
+
+    object EventSomethingWrong : WallCatsEvents()
+
+    object EventHideProgressAndInitRefreshLayout : WallCatsEvents()
+
+}

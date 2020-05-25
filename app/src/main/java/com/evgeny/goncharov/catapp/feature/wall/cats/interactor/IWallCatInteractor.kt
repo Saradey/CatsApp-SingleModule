@@ -1,8 +1,8 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.LiveData
-import com.evgeny.goncharov.catapp.base.BaseEventsUi
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 
 interface IWallCatInteractor {
 
@@ -12,7 +12,7 @@ interface IWallCatInteractor {
 
     fun clickCatBreed(id: String)
 
-    fun getUiEventsLiveData(): LiveData<BaseEventsUi>
+    fun getUiEventsLiveData(): LiveData<WallCatsEvents>
 
     fun clickMenuSearchCat()
 
