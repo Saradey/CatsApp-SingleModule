@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.di.components
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.BindsCatDescriptionModule
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.modules.RestCatDescriptionModule
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionViewImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModelImpl
 import dagger.Subcomponent
 
@@ -21,7 +21,7 @@ interface CatDescriptionSubcomponent {
     }
 
 
-    fun inject(catDescriptionViewImpl: CatDescriptionViewImpl)
+    fun inject(catDescriptionViewImpl: CatDescriptionView)
 
     fun inject(viewModel: CatDescriptionViewModelImpl)
 

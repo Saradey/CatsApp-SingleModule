@@ -25,7 +25,7 @@ class SearchCatInteractorImpl @Inject constructor(
 
 
     override suspend fun setInputTextSearchView(text: String) {
-        liveDataUiEvents.postValue(SearchCatEvents.EventShowProgressAndHideStubAndHideModels)
+        liveDataUiEvents.value = SearchCatEvents.EventShowProgressAndHideStubAndHideModels
         val models = try {
             repository.loadFromInternet(GetChooseCatRequest(text).createRequest())
         } catch (exp: Exception) {
@@ -38,9 +38,9 @@ class SearchCatInteractorImpl @Inject constructor(
 
     private fun validateData(models: List<CatCatched>) {
         if (models.isEmpty()) {
-            liveDataUiEvents.postValue(SearchCatEvents.EventHideProgressAndShowStub)
+            liveDataUiEvents.value = SearchCatEvents.EventHideProgressAndShowStub
         } else {
-            liveDataUiEvents.postValue(SearchCatEvents.EventHideProgressAndShowRecycleView)
+            liveDataUiEvents.value = SearchCatEvents.EventHideProgressAndShowRecycleView
             liveDataCatsCathed.postValue(models)
         }
     }

@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionViewImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
 import javax.inject.Inject
 
@@ -30,7 +32,9 @@ class CatDescriptionFragment : Fragment() {
 
     private var catId: String? = null
 
-    private lateinit var myView: CatDescriptionViewImpl
+    private lateinit var myView: CatDescriptionView
+
+    private lateinit var uiLiveData: LiveData<CatDescriptionEvents>
 
 
     override fun onCreateView(
@@ -77,7 +81,8 @@ class CatDescriptionFragment : Fragment() {
 
 
     private fun initUiEventsLiveData() {
-        viewModel.getLiveDataUiEvents().observe(this, Observer {
+        uiLiveData = viewModel.getLiveDataUiEvents()
+        uiLiveData.observe(this, Observer {
             when (it) {
                 CatDescriptionEvents.EventShowProgress -> myView.showProgress()
                 CatDescriptionEvents.EventHideProgressAndShowContent -> myView.showAllContent()
@@ -88,7 +93,7 @@ class CatDescriptionFragment : Fragment() {
 
 
     private fun initView(content: View) {
-        myView = CatDescriptionViewImpl()
+        myView = CatDescriptionView()
         myView.attachView(content)
     }
 
@@ -103,9 +108,9 @@ class CatDescriptionFragment : Fragment() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         CatDescriptionSubcomponent.component = null
+        (uiLiveData as SingleLiveEvent<CatDescriptionEvents>).call()
     }
-
 }

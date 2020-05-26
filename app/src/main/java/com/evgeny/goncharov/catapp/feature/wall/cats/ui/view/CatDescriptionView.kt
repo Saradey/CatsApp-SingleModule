@@ -13,7 +13,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import javax.inject.Inject
 
-class CatDescriptionViewImpl {
+class CatDescriptionView {
 
     @Inject
     lateinit var fragment: CatDescriptionFragment

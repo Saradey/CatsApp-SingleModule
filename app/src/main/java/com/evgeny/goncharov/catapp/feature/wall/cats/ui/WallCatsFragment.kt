@@ -117,5 +117,6 @@ class WallCatsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         (uiLiveData as SingleLiveEvent<WallCatsEvents>).call()
+        WallCatsSubcomponent.component = null
     }
 }

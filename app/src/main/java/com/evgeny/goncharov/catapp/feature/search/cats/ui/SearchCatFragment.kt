@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
@@ -24,6 +26,9 @@ class SearchCatFragment : Fragment() {
     lateinit var factory: SearchCatSubcomponent.Factory
 
     private lateinit var myView: SearchCatViewImpl
+
+    private lateinit var uiLiveData: LiveData<SearchCatEvents>
+
 
     companion object {
         fun getInstance() = SearchCatFragment()
@@ -70,7 +75,8 @@ class SearchCatFragment : Fragment() {
 
 
     private fun initUiEvents() {
-        viewModel.getUiEventsLiveData().observe(this, Observer {
+        uiLiveData = viewModel.getUiEventsLiveData()
+        uiLiveData.observe(this, Observer {
             when (it) {
                 SearchCatEvents.EventShowProgressAndHideStubAndHideModels -> myView.hideStubAndListAndShowProgress()
                 SearchCatEvents.EventHideProgressAndShowStub -> myView.hideProgressAndShowStub()
@@ -101,8 +107,9 @@ class SearchCatFragment : Fragment() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         SearchCatSubcomponent.component = null
+        (uiLiveData as SingleLiveEvent<SearchCatEvents>).call()
     }
 }
