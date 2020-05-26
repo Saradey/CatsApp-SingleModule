@@ -2,16 +2,12 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters
 
 import androidx.paging.PageKeyedDataSource
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
+import kotlinx.coroutines.*
 
 
 class PageKeyedDataSourceCatBreeds(
-    private val viewModel: IWallCatsViewModel
+    private val viewModel: WallCatsViewModel
 ) : PageKeyedDataSource<Int, CatBreedModel>() {
 
     private var mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())

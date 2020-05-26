@@ -2,29 +2,27 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
-import androidx.annotation.MainThread
 import androidx.annotation.StyleRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
+import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
-class WallCatsView : LinearLayout, CatBreedViewHolder.CatBreedViewHolderListener {
+class WallCatsView : LinearLayout {
 
     constructor(context: Context, attr: AttributeSet) : super(context, attr)
     constructor(context: Context, attr: AttributeSet, @StyleRes style: Int) : super(
@@ -33,10 +31,6 @@ class WallCatsView : LinearLayout, CatBreedViewHolder.CatBreedViewHolderListener
         style
     )
 
-    @Inject
-    lateinit var fragment: WallCatsFragment
-
-    @Inject
     lateinit var dataSource: PageKeyedDataSourceCatBreeds
 
     @Inject
@@ -46,37 +40,36 @@ class WallCatsView : LinearLayout, CatBreedViewHolder.CatBreedViewHolderListener
 
 
     fun init() {
-        WallCatsSubcomponent.component?.inject(this)
-        initUi()
+        ActivitySubcomponent.component.inject(this)
     }
 
 
-    private fun initUi() {
-        initToolbar()
-        initPagedAdapterAndRecycle()
-        initFirstSwipeRefreshLayout()
-    }
-
-
-    private fun initFirstSwipeRefreshLayout() {
+    fun initFirstSwipeRefreshLayout() {
         swrlContainer.setOnRefreshListener {
             swrlContainer.isRefreshing = false
         }
     }
 
 
-    fun initSwipeRefreshLayout() {
+    fun initSwipeRefreshLayout(
+        vm: WallCatsViewModel,
+        listener: CatBreedViewHolder.CatBreedViewHolderListener
+    ) {
         grpStubWallCat?.setVisibilityBool(false)
         swrlContainer.setOnRefreshListener {
-            initPagedAdapterAndRecycle()
+            initPagedAdapterAndRecycle(vm, listener)
             swrlContainer.isRefreshing = false
             initFirstSwipeRefreshLayout()
         }
     }
 
 
-    private fun initPagedAdapterAndRecycle() {
-        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), this)
+    fun initPagedAdapterAndRecycle(
+        vm: WallCatsViewModel,
+        listener: CatBreedViewHolder.CatBreedViewHolderListener
+    ) {
+        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), listener)
+        dataSource = PageKeyedDataSourceCatBreeds(vm)
         val pagedConfig = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(15)
@@ -91,17 +84,20 @@ class WallCatsView : LinearLayout, CatBreedViewHolder.CatBreedViewHolderListener
     }
 
 
-    private fun initToolbar() {
+    fun initToolbar(
+        clickMenuSearchCat: () -> Unit,
+        clickMenuSettings: () -> Unit
+    ) {
         toolbar.setTitle(R.string.wall_cat_toolbar_title)
         toolbar.inflateMenu(R.menu.menu_wall_cats)
         toolbar.setOnMenuItemClickListener { menu ->
             when (menu.itemId) {
                 R.id.menuSearchCat -> {
-                    fragment.clickMenuSearchCat()
+                    clickMenuSearchCat()
                     true
                 }
                 R.id.menuSettings -> {
-                    fragment.clickMenuSettings()
+                    clickMenuSettings()
                     true
                 }
                 else -> {
@@ -109,16 +105,6 @@ class WallCatsView : LinearLayout, CatBreedViewHolder.CatBreedViewHolderListener
                 }
             }
         }
-    }
-
-
-    override fun clickCatUrlBreed(urlImage: String?) {
-        fragment.clickCatUrlBreed(urlImage)
-    }
-
-
-    override fun clickCatBreed(id: String?) {
-        fragment.clickCatBreed(id)
     }
 
 

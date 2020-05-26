@@ -18,5 +18,4 @@ interface ActivityBindsModule {
 
     @Binds
     fun bindScreenRouter(router: SplashScreenRouterImpl): ISplashScreenRouter
-
 }

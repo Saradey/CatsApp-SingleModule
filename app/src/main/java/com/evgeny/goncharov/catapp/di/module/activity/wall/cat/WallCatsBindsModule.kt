@@ -1,22 +1,33 @@
-package com.evgeny.goncharov.catapp.feature.wall.cats.di.modules
+package com.evgeny.goncharov.catapp.di.module.activity.wall.cat
 
-import com.evgeny.goncharov.catapp.di.scope.FragmentScope
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.evgeny.goncharov.catapp.common.ViewModelFactory
+import com.evgeny.goncharov.catapp.di.ViewModelKey
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractorImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.repository.IWallCatRepository
 import com.evgeny.goncharov.catapp.feature.wall.cats.repository.WallCatRepositoryImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
 @Module
 interface WallCatsBindsModule {
 
     @Binds
-    @FragmentScope
+    @IntoMap
+    @ViewModelKey(WallCatsViewModel::class)
+    fun bindWallCatsViewModel(vm: WallCatsViewModel): ViewModel
+
+    @Binds
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
     fun bindWallCatInteractor(interactor: WallCatInteractorImpl): IWallCatInteractor
 
     @Binds
-    @FragmentScope
     fun bindWallCatRepository(repository: WallCatRepositoryImpl): IWallCatRepository
 
 }

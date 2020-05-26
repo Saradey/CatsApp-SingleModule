@@ -9,27 +9,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
-import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
+import com.evgeny.goncharov.catapp.extension.injectViewModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import kotlinx.android.synthetic.main.fragment_wall_cats.*
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import javax.inject.Inject
 
-class WallCatsFragment : Fragment() {
+class WallCatsFragment : Fragment(), CatBreedViewHolder.CatBreedViewHolderListener {
 
     companion object {
         fun getInstance() = WallCatsFragment()
     }
 
     @Inject
-    lateinit var factory: WallCatsSubcomponent.Factory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var viewModel: IWallCatsViewModel
+    private lateinit var viewModel: WallCatsViewModel
 
     private lateinit var uiLiveData: LiveData<WallCatsEvents>
 
@@ -37,7 +38,7 @@ class WallCatsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
-        WallCatsSubcomponent.component = factory.plus()
+        viewModel = injectViewModel(viewModelFactory)
     }
 
 
@@ -52,10 +53,20 @@ class WallCatsFragment : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initUi()
+    }
+
     private fun init(content: View) {
-        viewModel.initInject()
         initLiveData()
         content.myView.init()
+    }
+
+
+    private fun initUi() {
+        myView.initToolbar(::clickMenuSearchCat, ::clickMenuSettings)
+        myView.initPagedAdapterAndRecycle(viewModel, this)
+        myView.initFirstSwipeRefreshLayout()
     }
 
 
@@ -72,14 +83,14 @@ class WallCatsFragment : Fragment() {
                 }
                 WallCatsEvents.EventHideProgressAndInitRefreshLayout -> {
                     myView.hideProgress()
-                    myView.initSwipeRefreshLayout()
+                    myView.initSwipeRefreshLayout(viewModel, this)
                 }
             }
         })
     }
 
 
-    fun clickCatUrlBreed(urlImage: String?) {
+    override fun clickCatUrlBreed(urlImage: String?) {
         urlImage?.let {
             val uri = Uri.parse(urlImage)
             val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -90,19 +101,19 @@ class WallCatsFragment : Fragment() {
     }
 
 
-    fun clickCatBreed(id: String?) {
+    override fun clickCatBreed(id: String?) {
         id?.let {
             viewModel.clickCatBreed(id)
         }
     }
 
 
-    fun clickMenuSearchCat() {
+    private fun clickMenuSearchCat() {
         viewModel.clickMenuSearchCat()
     }
 
 
-    fun clickMenuSettings() {
+    private fun clickMenuSettings() {
         viewModel.clickMenuSettings()
     }
 
@@ -110,6 +121,5 @@ class WallCatsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         (uiLiveData as SingleLiveEvent<WallCatsEvents>).call()
-        WallCatsSubcomponent.component = null
     }
 }

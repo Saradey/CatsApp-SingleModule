@@ -9,14 +9,15 @@ import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewM
 import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
 import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModelImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModelImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModelImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
 
 
 @Module
@@ -56,13 +57,6 @@ object ActivityProvidesModule {
 
     @Provides
     @JvmStatic
-    fun provideWallCatsViewModel(fragment: WallCatsFragment): IWallCatsViewModel =
-        ViewModelProviders.of(fragment).get(WallCatsViewModelImpl::class.java)
-
-
-
-    @Provides
-    @JvmStatic
     fun provideSearchCatFragment(fragmentManager: FragmentManager): SearchCatFragment {
         return fragmentManager.findFragmentByTag(SearchCatFragment::class.java.name) as SearchCatFragment
     }
@@ -85,5 +79,4 @@ object ActivityProvidesModule {
     @JvmStatic
     fun provideSettingsViewModel(fragment: SettingsFragment): ISettingsViewModel =
         ViewModelProviders.of(fragment).get(SettingsViewModelImpl::class.java)
-
 }
