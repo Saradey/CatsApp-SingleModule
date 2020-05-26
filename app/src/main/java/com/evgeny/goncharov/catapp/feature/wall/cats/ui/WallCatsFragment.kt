@@ -14,8 +14,9 @@ import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.IWallCatsViewModel
+import kotlinx.android.synthetic.main.fragment_wall_cats.*
+import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import javax.inject.Inject
 
 class WallCatsFragment : Fragment() {
@@ -29,8 +30,6 @@ class WallCatsFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: IWallCatsViewModel
-
-    private lateinit var myView: WallCatsView
 
     private lateinit var uiLiveData: LiveData<WallCatsEvents>
 
@@ -54,16 +53,9 @@ class WallCatsFragment : Fragment() {
 
 
     private fun init(content: View) {
-        initView(content)
         viewModel.initInject()
         initLiveData()
-        myView.init()
-    }
-
-
-    private fun initView(content: View) {
-        myView = WallCatsView()
-        myView.attachView(content)
+        content.myView.init()
     }
 
 

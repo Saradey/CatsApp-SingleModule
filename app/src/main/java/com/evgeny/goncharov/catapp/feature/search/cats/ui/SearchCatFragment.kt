@@ -12,8 +12,11 @@ import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
-import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatViewImpl
+import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatView
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
+import kotlinx.android.synthetic.main.fragment_search_cat.*
+import kotlinx.android.synthetic.main.fragment_search_cat.view.*
+import kotlinx.android.synthetic.main.fragment_search_cat.view.mySearchView
 import javax.inject.Inject
 
 
@@ -24,8 +27,6 @@ class SearchCatFragment : Fragment() {
 
     @Inject
     lateinit var factory: SearchCatSubcomponent.Factory
-
-    private lateinit var myView: SearchCatViewImpl
 
     private lateinit var uiLiveData: LiveData<SearchCatEvents>
 
@@ -55,8 +56,7 @@ class SearchCatFragment : Fragment() {
 
 
     private fun init(content: View) {
-        initView(content)
-        myView.init()
+        content.mySearchView.init()
         initLiveData()
     }
 
@@ -69,7 +69,7 @@ class SearchCatFragment : Fragment() {
 
     private fun initCatsCathed() {
         viewModel.getLiveDataCatsCathed().observe(this, Observer {
-            myView.setCatsCatched(it)
+            mySearchView.setCatsCatched(it)
         })
     }
 
@@ -78,17 +78,11 @@ class SearchCatFragment : Fragment() {
         uiLiveData = viewModel.getUiEventsLiveData()
         uiLiveData.observe(this, Observer {
             when (it) {
-                SearchCatEvents.EventShowProgressAndHideStubAndHideModels -> myView.hideStubAndListAndShowProgress()
-                SearchCatEvents.EventHideProgressAndShowStub -> myView.hideProgressAndShowStub()
-                SearchCatEvents.EventHideProgressAndShowRecycleView -> myView.hideProgressAndShowModels()
+                SearchCatEvents.EventShowProgressAndHideStubAndHideModels -> mySearchView.hideStubAndListAndShowProgress()
+                SearchCatEvents.EventHideProgressAndShowStub -> mySearchView.hideProgressAndShowStub()
+                SearchCatEvents.EventHideProgressAndShowRecycleView -> mySearchView.hideProgressAndShowModels()
             }
         })
-    }
-
-
-    private fun initView(content: View) {
-        myView = SearchCatViewImpl()
-        myView.attachView(content)
     }
 
 

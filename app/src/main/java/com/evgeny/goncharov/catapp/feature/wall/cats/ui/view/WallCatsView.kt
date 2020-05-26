@@ -1,6 +1,12 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui.view
 
+import android.content.Context
+import android.util.AttributeSet
 import android.view.View
+import android.widget.LinearLayout
+import androidx.annotation.MainThread
+import androidx.annotation.StyleRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
@@ -18,7 +24,14 @@ import kotlinx.android.synthetic.main.toolbar.view.toolbar
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
-class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
+class WallCatsView : LinearLayout, CatBreedViewHolder.CatBreedViewHolderListener {
+
+    constructor(context: Context, attr: AttributeSet) : super(context, attr)
+    constructor(context: Context, attr: AttributeSet, @StyleRes style: Int) : super(
+        context,
+        attr,
+        style
+    )
 
     @Inject
     lateinit var fragment: WallCatsFragment
@@ -28,8 +41,6 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
 
     @Inject
     lateinit var mainThreadExecutor: MainThreadExecutor
-
-    private var content: View? = null
 
     private lateinit var adapter: CatBreedsPagedAdapter
 
@@ -48,27 +59,18 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
 
 
     private fun initFirstSwipeRefreshLayout() {
-        content?.apply {
-            swrlContainer.setOnRefreshListener {
-                swrlContainer.isRefreshing = false
-            }
+        swrlContainer.setOnRefreshListener {
+            swrlContainer.isRefreshing = false
         }
     }
 
 
-    fun attachView(view: View) {
-        content = view
-    }
-
-
     fun initSwipeRefreshLayout() {
-        content?.grpStubWallCat?.setVisibilityBool(false)
-        content?.apply {
-            swrlContainer.setOnRefreshListener {
-                initPagedAdapterAndRecycle()
-                swrlContainer.isRefreshing = false
-                initFirstSwipeRefreshLayout()
-            }
+        grpStubWallCat?.setVisibilityBool(false)
+        swrlContainer.setOnRefreshListener {
+            initPagedAdapterAndRecycle()
+            swrlContainer.isRefreshing = false
+            initFirstSwipeRefreshLayout()
         }
     }
 
@@ -84,30 +86,26 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
             .setFetchExecutor(Executors.newCachedThreadPool())
             .build()
         adapter.submitList(pagedList)
-        content?.apply {
-            rcvCatBreeds.layoutManager = LinearLayoutManager(context)
-            rcvCatBreeds.adapter = adapter
-        }
+        rcvCatBreeds.layoutManager = LinearLayoutManager(context)
+        rcvCatBreeds.adapter = adapter
     }
 
 
     private fun initToolbar() {
-        content?.apply {
-            toolbar.setTitle(R.string.wall_cat_toolbar_title)
-            toolbar.inflateMenu(R.menu.menu_wall_cats)
-            toolbar.setOnMenuItemClickListener { menu ->
-                when (menu.itemId) {
-                    R.id.menuSearchCat -> {
-                        fragment.clickMenuSearchCat()
-                        true
-                    }
-                    R.id.menuSettings -> {
-                        fragment.clickMenuSettings()
-                        true
-                    }
-                    else -> {
-                        false
-                    }
+        toolbar.setTitle(R.string.wall_cat_toolbar_title)
+        toolbar.inflateMenu(R.menu.menu_wall_cats)
+        toolbar.setOnMenuItemClickListener { menu ->
+            when (menu.itemId) {
+                R.id.menuSearchCat -> {
+                    fragment.clickMenuSearchCat()
+                    true
+                }
+                R.id.menuSettings -> {
+                    fragment.clickMenuSettings()
+                    true
+                }
+                else -> {
+                    false
                 }
             }
         }
@@ -125,22 +123,22 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
 
 
     fun showProgress() {
-        content?.prgLoad?.setVisibilityBool(true)
+        prgLoad?.setVisibilityBool(true)
     }
 
 
     fun hideProgress() {
-        content?.prgLoad?.setVisibilityBool(false)
+        prgLoad?.setVisibilityBool(false)
     }
 
 
     fun showStubSomethingWrong() {
-        content?.prgLoad?.setVisibilityBool(false)
-        content?.grpStubWallCat?.setVisibilityBool(true)
+        prgLoad?.setVisibilityBool(false)
+        grpStubWallCat?.setVisibilityBool(true)
     }
 
 
     fun hideStubSomethingWrong() {
-        content?.grpStubWallCat?.setVisibilityBool(false)
+        grpStubWallCat?.setVisibilityBool(false)
     }
 }

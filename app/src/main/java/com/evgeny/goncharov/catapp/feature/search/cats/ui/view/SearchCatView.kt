@@ -1,9 +1,13 @@
 package com.evgeny.goncharov.catapp.feature.search.cats.ui.view
 
+import android.content.Context
+import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.extension.setHintTextColor
@@ -16,14 +20,19 @@ import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdap
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
-class SearchCatViewImpl {
+class SearchCatView : ConstraintLayout {
+
+    constructor(context: Context, attr: AttributeSet) : super(context, attr)
+    constructor(context: Context, attr: AttributeSet, @StyleRes style: Int) : super(
+        context,
+        attr,
+        style
+    )
 
     @Inject
     lateinit var fragment: SearchCatFragment
 
     private lateinit var adapter: CatsCathedAdapter
-
-    private var content: View? = null
 
 
     fun init() {
@@ -41,40 +50,34 @@ class SearchCatViewImpl {
 
     private fun initAdapterAndRecycle() {
         adapter = CatsCathedAdapter(::chooseCat)
-        content?.apply {
-            rcvCathedCats.layoutManager = LinearLayoutManager(context)
-            rcvCathedCats.adapter = adapter
-        }
+        rcvCathedCats.layoutManager = LinearLayoutManager(context)
+        rcvCathedCats.adapter = adapter
     }
 
 
     private fun initToolbar() {
-        content?.apply {
-            (toolbar as Toolbar).apply {
-                setNavigationIcon(R.drawable.ic_arrow_back_black)
-                setNavigationOnClickListener {
-                    fragment.clickNavigationBack()
-                }
-                setTitle(R.string.title_toolbar_search_cat)
+        (toolbar as Toolbar).apply {
+            setNavigationIcon(R.drawable.ic_arrow_back_black)
+            setNavigationOnClickListener {
+                fragment.clickNavigationBack()
             }
+            setTitle(R.string.title_toolbar_search_cat)
         }
     }
 
 
     private fun initSearchView() {
-        content?.apply {
-            srcSearchCat.onActionViewExpanded()
-            srcSearchCat.setOnQueryTextListener(
-                object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?) = true
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        fragment.setInputTextSearchView(newText)
-                        return true
-                    }
+        srcSearchCat.onActionViewExpanded()
+        srcSearchCat.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?) = true
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    fragment.setInputTextSearchView(newText)
+                    return true
                 }
-            )
-            initEditTextSearchView(srcSearchCat)
-        }
+            }
+        )
+        initEditTextSearchView(srcSearchCat)
     }
 
 
@@ -89,27 +92,21 @@ class SearchCatViewImpl {
 
 
     fun hideStubAndListAndShowProgress() {
-        content?.apply {
-            crvContainerCats.setVisibilityBool(false)
-            txvCatsStubNotFound.setVisibilityBool(false)
-            showProgress()
-        }
+        crvContainerCats.setVisibilityBool(false)
+        txvCatsStubNotFound.setVisibilityBool(false)
+        showProgress()
     }
 
 
     fun hideProgressAndShowStub() {
-        content?.apply {
-            txvCatsStubNotFound.setVisibilityBool(true)
-            hideProgress()
-        }
+        txvCatsStubNotFound.setVisibilityBool(true)
+        hideProgress()
     }
 
 
     fun hideProgressAndShowModels() {
-        content?.apply {
-            hideProgress()
-            crvContainerCats.setVisibilityBool(true)
-        }
+        hideProgress()
+        crvContainerCats.setVisibilityBool(true)
     }
 
 
@@ -124,16 +121,11 @@ class SearchCatViewImpl {
 
 
     private fun showProgress() {
-        content?.prgLoad?.setVisibilityBool(true)
+        prgLoad?.setVisibilityBool(true)
     }
 
 
     private fun hideProgress() {
-        content?.prgLoad?.setVisibilityBool(false)
-    }
-
-
-    fun attachView(view: View) {
-        content = view
+        prgLoad?.setVisibilityBool(false)
     }
 }

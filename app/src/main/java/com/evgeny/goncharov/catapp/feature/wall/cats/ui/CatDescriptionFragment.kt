@@ -14,6 +14,8 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptio
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
+import kotlinx.android.synthetic.main.fragment_cat_description.*
+import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import javax.inject.Inject
 
 class CatDescriptionFragment : Fragment() {
@@ -31,8 +33,6 @@ class CatDescriptionFragment : Fragment() {
     lateinit var viewModel: ICatDescriptionViewModel
 
     private var catId: String? = null
-
-    private lateinit var myView: CatDescriptionView
 
     private lateinit var uiLiveData: LiveData<CatDescriptionEvents>
 
@@ -61,9 +61,8 @@ class CatDescriptionFragment : Fragment() {
 
 
     private fun init(content: View) {
-        initView(content)
+        content.myView.init()
         initLiveData()
-        myView.init()
     }
 
 
@@ -89,12 +88,6 @@ class CatDescriptionFragment : Fragment() {
                 CatDescriptionEvents.EventHideProgressAndShowSomethingWrong -> myView.showStubSomethingWrong()
             }
         })
-    }
-
-
-    private fun initView(content: View) {
-        myView = CatDescriptionView()
-        myView.attachView(content)
     }
 
 

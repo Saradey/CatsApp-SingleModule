@@ -11,6 +11,9 @@ import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsView
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
+import kotlinx.android.synthetic.main.fragment_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
+import kotlinx.android.synthetic.main.fragment_settings.view.mySettingsView
 import javax.inject.Inject
 
 
@@ -26,8 +29,6 @@ class SettingsFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: ISettingsViewModel
-
-    private lateinit var myView: SettingsView
 
 
     override fun onCreateView(
@@ -49,24 +50,17 @@ class SettingsFragment : Fragment() {
 
 
     fun init(content: View) {
-        initView(content)
         initLiveData()
         viewModel.initInjection()
-        myView.init()
+        content.mySettingsView.init()
         viewModel.initThemeToView()
     }
 
 
     private fun initLiveData() {
         viewModel.getThemeLiveData().observe(this, Observer {
-            myView.setThemeModel(it)
+            mySettingsView.setThemeModel(it)
         })
-    }
-
-
-    private fun initView(content: View) {
-        myView = SettingsView()
-        myView.attachView(content)
     }
 
 
