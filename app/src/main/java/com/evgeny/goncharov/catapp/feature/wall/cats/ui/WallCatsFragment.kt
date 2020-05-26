@@ -104,6 +104,7 @@ class WallCatsFragment : Fragment() {
         }
     }
 
+
     fun clickMenuSearchCat() {
         viewModel.clickMenuSearchCat()
     }
@@ -114,8 +115,8 @@ class WallCatsFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         (uiLiveData as SingleLiveEvent<WallCatsEvents>).call()
         WallCatsSubcomponent.component = null
     }

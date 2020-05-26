@@ -16,3 +16,5 @@ const val KEY_BUNDLE_CAT_ID = "KEY_BUNDLE_CAT_ID"
 //Table entity name
 const val CAT_BREED_TABLE_NAME = "cat_breed"
 const val CHOOSE_CAT_BREED_TABLE_NAME = "choose_cat_breed"
+
+const val DATA_BASE_NAME = "pisa"

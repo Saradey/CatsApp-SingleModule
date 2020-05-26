@@ -90,8 +90,8 @@ class SettingsFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         SettingsSubcomponent.component = null
     }
 }

@@ -107,8 +107,8 @@ class SearchCatFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         SearchCatSubcomponent.component = null
         (uiLiveData as SingleLiveEvent<SearchCatEvents>).call()
     }

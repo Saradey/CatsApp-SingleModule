@@ -108,8 +108,8 @@ class CatDescriptionFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         CatDescriptionSubcomponent.component = null
         (uiLiveData as SingleLiveEvent<CatDescriptionEvents>).call()
     }

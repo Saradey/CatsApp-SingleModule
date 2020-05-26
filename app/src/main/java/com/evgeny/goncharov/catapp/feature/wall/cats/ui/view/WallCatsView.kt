@@ -139,6 +139,7 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
         content?.grpStubWallCat?.setVisibilityBool(true)
     }
 
+
     fun hideStubSomethingWrong() {
         content?.grpStubWallCat?.setVisibilityBool(false)
     }

@@ -2,6 +2,7 @@ package com.evgeny.goncharov.catapp.di.module.app
 
 import android.content.Context
 import androidx.room.Room
+import com.evgeny.goncharov.catapp.consts.DATA_BASE_NAME
 import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
 import com.evgeny.goncharov.catapp.db.AppDatabase
 import com.evgeny.goncharov.catapp.di.scope.AppScope
@@ -17,7 +18,7 @@ object DatabaseModule {
     @Provides
     @JvmStatic
     fun provideDataBase(@Named(TAG_APPLICATION_CONTEXT) context: Context) =
-        Room.databaseBuilder(context, AppDatabase::class.java, "pisa").build()
+        Room.databaseBuilder(context, AppDatabase::class.java, DATA_BASE_NAME).build()
 
     @Provides
     @JvmStatic
