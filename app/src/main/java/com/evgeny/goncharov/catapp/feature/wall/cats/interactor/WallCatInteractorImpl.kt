@@ -41,7 +41,7 @@ class WallCatInteractorImpl @Inject constructor(
 
     private fun changeStateView(listModels: List<CatBreedModel>) {
         if (listModels.isEmpty()) {
-            liveDataUiEvents.postValue(WallCatsEvents.EventSomethingWrong)
+            liveDataUiEvents.value = WallCatsEvents.EventSomethingWrong
         }
     }
 
@@ -78,12 +78,12 @@ class WallCatInteractorImpl @Inject constructor(
 
 
     private suspend fun showProgress() = withContext(Dispatchers.Main) {
-        liveDataUiEvents.postValue(WallCatsEvents.EventShowProgress)
+        liveDataUiEvents.value = WallCatsEvents.EventShowProgressAndHideStub
     }
 
 
     private suspend fun hideProgressAndInitRefreshLayout() = withContext(Dispatchers.Main) {
-        liveDataUiEvents.postValue(WallCatsEvents.EventHideProgressAndInitRefreshLayout)
+        liveDataUiEvents.value = WallCatsEvents.EventHideProgressAndInitRefreshLayout
     }
 
 

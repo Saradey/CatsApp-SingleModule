@@ -62,6 +62,7 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
 
 
     fun initSwipeRefreshLayout() {
+        content?.grpStubWallCat?.setVisibilityBool(false)
         content?.apply {
             swrlContainer.setOnRefreshListener {
                 initPagedAdapterAndRecycle()
@@ -136,5 +137,9 @@ class WallCatsView : CatBreedViewHolder.CatBreedViewHolderListener {
     fun showStubSomethingWrong() {
         content?.prgLoad?.setVisibilityBool(false)
         content?.grpStubWallCat?.setVisibilityBool(true)
+    }
+
+    fun hideStubSomethingWrong() {
+        content?.grpStubWallCat?.setVisibilityBool(false)
     }
 }

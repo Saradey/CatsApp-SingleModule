@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.WallCatsSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
@@ -29,6 +31,8 @@ class WallCatsFragment : Fragment() {
     lateinit var viewModel: IWallCatsViewModel
 
     private lateinit var myView: WallCatsView
+
+    private lateinit var uiLiveData: LiveData<WallCatsEvents>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,10 +68,16 @@ class WallCatsFragment : Fragment() {
 
 
     private fun initLiveData() {
-        viewModel.getUiEventsLiveData().observe(this, Observer {
+        uiLiveData = viewModel.getUiEventsLiveData()
+        uiLiveData.observe(this, Observer {
             when (it) {
-                WallCatsEvents.EventShowProgress -> myView.showProgress()
-                WallCatsEvents.EventSomethingWrong -> myView.showStubSomethingWrong()
+                WallCatsEvents.EventShowProgressAndHideStub -> {
+                    myView.hideStubSomethingWrong()
+                    myView.showProgress()
+                }
+                WallCatsEvents.EventSomethingWrong -> {
+                    myView.showStubSomethingWrong()
+                }
                 WallCatsEvents.EventHideProgressAndInitRefreshLayout -> {
                     myView.hideProgress()
                     myView.initSwipeRefreshLayout()
@@ -101,5 +111,11 @@ class WallCatsFragment : Fragment() {
 
     fun clickMenuSettings() {
         viewModel.clickMenuSettings()
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (uiLiveData as SingleLiveEvent<WallCatsEvents>).call()
     }
 }
