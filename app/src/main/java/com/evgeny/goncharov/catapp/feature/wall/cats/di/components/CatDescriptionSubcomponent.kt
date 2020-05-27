@@ -20,11 +20,7 @@ interface CatDescriptionSubcomponent {
         var component: CatDescriptionSubcomponent? = null
     }
 
-
-    fun inject(catDescriptionViewImpl: CatDescriptionView)
-
     fun inject(viewModel: CatDescriptionViewModelImpl)
-
 
     @Subcomponent.Factory
     interface Factory {

@@ -27,26 +27,11 @@ class CatDescriptionView : ConstraintLayout {
     )
 
 
-    @Inject
-    lateinit var fragment: CatDescriptionFragment
-
-
-    fun init() {
-        CatDescriptionSubcomponent.component?.inject(this)
-        initUi()
-    }
-
-
-    private fun initUi() {
-        initToolbar()
-    }
-
-
-    private fun initToolbar() {
+    fun initToolbar(clickBack : () -> Unit) {
         (toolbar as Toolbar).apply {
             setNavigationIcon(R.drawable.ic_arrow_back_black)
             setNavigationOnClickListener {
-                fragment.clickBack()
+                clickBack()
             }
             setTitle(R.string.description_cat_title_toolbar)
         }

@@ -39,6 +39,7 @@ class WallCatsFragment : Fragment(), CatBreedViewHolder.CatBreedViewHolderListen
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
         viewModel = injectViewModel(viewModelFactory)
+        initLiveData()
     }
 
 
@@ -47,19 +48,15 @@ class WallCatsFragment : Fragment(), CatBreedViewHolder.CatBreedViewHolderListen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_wall_cats, container, false)
-        init(view)
-        return view
+        return with(inflater.inflate(R.layout.fragment_wall_cats, container, false)) {
+            myView.init()
+            this
+        }
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
-    }
-
-    private fun init(content: View) {
-        initLiveData()
-        content.myView.init()
     }
 
 

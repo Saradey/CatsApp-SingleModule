@@ -29,50 +29,34 @@ class SearchCatView : ConstraintLayout {
         style
     )
 
-    @Inject
-    lateinit var fragment: SearchCatFragment
-
     private lateinit var adapter: CatsCathedAdapter
 
 
-    fun init() {
-        SearchCatSubcomponent.component?.inject(this)
-        initUi()
-    }
-
-
-    private fun initUi() {
-        initSearchView()
-        initToolbar()
-        initAdapterAndRecycle()
-    }
-
-
-    private fun initAdapterAndRecycle() {
-        adapter = CatsCathedAdapter(::chooseCat)
+    fun initAdapterAndRecycle(listener: (id: String) -> Unit) {
+        adapter = CatsCathedAdapter(listener)
         rcvCathedCats.layoutManager = LinearLayoutManager(context)
         rcvCathedCats.adapter = adapter
     }
 
 
-    private fun initToolbar() {
+    fun initToolbar(clickNavigationBack: () -> Unit) {
         (toolbar as Toolbar).apply {
             setNavigationIcon(R.drawable.ic_arrow_back_black)
             setNavigationOnClickListener {
-                fragment.clickNavigationBack()
+                clickNavigationBack()
             }
             setTitle(R.string.title_toolbar_search_cat)
         }
     }
 
 
-    private fun initSearchView() {
+    fun initSearchView(setInputTextSearchView: (newText: String?) -> Unit) {
         srcSearchCat.onActionViewExpanded()
         srcSearchCat.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?) = true
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    fragment.setInputTextSearchView(newText)
+                    setInputTextSearchView(newText)
                     return true
                 }
             }
@@ -112,11 +96,6 @@ class SearchCatView : ConstraintLayout {
 
     fun setCatsCatched(models: List<CatCatched>?) {
         adapter.models = models ?: emptyList()
-    }
-
-
-    private fun chooseCat(id: String) {
-        fragment.chooseCat(id)
     }
 
 

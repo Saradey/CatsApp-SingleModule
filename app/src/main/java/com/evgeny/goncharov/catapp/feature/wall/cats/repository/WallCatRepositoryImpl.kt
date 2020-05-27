@@ -7,12 +7,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImag
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

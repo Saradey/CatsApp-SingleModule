@@ -9,11 +9,8 @@ import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
-import com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsView
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
 import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.fragment_settings.view.*
-import kotlinx.android.synthetic.main.fragment_settings.view.mySettingsView
 import javax.inject.Inject
 
 
@@ -30,56 +27,63 @@ class SettingsFragment : Fragment() {
     @Inject
     lateinit var viewModel: ISettingsViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ActivitySubcomponent.component.inject(this)
+        SettingsSubcomponent.component = factory.plus()
+        init()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_settings, container, false)
-        init(view)
-        return view
+        return inflater.inflate(R.layout.fragment_settings, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initUi()
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ActivitySubcomponent.component.inject(this)
-        SettingsSubcomponent.component = factory.plus()
+    private fun initUi() {
+        mySettingsView.initButtonDone(::clickButtonDone)
+        mySettingsView.initToolbar(::clickBack)
     }
 
 
-    fun init(content: View) {
+    fun init() {
         initLiveData()
         viewModel.initInjection()
-        content.mySettingsView.init()
         viewModel.initThemeToView()
     }
 
 
     private fun initLiveData() {
         viewModel.getThemeLiveData().observe(this, Observer {
-            mySettingsView.setThemeModel(it)
+            mySettingsView.setThemeModel(it, ::onLight, ::onNight)
         })
     }
 
 
-    fun clickBack() {
+    private fun clickBack() {
         viewModel.clickBack()
     }
 
 
-    fun onLight() {
+    private fun onLight() {
         viewModel.onLight()
     }
 
 
-    fun onNight() {
+    private fun onNight() {
         viewModel.onNight()
     }
 
 
-    fun clickButtonDone() {
+    private fun clickButtonDone() {
         viewModel.clickButtonDone()
     }
 

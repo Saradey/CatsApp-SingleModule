@@ -12,11 +12,9 @@ import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
-import com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatView
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
 import kotlinx.android.synthetic.main.fragment_search_cat.*
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
-import kotlinx.android.synthetic.main.fragment_search_cat.view.mySearchView
 import javax.inject.Inject
 
 
@@ -35,29 +33,33 @@ class SearchCatFragment : Fragment() {
         fun getInstance() = SearchCatFragment()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ActivitySubcomponent.component.inject(this)
+        SearchCatSubcomponent.component = factory.plus()
+        viewModel.initInject()
+        initLiveData()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_search_cat, container, false)
-        init(view)
-        return view
+        return inflater.inflate(R.layout.fragment_search_cat, container, false)
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ActivitySubcomponent.component.inject(this)
-        SearchCatSubcomponent.component = factory.plus()
-        viewModel.initInject()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initUi()
     }
 
 
-    private fun init(content: View) {
-        content.mySearchView.init()
-        initLiveData()
+    private fun initUi() {
+        mySearchView.initAdapterAndRecycle(::chooseCat)
+        mySearchView.initToolbar(::clickNavigationBack)
+        mySearchView.initSearchView(::setInputTextSearchView)
     }
 
 
@@ -86,17 +88,17 @@ class SearchCatFragment : Fragment() {
     }
 
 
-    fun clickNavigationBack() {
+    private fun clickNavigationBack() {
         viewModel.clickNavigationBack()
     }
 
 
-    fun setInputTextSearchView(newText: String?) {
+    private fun setInputTextSearchView(newText: String?) {
         viewModel.setInputTextSearchView(newText ?: "")
     }
 
 
-    fun chooseCat(id: String) {
+    private fun chooseCat(id: String) {
         viewModel.chooseCat(id)
     }
 

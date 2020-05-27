@@ -37,17 +37,6 @@ class CatDescriptionFragment : Fragment() {
     private lateinit var uiLiveData: LiveData<CatDescriptionEvents>
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_cat_description, container, false)
-        init(view)
-        return view
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
@@ -60,9 +49,22 @@ class CatDescriptionFragment : Fragment() {
     }
 
 
-    private fun init(content: View) {
-        content.myView.init()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_cat_description, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initUi()
         initLiveData()
+    }
+
+
+    private fun initUi() {
+        myView.initToolbar(::clickBack)
     }
 
 

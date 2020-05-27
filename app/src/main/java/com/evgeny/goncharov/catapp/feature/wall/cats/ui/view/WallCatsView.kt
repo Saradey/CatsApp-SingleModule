@@ -31,7 +31,7 @@ class WallCatsView : LinearLayout {
         style
     )
 
-    lateinit var dataSource: PageKeyedDataSourceCatBreeds
+    private lateinit var dataSource: PageKeyedDataSourceCatBreeds
 
     @Inject
     lateinit var mainThreadExecutor: MainThreadExecutor

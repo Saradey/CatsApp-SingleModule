@@ -25,5 +25,4 @@ class CatBreedsPagedAdapter(
         holder.bind(getItem(position))
     }
 
-
 }

@@ -18,18 +18,14 @@ import dagger.Subcomponent
 interface SearchCatSubcomponent {
 
     companion object {
-        var component : SearchCatSubcomponent? = null
+        var component: SearchCatSubcomponent? = null
     }
 
-
     fun inject(viewModel: SearchCatViewModelImpl)
-
-    fun inject(view: SearchCatView)
 
     @Subcomponent.Factory
     interface Factory {
         fun plus(): SearchCatSubcomponent
     }
-
 
 }

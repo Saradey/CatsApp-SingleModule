@@ -19,9 +19,6 @@ interface SettingsSubcomponent {
 
     fun inject(settingsViewModelImpl: SettingsViewModelImpl)
 
-    fun inject(view: SettingsView)
-
-
     @Subcomponent.Factory
     interface Factory {
         fun plus(): SettingsSubcomponent
