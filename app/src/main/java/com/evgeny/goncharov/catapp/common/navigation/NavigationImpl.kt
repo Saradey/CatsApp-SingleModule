@@ -1,9 +1,9 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
 import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
@@ -44,7 +44,7 @@ class NavigationImpl @Inject constructor() : INavigation {
         activity?.supportFragmentManager?.beginTransaction()
             ?.hide(
                 activity?.supportFragmentManager?.fragments?.findLast {
-                    it is Fragment
+                    it is BaseFragment
                 }!!
             )
             ?.add(R.id.frmRootField, fragment, SettingsFragment::class.java.name)
@@ -68,7 +68,7 @@ class NavigationImpl @Inject constructor() : INavigation {
         activity?.supportFragmentManager?.beginTransaction()
             ?.hide(
                 activity?.supportFragmentManager?.fragments?.findLast {
-                    it is Fragment
+                    it is BaseFragment
                 }!!
             )
             ?.add(R.id.frmRootField, fragment, CatDescriptionFragment::class.java.name)
@@ -109,7 +109,7 @@ class NavigationImpl @Inject constructor() : INavigation {
 
     override fun getNowMatchFromStack(): Int {
         return activity?.supportFragmentManager?.fragments?.count {
-            it is Fragment
+            it is BaseFragment
         } ?: 0
     }
 

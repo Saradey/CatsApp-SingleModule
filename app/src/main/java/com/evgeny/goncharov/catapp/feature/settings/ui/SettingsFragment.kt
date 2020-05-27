@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
 
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : BaseFragment() {
 
 
     companion object {
@@ -35,13 +36,10 @@ class SettingsFragment : Fragment() {
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_settings
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
@@ -54,7 +52,7 @@ class SettingsFragment : Fragment() {
     }
 
 
-    fun init() {
+    private fun init() {
         initLiveData()
         viewModel.initInjection()
         viewModel.initThemeToView()

@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.extension.injectViewModel
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_wall_cats.*
 import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
 import javax.inject.Inject
 
-class WallCatsFragment : Fragment(), CatBreedViewHolder.CatBreedViewHolderListener {
+class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderListener {
 
     companion object {
         fun getInstance() = WallCatsFragment()
@@ -43,19 +44,13 @@ class WallCatsFragment : Fragment(), CatBreedViewHolder.CatBreedViewHolderListen
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return with(inflater.inflate(R.layout.fragment_wall_cats, container, false)) {
-            myView.init()
-            this
-        }
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_wall_cats
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        myView.init()
         initUi()
     }
 

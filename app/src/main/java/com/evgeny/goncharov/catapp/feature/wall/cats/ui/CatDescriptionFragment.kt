@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_cat_description.*
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import javax.inject.Inject
 
-class CatDescriptionFragment : Fragment() {
+class CatDescriptionFragment : BaseFragment() {
 
     companion object {
         fun getInstance(idCat: String?) = CatDescriptionFragment().apply {
@@ -49,13 +50,10 @@ class CatDescriptionFragment : Fragment() {
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_cat_description, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_cat_description
     }
+    
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()

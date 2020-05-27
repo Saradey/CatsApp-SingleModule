@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
+import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
 
-class SearchCatFragment : Fragment() {
+class SearchCatFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: ISearchCatViewModel
@@ -42,14 +43,10 @@ class SearchCatFragment : Fragment() {
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_search_cat, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_search_cat
     }
-
+    
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
