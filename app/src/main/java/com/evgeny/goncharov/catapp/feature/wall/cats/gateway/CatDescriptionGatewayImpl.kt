@@ -1,25 +1,25 @@
-package com.evgeny.goncharov.catapp.feature.wall.cats.repository
+package com.evgeny.goncharov.catapp.feature.wall.cats.gateway
 
 import com.evgeny.goncharov.catapp.exception.ChooseCateNullPointerException
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedResponse
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionDTO
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class CatDescriptionRepositoryImpl @Inject constructor(
+class CatDescriptionGatewayImpl @Inject constructor(
     private val api: ApiCatSearch,
     private val dao: CatDescriptionDAO,
     private val daoWallCat: CatsWallDao
-) : ICatDescriptionRepository {
+) : ICatDescriptionGateway {
 
 
-    override suspend fun loadChooseCatFromInternet(catId: String): CatDescriptionModel? =
+    override suspend fun loadChooseCatFromInternet(catId: String): CatDescriptionDTO? =
         withContext(Dispatchers.IO) {
             val model = api.getCatDescriptionAsync(
                 GetChooseCatRequest(catId).createRequest()
@@ -33,16 +33,16 @@ class CatDescriptionRepositoryImpl @Inject constructor(
         }
 
 
-    override suspend fun loadChooseCatFromDatabase(catId: String): CatDescriptionModel? =
+    override suspend fun loadChooseCatFromDatabase(catId: String): CatDescriptionDTO? =
         withContext(Dispatchers.IO) {
             val model = dao.selectModelFromId(catId)
             mapModel(model)
         }
 
 
-    private fun mapModel(model: ChooseCatBreedResponse?): CatDescriptionModel? {
+    private fun mapModel(model: ChooseCatBreedValueObject?): CatDescriptionDTO? {
         return if (model != null) {
-            CatDescriptionModel(
+            CatDescriptionDTO(
                 name = model.name ?: "-",
                 urlImage = getUrlImageFromDataBase(model.id) ?: "null",
                 origin = model.origin ?: "-",
@@ -68,8 +68,8 @@ class CatDescriptionRepositoryImpl @Inject constructor(
         }
 
 
-    private fun mapModel(model: CatBreedModelResponse?): CatDescriptionModel? {
-        return CatDescriptionModel(
+    private fun mapModel(model: CatBreedValueObject?): CatDescriptionDTO? {
+        return CatDescriptionDTO(
             name = model?.name ?: "-",
             urlImage = getUrlImageFromDataBase(model?.id) ?: "null",
             origin = model?.origin ?: "-",

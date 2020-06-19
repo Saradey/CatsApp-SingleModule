@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolder
 
 class CatsCathedAdapter(
     private val listener: (id: String) -> Unit
 ) : RecyclerView.Adapter<CatsCathedHolder>() {
 
-    var models: List<CatCatched> = emptyList()
+    var models: List<CatCatchedValueObject> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

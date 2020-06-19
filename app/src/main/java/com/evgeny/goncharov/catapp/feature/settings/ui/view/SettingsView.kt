@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
@@ -21,7 +21,7 @@ class SettingsView : ConstraintLayout {
     )
 
 
-    fun setThemeModel(value: ThemeModel, onLight: () -> Unit, onNight: () -> Unit) {
+    fun setThemeModel(value: ThemeDTO, onLight: () -> Unit, onNight: () -> Unit) {
         if (value.themeValue == AppCompatDelegate.MODE_NIGHT_NO) {
             initLightTheme()
         } else if (value.themeValue == AppCompatDelegate.MODE_NIGHT_YES) {

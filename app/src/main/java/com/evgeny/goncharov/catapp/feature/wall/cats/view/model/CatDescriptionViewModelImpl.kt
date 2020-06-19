@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.ICatDescriptionInteractor
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionDTO
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
 
-    private val catDescriptionLiveData = MutableLiveData<CatDescriptionModel>()
+    private val catDescriptionLiveData = MutableLiveData<CatDescriptionDTO>()
 
 
     @Inject
@@ -36,7 +36,7 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
     }
 
 
-    override fun getCatDescriptionLiveData(): LiveData<CatDescriptionModel> {
+    override fun getCatDescriptionLiveData(): LiveData<CatDescriptionDTO> {
         return catDescriptionLiveData
     }
 

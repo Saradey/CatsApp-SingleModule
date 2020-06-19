@@ -2,8 +2,8 @@ package com.evgeny.goncharov.catapp.feature.search.cats.di.modules
 
 import com.evgeny.goncharov.catapp.feature.search.cats.interactor.ISearchCatInteractor
 import com.evgeny.goncharov.catapp.feature.search.cats.interactor.SearchCatInteractorImpl
-import com.evgeny.goncharov.catapp.feature.search.cats.repository.ISearchCatRepository
-import com.evgeny.goncharov.catapp.feature.search.cats.repository.SearchCatRepositoryImpl
+import com.evgeny.goncharov.catapp.feature.search.cats.gateway.ISearchCatGateway
+import com.evgeny.goncharov.catapp.feature.search.cats.gateway.SearchCatGatewayImpl
 import dagger.Binds
 import dagger.Module
 
@@ -14,7 +14,7 @@ interface SearchCatBindsModule {
     fun bindSearchCatInteractor(interactor: SearchCatInteractorImpl): ISearchCatInteractor
 
     @Binds
-    fun bindSearchCatRepository(repository: SearchCatRepositoryImpl): ISearchCatRepository
+    fun bindSearchCatRepository(repository: SearchCatGatewayImpl): ISearchCatGateway
 
 
 }

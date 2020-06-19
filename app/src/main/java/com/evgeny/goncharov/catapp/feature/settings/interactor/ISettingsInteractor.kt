@@ -1,12 +1,12 @@
 package com.evgeny.goncharov.catapp.feature.settings.interactor
 
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
 
 interface ISettingsInteractor {
 
     fun clickBack()
 
-    fun getThemeNow(): ThemeModel
+    fun getThemeNow(): ThemeDTO
 
     fun onLight()
 

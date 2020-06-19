@@ -6,8 +6,8 @@ import com.evgeny.goncharov.catapp.common.ViewModelFactory
 import com.evgeny.goncharov.catapp.di.ViewModelKey
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractorImpl
-import com.evgeny.goncharov.catapp.feature.wall.cats.repository.IWallCatRepository
-import com.evgeny.goncharov.catapp.feature.wall.cats.repository.WallCatRepositoryImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.IWallCatGateway
+import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.WallCatGatewayImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import dagger.Binds
 import dagger.Module
@@ -28,6 +28,6 @@ interface WallCatsBindsModule {
     fun bindWallCatInteractor(interactor: WallCatInteractorImpl): IWallCatInteractor
 
     @Binds
-    fun bindWallCatRepository(repository: WallCatRepositoryImpl): IWallCatRepository
+    fun bindWallCatRepository(repository: WallCatGatewayImpl): IWallCatGateway
 
 }

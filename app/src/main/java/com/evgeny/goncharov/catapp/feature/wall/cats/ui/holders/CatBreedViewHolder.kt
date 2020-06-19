@@ -4,13 +4,13 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject
 import kotlinx.android.synthetic.main.holder_cat_breed.view.*
 
 class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderListener) :
     RecyclerView.ViewHolder(view) {
 
-    fun bind(item: CatBreedModel?) {
+    fun bind(item: CatBreedValueObject?) {
         item?.let {
             itemView.txvBreedName.text = item.name
             itemView.txvBreedDescription.text = item.description

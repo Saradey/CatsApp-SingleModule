@@ -1,16 +1,16 @@
-package com.evgeny.goncharov.catapp.feature.settings.repository
+package com.evgeny.goncharov.catapp.feature.settings.gateway
 
 import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
 import javax.inject.Inject
 
-class SettingsRepositoryImpl @Inject constructor(
+class SettingsGatewayImpl @Inject constructor(
     private val themeManager: IThemeManager
-) : ISettingsRepository {
+) : ISettingsGateway {
 
 
-    override fun getThemeModeAppNow(): ThemeModel {
-        return ThemeModel(
+    override fun getThemeModeAppNow(): ThemeDTO {
+        return ThemeDTO(
             themeManager.getThemeModeAppNow()
         )
     }

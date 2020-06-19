@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.interactor.ISearchCatInteractor
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -41,7 +41,7 @@ class SearchCatViewModelImpl : ViewModel(), ISearchCatViewModel {
     }
 
 
-    override fun getLiveDataCatsCathed(): LiveData<List<CatCatched>> {
+    override fun getLiveDataCatsCathed(): LiveData<List<CatCatchedValueObject>> {
         return interactor.getLiveDataCatsCathed()
     }
 

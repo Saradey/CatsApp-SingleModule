@@ -5,8 +5,8 @@ import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.consts.LIMIT_PAGE_SIZE_CAT_WALL
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.repository.IWallCatRepository
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.IWallCatGateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,16 +15,16 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class WallCatInteractorImpl @Inject constructor(
-    private val repository: IWallCatRepository,
+    private val repository: IWallCatGateway,
     private val mainRouter: IMainRouter
 ) : IWallCatInteractor {
 
     private val liveDataUiEvents = SingleLiveEvent<WallCatsEvents>()
 
 
-    override suspend fun loadWallCat(): List<CatBreedModel> {
+    override suspend fun loadWallCat(): List<CatBreedValueObject> {
         showProgress()
-        var listModels: List<CatBreedModel> = emptyList()
+        var listModels: List<CatBreedValueObject> = emptyList()
         listModels = try {
             loadFromInternet()
         } catch (exp: Exception) {
@@ -39,14 +39,14 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
-    private fun changeStateView(listModels: List<CatBreedModel>) {
+    private fun changeStateView(listModels: List<CatBreedValueObject>) {
         if (listModels.isEmpty()) {
             liveDataUiEvents.value = WallCatsEvents.EventSomethingWrong
         }
     }
 
 
-    override suspend fun loadNexPage(key: Int): List<CatBreedModel> {
+    override suspend fun loadNexPage(key: Int): List<CatBreedValueObject> {
         val result = repository.loadWallCatFromInternet(
             WallCatRequest(
                 limit = LIMIT_PAGE_SIZE_CAT_WALL,
@@ -61,13 +61,13 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
-    private suspend fun loadFromDatabase(exp: Exception): List<CatBreedModel> {
+    private suspend fun loadFromDatabase(exp: Exception): List<CatBreedValueObject> {
         exp.printStackTrace()
         return repository.loadWallCatFromDatabase()
     }
 
 
-    private suspend fun loadFromInternet(): List<CatBreedModel> {
+    private suspend fun loadFromInternet(): List<CatBreedValueObject> {
         return repository.loadWallCatFromInternet(
             WallCatRequest(
                 limit = LIMIT_PAGE_SIZE_CAT_WALL,

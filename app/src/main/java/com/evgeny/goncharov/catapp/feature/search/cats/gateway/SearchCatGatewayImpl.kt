@@ -1,21 +1,21 @@
-package com.evgeny.goncharov.catapp.feature.search.cats.repository
+package com.evgeny.goncharov.catapp.feature.search.cats.gateway
 
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedResponse
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedValueObject
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class SearchCatRepositoryImpl @Inject constructor(
+class SearchCatGatewayImpl @Inject constructor(
     private val api: ApiCatSearch,
     private val dao: CatsWallDao
-) : ISearchCatRepository {
+) : ISearchCatGateway {
 
 
-    override suspend fun loadFromDatabase(text: String): List<CatCatched> =
+    override suspend fun loadFromDatabase(text: String): List<CatCatchedValueObject> =
         withContext(Dispatchers.IO) {
             if (text.isEmpty()) {
                 emptyList()
@@ -27,9 +27,9 @@ class SearchCatRepositoryImpl @Inject constructor(
         }
 
 
-    private fun mapModelsFromDatabase(list: List<CatBreedModelResponse>): List<CatCatched> {
+    private fun mapModelsFromDatabase(list: List<CatBreedValueObject>): List<CatCatchedValueObject> {
         return list.map {
-            CatCatched(
+            CatCatchedValueObject(
                 it.name ?: "-",
                 it.id
             )
@@ -37,16 +37,16 @@ class SearchCatRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun loadFromInternet(request: Map<String, String>): List<CatCatched> {
+    override suspend fun loadFromInternet(request: Map<String, String>): List<CatCatchedValueObject> {
         val response = api.getCatDescriptionAsync(request)
             .await()
         return mapModels(response)
     }
 
 
-    private fun mapModels(list: List<ChooseCatBreedResponse>): List<CatCatched> {
+    private fun mapModels(list: List<ChooseCatBreedValueObject>): List<CatCatchedValueObject> {
         return list.map {
-            CatCatched(
+            CatCatchedValueObject(
                 it.name ?: "-",
                 it.id
             )

@@ -2,7 +2,6 @@ package com.evgeny.goncharov.catapp.feature.search.cats.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
@@ -13,12 +12,9 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.extension.setHintTextColor
 import com.evgeny.goncharov.catapp.extension.setTextColor
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
-import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdapter
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
-import javax.inject.Inject
 
 class SearchCatView : ConstraintLayout {
 
@@ -94,7 +90,7 @@ class SearchCatView : ConstraintLayout {
     }
 
 
-    fun setCatsCatched(models: List<CatCatched>?) {
+    fun setCatsCatched(models: List<CatCatchedValueObject>?) {
         adapter.models = models ?: emptyList()
     }
 

@@ -2,12 +2,12 @@ package com.evgeny.goncharov.catapp.feature.settings.interactor
 
 import androidx.appcompat.app.AppCompatDelegate
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
-import com.evgeny.goncharov.catapp.feature.settings.repository.ISettingsRepository
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
+import com.evgeny.goncharov.catapp.feature.settings.gateway.ISettingsGateway
 import javax.inject.Inject
 
 class SettingsInteractorImpl @Inject constructor(
-    private val repository: ISettingsRepository,
+    private val repository: ISettingsGateway,
     private val mainRouter: IMainRouter
 ) : ISettingsInteractor {
 
@@ -19,7 +19,7 @@ class SettingsInteractorImpl @Inject constructor(
     }
 
 
-    override fun getThemeNow(): ThemeModel {
+    override fun getThemeNow(): ThemeDTO {
         return repository.getThemeModeAppNow()
     }
 

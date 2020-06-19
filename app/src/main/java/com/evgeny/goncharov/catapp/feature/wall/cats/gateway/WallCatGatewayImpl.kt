@@ -1,11 +1,9 @@
-package com.evgeny.goncharov.catapp.feature.wall.cats.repository
+package com.evgeny.goncharov.catapp.feature.wall.cats.gateway
 
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetImageRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImageResponse
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImageDTO
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -13,10 +11,10 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
-class WallCatRepositoryImpl @Inject constructor(
+class WallCatGatewayImpl @Inject constructor(
     private val api: ApiBreeds,
     private val daoWallCat: CatsWallDao
-) : IWallCatRepository {
+) : IWallCatGateway {
 
     private val coroutineScopeIo = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
@@ -33,7 +31,7 @@ class WallCatRepositoryImpl @Inject constructor(
         }
 
 
-    override suspend fun loadWallCatFromDatabase(): List<CatBreedModel> =
+    override suspend fun loadWallCatFromDatabase(): List<com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject> =
         withContext(Dispatchers.IO) {
             val result = daoWallCat.getCatBreed()
             val mapResult = mapResponse(result.sortedBy {
@@ -43,9 +41,9 @@ class WallCatRepositoryImpl @Inject constructor(
         }
 
 
-    private fun mapResponse(modelResponse: List<CatBreedModelResponse>): List<CatBreedModel> {
+    private fun mapResponse(modelResponse: List<CatBreedValueObject>): List<com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject> {
         return modelResponse.map { modelDb ->
-            CatBreedModel(
+            com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject(
                 name = modelDb.name,
                 description = modelDb.description,
                 id = modelDb.id,
@@ -56,7 +54,7 @@ class WallCatRepositoryImpl @Inject constructor(
     }
 
 
-    private suspend fun loadAllImage(result: List<CatBreedModelResponse>) {
+    private suspend fun loadAllImage(result: List<CatBreedValueObject>) {
         val jobs = mutableListOf<Job>()
         result.forEach { response ->
             val job = coroutineScopeIo.launch {
@@ -73,7 +71,7 @@ class WallCatRepositoryImpl @Inject constructor(
 
 
     private suspend fun getUrlImage(request: GetImageRequest): String? {
-        var result = emptyList<CatBreedImageResponse>()
+        var result = emptyList<CatBreedImageDTO>()
         try {
             result = api.getImageUrlAsync(
                 request.createRequest()

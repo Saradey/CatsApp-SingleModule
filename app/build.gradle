@@ -48,53 +48,36 @@ dependencies {
 
     implementation "androidx.cardview:cardview:$componentUi"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$componentUi"
-
     //okhttpClient
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
-    //A digest authenticator for okhttp
-    implementation "com.burgstaller:okhttp-digest:$digestVersion"
-    //retrofit и rxJava и GSON
+    //retrofit и GSON
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     //chuck
     debugApi "com.readystatesoftware.chuck:library:$chuckVersion"
     releaseApi "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
-
     //Room
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     kapt "android.arch.persistence.room:compiler:$roomVersion"
-
     //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
-
     //Dagger
-    implementation "com.google.dagger:dagger-android:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
-
     //coroutines
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVesrion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVesrion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVesrion"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutinesAdapterVesrion"
-
     //viewPager2
     implementation "androidx.viewpager2:viewpager2:$componentUi"
-
     //lifecycle
     implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
     kapt "android.arch.lifecycle:compiler:$lifecycleVersion"
     implementation "android.arch.lifecycle:reactivestreams:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModelVersion"
-
     // Paging
     implementation "android.arch.paging:runtime:$pagingVersion"
-}
-
-kapt {
-    generateStubs true
 }

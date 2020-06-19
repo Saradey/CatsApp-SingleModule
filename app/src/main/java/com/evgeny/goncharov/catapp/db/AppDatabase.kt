@@ -7,13 +7,13 @@ import com.evgeny.goncharov.catapp.consts.VERSION_DATA_BASE
 import com.evgeny.goncharov.catapp.db.converters.WeightTypeConverter
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedModelResponse
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedResponse
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedValueObject
 
 @Database(
     version = VERSION_DATA_BASE, entities = [
-        CatBreedModelResponse::class,
-        ChooseCatBreedResponse::class
+        CatBreedValueObject::class,
+        ChooseCatBreedValueObject::class
     ]
 )
 @TypeConverters(

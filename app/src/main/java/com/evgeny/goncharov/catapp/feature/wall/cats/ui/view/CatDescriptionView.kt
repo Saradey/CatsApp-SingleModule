@@ -4,18 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.AttributeSet
-import android.view.View
 import androidx.annotation.StyleRes
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionDTO
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
-import javax.inject.Inject
 
 class CatDescriptionView : ConstraintLayout {
 
@@ -38,7 +34,7 @@ class CatDescriptionView : ConstraintLayout {
     }
 
 
-    fun setCatDescription(model: CatDescriptionModel?) {
+    fun setCatDescription(model: CatDescriptionDTO?) {
         model?.let {
             txvNameCat.text = resources.getString(R.string.name_cat_title, model.name)
             txvOrigin.text = resources.getString(R.string.origin_cat_title, model.origin)
