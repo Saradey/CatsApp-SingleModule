@@ -1,5 +1,5 @@
 package com.evgeny.goncharov.catapp.feature.settings.models
 
-data class ThemeDTO(
+data class ThemeModel(
     val themeValue: Int
 )

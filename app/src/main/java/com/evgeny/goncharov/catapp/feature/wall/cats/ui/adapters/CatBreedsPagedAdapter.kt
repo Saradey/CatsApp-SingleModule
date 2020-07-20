@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.evgeny.goncharov.catapp.R
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
 
 class CatBreedsPagedAdapter(
-    diffUtils: DiffUtil.ItemCallback<CatBreedValueObject>,
+    diffUtils: DiffUtil.ItemCallback<CatBreedView>,
     private val listener: CatBreedViewHolder.CatBreedViewHolderListener
-) : PagedListAdapter<CatBreedValueObject, CatBreedViewHolder>(diffUtils) {
+) : PagedListAdapter<CatBreedView, CatBreedViewHolder>(diffUtils) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatBreedViewHolder {

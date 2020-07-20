@@ -10,7 +10,7 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.common.MainThreadExecutor
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
@@ -73,7 +73,7 @@ class WallCatsView : LinearLayout {
             .setEnablePlaceholders(false)
             .setPageSize(15)
             .build()
-        val pagedList = PagedList.Builder<Int, CatBreedValueObject>(dataSource, pagedConfig)
+        val pagedList = PagedList.Builder<Int, CatBreedView>(dataSource, pagedConfig)
             .setNotifyExecutor(mainThreadExecutor)
             .setFetchExecutor(Executors.newCachedThreadPool())
             .build()

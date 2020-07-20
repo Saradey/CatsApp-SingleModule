@@ -10,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionDTO
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 
 class CatDescriptionView : ConstraintLayout {
@@ -34,7 +34,7 @@ class CatDescriptionView : ConstraintLayout {
     }
 
 
-    fun setCatDescription(model: CatDescriptionDTO?) {
+    fun setCatDescription(model: CatDescription?) {
         model?.let {
             txvNameCat.text = resources.getString(R.string.name_cat_title, model.name)
             txvOrigin.text = resources.getString(R.string.origin_cat_title, model.origin)

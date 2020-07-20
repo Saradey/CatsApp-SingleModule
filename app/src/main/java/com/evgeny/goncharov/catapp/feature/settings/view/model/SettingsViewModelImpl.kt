@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.interactor.ISettingsInteractor
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import javax.inject.Inject
 
 class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
@@ -13,7 +13,7 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
     @Inject
     lateinit var interactor: ISettingsInteractor
 
-    private val themeLiveDataModel: MutableLiveData<ThemeDTO> = MutableLiveData()
+    private val themeLiveDataModel: MutableLiveData<ThemeModel> = MutableLiveData()
 
 
     override fun initInjection() {
@@ -21,7 +21,7 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
     }
 
 
-    override fun getThemeLiveData(): LiveData<ThemeDTO> {
+    override fun getThemeLiveData(): LiveData<ThemeModel> {
         return themeLiveDataModel
     }
 

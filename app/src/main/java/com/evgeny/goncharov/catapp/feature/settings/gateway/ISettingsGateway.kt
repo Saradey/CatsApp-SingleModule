@@ -1,10 +1,10 @@
 package com.evgeny.goncharov.catapp.feature.settings.gateway
 
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 
 interface ISettingsGateway {
 
-    fun getThemeModeAppNow(): ThemeDTO
+    fun getThemeModeAppNow(): ThemeModel
 
     fun saveChooseTheme(themeValue: Int)
 

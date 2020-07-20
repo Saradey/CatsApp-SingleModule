@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.gateway.ISearchCatGateway
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
@@ -16,7 +16,7 @@ class SearchCatInteractorImpl @Inject constructor(
 ) : ISearchCatInteractor {
 
     private val liveDataUiEvents = SingleLiveEvent<SearchCatEvents>()
-    private val liveDataCatsCathed = MutableLiveData<List<CatCatchedValueObject>>()
+    private val liveDataCatsCathed = MutableLiveData<List<CatCatched>>()
 
 
     override fun clickNavigationBack() {
@@ -36,7 +36,7 @@ class SearchCatInteractorImpl @Inject constructor(
     }
 
 
-    private fun validateData(models: List<CatCatchedValueObject>) {
+    private fun validateData(models: List<CatCatched>) {
         if (models.isEmpty()) {
             liveDataUiEvents.value = SearchCatEvents.EventHideProgressAndShowStub
         } else {
@@ -51,7 +51,7 @@ class SearchCatInteractorImpl @Inject constructor(
     }
 
 
-    override fun getLiveDataCatsCathed(): LiveData<List<CatCatchedValueObject>> {
+    override fun getLiveDataCatsCathed(): LiveData<List<CatCatched>> {
         return liveDataCatsCathed
     }
 

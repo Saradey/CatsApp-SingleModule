@@ -1,7 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.settings.gateway
 
 import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import javax.inject.Inject
 
 class SettingsGatewayImpl @Inject constructor(
@@ -9,8 +9,8 @@ class SettingsGatewayImpl @Inject constructor(
 ) : ISettingsGateway {
 
 
-    override fun getThemeModeAppNow(): ThemeDTO {
-        return ThemeDTO(
+    override fun getThemeModeAppNow(): ThemeModel {
+        return ThemeModel(
             themeManager.getThemeModeAppNow()
         )
     }

@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import javax.inject.Inject
 import kotlin.coroutines.resume
@@ -14,7 +14,7 @@ class WallCatsViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    suspend fun initWallCat(): List<CatBreedValueObject> {
+    suspend fun initWallCat(): List<CatBreedView> {
         val result = interactor.loadWallCat()
         return suspendCoroutine { continuation ->
             continuation.resume(result)
@@ -22,7 +22,7 @@ class WallCatsViewModel @Inject constructor(
     }
 
 
-    suspend fun loadNextCats(key: Int): List<CatBreedValueObject> {
+    suspend fun loadNextCats(key: Int): List<CatBreedView> {
         val result = interactor.loadNexPage(key)
         return suspendCoroutine { continuation ->
             continuation.resume(result)

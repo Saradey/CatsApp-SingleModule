@@ -1,6 +1,6 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view
 
-data class CatDescriptionDTO(
+data class CatDescription(
     val name: String,
     val urlImage: String,
     val origin: String,

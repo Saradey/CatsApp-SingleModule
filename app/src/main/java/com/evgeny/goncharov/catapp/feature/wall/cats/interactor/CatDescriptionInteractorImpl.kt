@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionDTO
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.ICatDescriptionGateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +25,8 @@ class CatDescriptionInteractorImpl @Inject constructor(
     }
 
 
-    override suspend fun loadChooseCat(): CatDescriptionDTO? = withContext(Dispatchers.Main) {
-        var cat: CatDescriptionDTO? = null
+    override suspend fun loadChooseCat(): CatDescription? = withContext(Dispatchers.Main) {
+        var cat: CatDescription? = null
         liveDataUiEvents.value = CatDescriptionEvents.EventShowProgress
         cat = try {
             repository.loadChooseCatFromInternet(catId)
@@ -39,7 +39,7 @@ class CatDescriptionInteractorImpl @Inject constructor(
     }
 
 
-    private suspend fun loadChooseCatFromDatabase(): CatDescriptionDTO? {
+    private suspend fun loadChooseCatFromDatabase(): CatDescription? {
         val model = repository.loadChooseCatFromDatabase(catId)
         return model ?: kotlin.run {
             repository.loadChooseCatFromDatabaseSpare(catId)
@@ -47,7 +47,7 @@ class CatDescriptionInteractorImpl @Inject constructor(
     }
 
 
-    private fun validateData(model: CatDescriptionDTO?) {
+    private fun validateData(model: CatDescription?) {
         if (model == null) {
             liveDataUiEvents.value = CatDescriptionEvents.EventHideProgressAndShowSomethingWrong
         } else {

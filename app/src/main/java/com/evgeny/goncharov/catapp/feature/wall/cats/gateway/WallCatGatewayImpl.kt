@@ -3,7 +3,9 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.gateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetImageRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImageDTO
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImage
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreed
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -31,7 +33,7 @@ class WallCatGatewayImpl @Inject constructor(
         }
 
 
-    override suspend fun loadWallCatFromDatabase(): List<com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject> =
+    override suspend fun loadWallCatFromDatabase(): List<CatBreedView> =
         withContext(Dispatchers.IO) {
             val result = daoWallCat.getCatBreed()
             val mapResult = mapResponse(result.sortedBy {
@@ -41,9 +43,9 @@ class WallCatGatewayImpl @Inject constructor(
         }
 
 
-    private fun mapResponse(modelResponse: List<CatBreedValueObject>): List<com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject> {
+    private fun mapResponse(modelResponse: List<CatBreed>): List<CatBreedView> {
         return modelResponse.map { modelDb ->
-            com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject(
+            CatBreedView(
                 name = modelDb.name,
                 description = modelDb.description,
                 id = modelDb.id,
@@ -54,7 +56,7 @@ class WallCatGatewayImpl @Inject constructor(
     }
 
 
-    private suspend fun loadAllImage(result: List<CatBreedValueObject>) {
+    private suspend fun loadAllImage(result: List<CatBreed>) {
         val jobs = mutableListOf<Job>()
         result.forEach { response ->
             val job = coroutineScopeIo.launch {
@@ -71,7 +73,7 @@ class WallCatGatewayImpl @Inject constructor(
 
 
     private suspend fun getUrlImage(request: GetImageRequest): String? {
-        var result = emptyList<CatBreedImageDTO>()
+        var result = emptyList<CatBreedImage>()
         try {
             result = api.getImageUrlAsync(
                 request.createRequest()

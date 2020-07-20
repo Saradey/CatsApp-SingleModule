@@ -12,7 +12,7 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.extension.setHintTextColor
 import com.evgeny.goncharov.catapp.extension.setTextColor
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdapter
 import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 
@@ -90,7 +90,7 @@ class SearchCatView : ConstraintLayout {
     }
 
 
-    fun setCatsCatched(models: List<CatCatchedValueObject>?) {
+    fun setCatsCatched(models: List<CatCatched>?) {
         adapter.models = models ?: emptyList()
     }
 

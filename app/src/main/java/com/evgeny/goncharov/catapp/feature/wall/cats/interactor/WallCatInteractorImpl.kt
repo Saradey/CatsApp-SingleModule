@@ -5,7 +5,7 @@ import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.consts.LIMIT_PAGE_SIZE_CAT_WALL
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.IWallCatGateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import kotlinx.coroutines.Dispatchers
@@ -19,12 +19,13 @@ class WallCatInteractorImpl @Inject constructor(
     private val mainRouter: IMainRouter
 ) : IWallCatInteractor {
 
+
     private val liveDataUiEvents = SingleLiveEvent<WallCatsEvents>()
 
 
-    override suspend fun loadWallCat(): List<CatBreedValueObject> {
+    override suspend fun loadWallCat(): List<CatBreedView> {
         showProgress()
-        var listModels: List<CatBreedValueObject> = emptyList()
+        var listModels: List<CatBreedView> = emptyList()
         listModels = try {
             loadFromInternet()
         } catch (exp: Exception) {
@@ -39,14 +40,14 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
-    private fun changeStateView(listModels: List<CatBreedValueObject>) {
+    private fun changeStateView(listModels: List<CatBreedView>) {
         if (listModels.isEmpty()) {
             liveDataUiEvents.value = WallCatsEvents.EventSomethingWrong
         }
     }
 
 
-    override suspend fun loadNexPage(key: Int): List<CatBreedValueObject> {
+    override suspend fun loadNexPage(key: Int): List<CatBreedView> {
         val result = repository.loadWallCatFromInternet(
             WallCatRequest(
                 limit = LIMIT_PAGE_SIZE_CAT_WALL,
@@ -61,13 +62,13 @@ class WallCatInteractorImpl @Inject constructor(
     }
 
 
-    private suspend fun loadFromDatabase(exp: Exception): List<CatBreedValueObject> {
+    private suspend fun loadFromDatabase(exp: Exception): List<CatBreedView> {
         exp.printStackTrace()
         return repository.loadWallCatFromDatabase()
     }
 
 
-    private suspend fun loadFromInternet(): List<CatBreedValueObject> {
+    private suspend fun loadFromInternet(): List<CatBreedView> {
         return repository.loadWallCatFromInternet(
             WallCatRequest(
                 limit = LIMIT_PAGE_SIZE_CAT_WALL,

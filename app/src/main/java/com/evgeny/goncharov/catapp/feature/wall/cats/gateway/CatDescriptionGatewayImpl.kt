@@ -4,9 +4,9 @@ import com.evgeny.goncharov.catapp.exception.ChooseCateNullPointerException
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatDescriptionDAO
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedValueObject
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedValueObject
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescriptionDTO
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreed
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreed
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,7 +19,7 @@ class CatDescriptionGatewayImpl @Inject constructor(
 ) : ICatDescriptionGateway {
 
 
-    override suspend fun loadChooseCatFromInternet(catId: String): CatDescriptionDTO? =
+    override suspend fun loadChooseCatFromInternet(catId: String): CatDescription? =
         withContext(Dispatchers.IO) {
             val model = api.getCatDescriptionAsync(
                 GetChooseCatRequest(catId).createRequest()
@@ -33,16 +33,16 @@ class CatDescriptionGatewayImpl @Inject constructor(
         }
 
 
-    override suspend fun loadChooseCatFromDatabase(catId: String): CatDescriptionDTO? =
+    override suspend fun loadChooseCatFromDatabase(catId: String): CatDescription? =
         withContext(Dispatchers.IO) {
             val model = dao.selectModelFromId(catId)
             mapModel(model)
         }
 
 
-    private fun mapModel(model: ChooseCatBreedValueObject?): CatDescriptionDTO? {
+    private fun mapModel(model: ChooseCatBreed?): CatDescription? {
         return if (model != null) {
-            CatDescriptionDTO(
+            CatDescription(
                 name = model.name ?: "-",
                 urlImage = getUrlImageFromDataBase(model.id) ?: "null",
                 origin = model.origin ?: "-",
@@ -68,8 +68,8 @@ class CatDescriptionGatewayImpl @Inject constructor(
         }
 
 
-    private fun mapModel(model: CatBreedValueObject?): CatDescriptionDTO? {
-        return CatDescriptionDTO(
+    private fun mapModel(model: CatBreed?): CatDescription? {
+        return CatDescription(
             name = model?.name ?: "-",
             urlImage = getUrlImageFromDataBase(model?.id) ?: "null",
             origin = model?.origin ?: "-",

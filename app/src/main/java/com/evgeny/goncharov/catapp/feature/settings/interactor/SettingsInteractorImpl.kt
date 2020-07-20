@@ -2,7 +2,7 @@ package com.evgeny.goncharov.catapp.feature.settings.interactor
 
 import androidx.appcompat.app.AppCompatDelegate
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
-import com.evgeny.goncharov.catapp.feature.settings.models.ThemeDTO
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.gateway.ISettingsGateway
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class SettingsInteractorImpl @Inject constructor(
     }
 
 
-    override fun getThemeNow(): ThemeDTO {
+    override fun getThemeNow(): ThemeModel {
         return repository.getThemeModeAppNow()
     }
 

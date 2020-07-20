@@ -1,9 +1,9 @@
 package com.evgeny.goncharov.catapp.feature.search.cats.gateway
 
-import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatchedValueObject
+import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedValueObject
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreedValueObject
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreed
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.ChooseCatBreed
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,7 +15,7 @@ class SearchCatGatewayImpl @Inject constructor(
 ) : ISearchCatGateway {
 
 
-    override suspend fun loadFromDatabase(text: String): List<CatCatchedValueObject> =
+    override suspend fun loadFromDatabase(text: String): List<CatCatched> =
         withContext(Dispatchers.IO) {
             if (text.isEmpty()) {
                 emptyList()
@@ -27,9 +27,9 @@ class SearchCatGatewayImpl @Inject constructor(
         }
 
 
-    private fun mapModelsFromDatabase(list: List<CatBreedValueObject>): List<CatCatchedValueObject> {
+    private fun mapModelsFromDatabase(list: List<CatBreed>): List<CatCatched> {
         return list.map {
-            CatCatchedValueObject(
+            CatCatched(
                 it.name ?: "-",
                 it.id
             )
@@ -37,16 +37,16 @@ class SearchCatGatewayImpl @Inject constructor(
     }
 
 
-    override suspend fun loadFromInternet(request: Map<String, String>): List<CatCatchedValueObject> {
+    override suspend fun loadFromInternet(request: Map<String, String>): List<CatCatched> {
         val response = api.getCatDescriptionAsync(request)
             .await()
         return mapModels(response)
     }
 
 
-    private fun mapModels(list: List<ChooseCatBreedValueObject>): List<CatCatchedValueObject> {
+    private fun mapModels(list: List<ChooseCatBreed>): List<CatCatched> {
         return list.map {
-            CatCatchedValueObject(
+            CatCatched(
                 it.name ?: "-",
                 it.id
             )
