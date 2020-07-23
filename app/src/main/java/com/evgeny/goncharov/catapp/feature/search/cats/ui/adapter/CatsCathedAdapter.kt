@@ -7,7 +7,7 @@ import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.holder.CatsCathedHolder
 
-class CatsCathedAdapter(
+class CatsCathedAdapter constructor(
     private val listener: (id: String) -> Unit
 ) : RecyclerView.Adapter<CatsCathedHolder>() {
 

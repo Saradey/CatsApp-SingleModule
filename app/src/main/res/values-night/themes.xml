@@ -9,11 +9,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-
         <item name="color_all_background">@color/color_background_black</item>
         <item name="color_main_text">@color/white</item>
         <item name="color_card_background">@color/color_light_black</item>
         <item name="color_text_description">@color/white</item>
+
+        <item name="android:navigationBarColor">?attr/color_card_background</item>
     </style>
 
 

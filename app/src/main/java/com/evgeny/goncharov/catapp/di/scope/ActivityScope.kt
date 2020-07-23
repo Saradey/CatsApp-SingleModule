@@ -3,5 +3,5 @@ package com.evgeny.goncharov.catapp.di.scope
 import javax.inject.Scope
 
 @Scope
-@Retention(AnnotationRetention.RUNTIME)
+@Retention
 annotation class ActivityScope

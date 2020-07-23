@@ -3,23 +3,28 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
+import com.evgeny.goncharov.catapp.common.MainThreadExecutor
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.extension.injectViewModel
+import com.evgeny.goncharov.catapp.extension.setVisibilityBool
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.CatBreedsPagedAdapter
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.DiffUtilsCatBreeds
+import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSourceCatBreeds
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import kotlinx.android.synthetic.main.fragment_wall_cats.*
-import kotlinx.android.synthetic.main.fragment_wall_cats.view.*
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderListener {
@@ -34,6 +39,12 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
     private lateinit var viewModel: WallCatsViewModel
 
     private lateinit var uiLiveData: LiveData<WallCatsEvents>
+
+    private lateinit var dataSource: PageKeyedDataSourceCatBreeds
+
+    private var mainThreadExecutor = MainThreadExecutor()
+
+    private lateinit var adapter: CatBreedsPagedAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,15 +61,14 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        myView.init()
         initUi()
     }
 
 
     private fun initUi() {
-        myView.initToolbar(::clickMenuSearchCat, ::clickMenuSettings)
-        myView.initPagedAdapterAndRecycle(viewModel, this)
-        myView.initFirstSwipeRefreshLayout()
+        initToolbar()
+        initPagedAdapterAndRecycle()
+        initFirstSwipeRefreshLayout()
     }
 
 
@@ -67,15 +77,15 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
         uiLiveData.observe(this, Observer {
             when (it) {
                 WallCatsEvents.EventShowProgressAndHideStub -> {
-                    myView.hideStubSomethingWrong()
-                    myView.showProgress()
+                    hideStubSomethingWrong()
+                    showProgress()
                 }
                 WallCatsEvents.EventSomethingWrong -> {
-                    myView.showStubSomethingWrong()
+                    showStubSomethingWrong()
                 }
                 WallCatsEvents.EventHideProgressAndInitRefreshLayout -> {
-                    myView.hideProgress()
-                    myView.initSwipeRefreshLayout(viewModel, this)
+                    hideProgress()
+                    initSwipeRefreshLayout()
                 }
             }
         })
@@ -100,13 +110,58 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
     }
 
 
-    private fun clickMenuSearchCat() {
-        viewModel.clickMenuSearchCat()
+    private fun initFirstSwipeRefreshLayout() {
+        swrlContainer.setOnRefreshListener {
+            swrlContainer.isRefreshing = false
+        }
     }
 
 
-    private fun clickMenuSettings() {
-        viewModel.clickMenuSettings()
+    private fun initSwipeRefreshLayout() {
+        grpStubWallCat?.setVisibilityBool(false)
+        swrlContainer.setOnRefreshListener {
+            initPagedAdapterAndRecycle()
+            swrlContainer.isRefreshing = false
+            initFirstSwipeRefreshLayout()
+        }
+    }
+
+
+    private fun initPagedAdapterAndRecycle() {
+        adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), this)
+        dataSource = PageKeyedDataSourceCatBreeds(viewModel)
+        val pagedConfig = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPageSize(15)
+            .build()
+        val pagedList = PagedList.Builder<Int, CatBreedView>(dataSource, pagedConfig)
+            .setNotifyExecutor(mainThreadExecutor)
+            .setFetchExecutor(Executors.newCachedThreadPool())
+            .build()
+        adapter.submitList(pagedList)
+        rcvCatBreeds.layoutManager = LinearLayoutManager(context)
+        rcvCatBreeds.adapter = adapter
+    }
+
+
+    private fun initToolbar() {
+        toolbar.setTitle(R.string.wall_cat_toolbar_title)
+        toolbar.inflateMenu(R.menu.menu_wall_cats)
+        toolbar.setOnMenuItemClickListener { menu ->
+            when (menu.itemId) {
+                R.id.menuSearchCat -> {
+                    viewModel.clickMenuSearchCat()
+                    true
+                }
+                R.id.menuSettings -> {
+                    viewModel.clickMenuSettings()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
 

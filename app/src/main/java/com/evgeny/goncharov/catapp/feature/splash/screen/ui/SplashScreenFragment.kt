@@ -42,7 +42,6 @@ class SplashScreenFragment : Fragment() {
     }
 
 
-
     private fun init(content: View) {
         initFountSplashScreenTitle(content)
         animationView(content)
@@ -74,5 +73,4 @@ class SplashScreenFragment : Fragment() {
     private fun goToTheNextFragment() {
         router.gotoTheWallCatFragment()
     }
-
 }

@@ -12,7 +12,6 @@ import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
 import com.evgeny.goncharov.catapp.feature.splash.screen.ui.SplashScreenFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsView
 import dagger.BindsInstance
 import dagger.Subcomponent
 
@@ -42,8 +41,6 @@ interface ActivitySubcomponent {
     fun inject(fragment: SearchCatFragment)
 
     fun inject(fragment: SettingsFragment)
-
-    fun inject(view: WallCatsView)
 
     @Subcomponent.Factory
     interface Factory {

@@ -1,22 +1,23 @@
 package com.evgeny.goncharov.catapp.feature.wall.cats.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
+import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
-import com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.CatDescriptionView
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
 import kotlinx.android.synthetic.main.fragment_cat_description.*
-import kotlinx.android.synthetic.main.fragment_cat_description.view.*
 import javax.inject.Inject
 
 class CatDescriptionFragment : BaseFragment() {
@@ -53,7 +54,7 @@ class CatDescriptionFragment : BaseFragment() {
     override fun getLayoutId(): Int {
         return R.layout.fragment_cat_description
     }
-    
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
@@ -62,7 +63,7 @@ class CatDescriptionFragment : BaseFragment() {
 
 
     private fun initUi() {
-        myView.initToolbar(::clickBack)
+        initToolbar()
     }
 
 
@@ -74,7 +75,7 @@ class CatDescriptionFragment : BaseFragment() {
 
     private fun initCatDescriptionLiveData() {
         viewModel.getCatDescriptionLiveData().observe(this, Observer {
-            myView.setCatDescription(it)
+            setCatDescription(it)
         })
     }
 
@@ -83,9 +84,9 @@ class CatDescriptionFragment : BaseFragment() {
         uiLiveData = viewModel.getLiveDataUiEvents()
         uiLiveData.observe(this, Observer {
             when (it) {
-                CatDescriptionEvents.EventShowProgress -> myView.showProgress()
-                CatDescriptionEvents.EventHideProgressAndShowContent -> myView.showAllContent()
-                CatDescriptionEvents.EventHideProgressAndShowSomethingWrong -> myView.showStubSomethingWrong()
+                CatDescriptionEvents.EventShowProgress -> showProgress()
+                CatDescriptionEvents.EventHideProgressAndShowContent -> showAllContent()
+                CatDescriptionEvents.EventHideProgressAndShowSomethingWrong -> showStubSomethingWrong()
             }
         })
     }
@@ -96,8 +97,45 @@ class CatDescriptionFragment : BaseFragment() {
     }
 
 
-    fun clickBack() {
-        viewModel.clickBack()
+    private fun initToolbar() {
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back_black)
+            setNavigationOnClickListener {
+                viewModel.clickBack()
+            }
+            setTitle(R.string.description_cat_title_toolbar)
+        }
+    }
+
+
+    private fun setCatDescription(model: CatDescription?) {
+        model?.let {
+            txvNameCat.text = resources.getString(R.string.name_cat_title, model.name)
+            txvOrigin.text = resources.getString(R.string.origin_cat_title, model.origin)
+            txvWeight.text = resources.getString(R.string.weight_cat_title, model.weight)
+            txvLifeSpan.text = resources.getString(R.string.life_span_cat_title, model.lifeSpan)
+            txvTemperament.text =
+                resources.getString(R.string.temperament_cat_title, model.temperament)
+            txvDescription.text =
+                resources.getString(R.string.description_cat_title, model.description)
+            llButtonWiki.setOnClickListener {
+                val uri = Uri.parse(model.urlWiki)
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                if (intent.resolveActivity(context!!.packageManager) != null) {
+                    context?.startActivity(intent)
+                }
+            }
+            Glide.with(this)
+                .load(model.urlImage)
+                .centerCrop()
+                .into(imvCat)
+        }
+    }
+
+
+    private fun showAllContent() {
+        hideProgress()
+        grpAllContent.setVisibilityBool(true)
     }
 
 

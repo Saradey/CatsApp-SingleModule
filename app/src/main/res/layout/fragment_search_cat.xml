@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mySearchView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/MyToolbarStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/MyPopupToolbarStyle" />
 
 
     <androidx.appcompat.widget.SearchView
@@ -85,4 +89,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</com.evgeny.goncharov.catapp.feature.search.cats.ui.view.SearchCatView>
+</androidx.constraintlayout.widget.ConstraintLayout>

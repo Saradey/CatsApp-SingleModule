@@ -3,16 +3,18 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/color_toolbar_background</item>
+        <item name="colorPrimaryDark">@color/color_background_white</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
         <item name="color_all_background">@color/color_background_white</item>
-        <item name="color_main_text">@color/color_dark_grey</item>
+        <item name="color_main_text">@color/color_light_black</item>
         <item name="color_card_background">@color/white</item>
         <item name="color_text_description">@color/text_toolbar_title_light</item>
+
+        <item name="android:navigationBarColor">@color/color_light_light_navigation_bar</item>
     </style>
 
 

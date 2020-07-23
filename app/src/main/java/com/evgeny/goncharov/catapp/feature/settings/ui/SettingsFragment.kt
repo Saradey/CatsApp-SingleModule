@@ -1,22 +1,21 @@
 package com.evgeny.goncharov.catapp.feature.settings.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
+import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
 import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
 
 
 class SettingsFragment : BaseFragment() {
-
 
     companion object {
         fun getInstance() = SettingsFragment()
@@ -36,9 +35,7 @@ class SettingsFragment : BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_settings
-    }
+    override fun getLayoutId(): Int = R.layout.fragment_settings
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,8 +44,8 @@ class SettingsFragment : BaseFragment() {
 
 
     private fun initUi() {
-        mySettingsView.initButtonDone(::clickButtonDone)
-        mySettingsView.initToolbar(::clickBack)
+        initButtonDone()
+        initToolbar()
     }
 
 
@@ -61,28 +58,61 @@ class SettingsFragment : BaseFragment() {
 
     private fun initLiveData() {
         viewModel.getThemeLiveData().observe(this, Observer {
-            mySettingsView.setThemeModel(it, ::onLight, ::onNight)
+            setThemeModel(it)
         })
     }
 
 
-    private fun clickBack() {
-        viewModel.clickBack()
+    private fun setThemeModel(value: ThemeModel) {
+        if (value.themeValue == AppCompatDelegate.MODE_NIGHT_NO) {
+            initLightTheme()
+        } else if (value.themeValue == AppCompatDelegate.MODE_NIGHT_YES) {
+            initNightTheme()
+        }
+        initChekerTheme()
     }
 
 
-    private fun onLight() {
-        viewModel.onLight()
+    private fun initNightTheme() {
+        txvTitleValueNow.setText(R.string.settings_night_title)
+        swtChooseTheme.isChecked = false
     }
 
 
-    private fun onNight() {
-        viewModel.onNight()
+    private fun initLightTheme() {
+        txvTitleValueNow.setText(R.string.settings_light_title)
+        swtChooseTheme.isChecked = true
     }
 
 
-    private fun clickButtonDone() {
-        viewModel.clickButtonDone()
+    private fun initChekerTheme() {
+        swtChooseTheme.setOnCheckedChangeListener { _, check ->
+            if (check) {
+                viewModel.onLight()
+                initLightTheme()
+            } else {
+                viewModel.onNight()
+                initNightTheme()
+            }
+        }
+    }
+
+
+    private fun initButtonDone() {
+        btnUpdateSettings.setOnClickListener {
+            viewModel.clickButtonDone()
+        }
+    }
+
+
+    private fun initToolbar() {
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back_black)
+            setNavigationOnClickListener {
+                viewModel.clickBack()
+            }
+            setTitle(R.string.settings_to_cat_title)
+        }
     }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -7,9 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
+    <androidx.appcompat.widget.Toolbar android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        android:theme="@style/MyToolbarStyle"
+        app:popupTheme="@style/MyPopupToolbarStyle"
+        android:elevation="4dp" />
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swrlContainer"
@@ -76,7 +80,7 @@
                 tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</com.evgeny.goncharov.catapp.feature.wall.cats.ui.view.WallCatsView>
+</LinearLayout>
 
 
 

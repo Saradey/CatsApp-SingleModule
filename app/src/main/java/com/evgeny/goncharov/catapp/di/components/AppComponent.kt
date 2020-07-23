@@ -13,8 +13,7 @@ import dagger.Component
         DatabaseModule::class,
         RestModule::class,
         CreateSubActivityComponent::class,
-        AppBindsModule::class,
-        CommonModule::class
+        AppBindsModule::class
     ]
 )
 interface AppComponent {

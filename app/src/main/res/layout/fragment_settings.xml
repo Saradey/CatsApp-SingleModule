@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mySettingsView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/MyToolbarStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/MyPopupToolbarStyle" />
 
 
     <androidx.cardview.widget.CardView
@@ -70,4 +75,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-</com.evgeny.goncharov.catapp.feature.settings.ui.view.SettingsView>
+</androidx.constraintlayout.widget.ConstraintLayout>

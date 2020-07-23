@@ -28,7 +28,6 @@ class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
 
 
     override fun loadChooseCat() {
-        Dispatchers.Main.immediate
         viewModelScope.launch {
             val cat = interactor.loadChooseCat()
             cat?.let {
