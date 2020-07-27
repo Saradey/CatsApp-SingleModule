@@ -25,18 +25,19 @@ class CatDescriptionInteractorImpl @Inject constructor(
     }
 
 
-    override suspend fun loadChooseCat(): CatDescription? = withContext(Dispatchers.Main) {
-        var cat: CatDescription? = null
-        liveDataUiEvents.value = CatDescriptionEvents.EventShowProgress
-        cat = try {
-            repository.loadChooseCatFromInternet(catId)
-        } catch (exception: Exception) {
-            exception.printStackTrace()
-            loadChooseCatFromDatabase()
+    override suspend fun loadChooseCat(): CatDescription? =
+        withContext(Dispatchers.Main) {
+            var cat: CatDescription? = null
+            liveDataUiEvents.value = CatDescriptionEvents.EventShowProgress
+            cat = try {
+                repository.loadChooseCatFromInternet(catId)
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+                loadChooseCatFromDatabase()
+            }
+            validateData(cat)
+            cat
         }
-        validateData(cat)
-        cat
-    }
 
 
     private suspend fun loadChooseCatFromDatabase(): CatDescription? {

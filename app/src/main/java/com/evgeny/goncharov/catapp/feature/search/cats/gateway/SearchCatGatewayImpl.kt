@@ -8,6 +8,8 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiCatSearch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class SearchCatGatewayImpl @Inject constructor(
     private val api: ApiCatSearch,
@@ -40,7 +42,11 @@ class SearchCatGatewayImpl @Inject constructor(
     override suspend fun loadFromInternet(request: Map<String, String>): List<CatCatched> {
         val response = api.getCatDescriptionAsync(request)
             .await()
-        return mapModels(response)
+        return suspendCoroutine { continuation ->
+            continuation.resume(
+                mapModels(response)
+            )
+        }
     }
 
 
