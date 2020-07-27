@@ -14,5 +14,4 @@
         app:showAsAction="ifRoom"
         android:title="@string/wall_menu_settings" />
 
-
 </menu>

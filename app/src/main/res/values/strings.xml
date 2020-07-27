@@ -1,6 +1,25 @@
 <resources>
-    <string name="app_name">CatApp</string>
+    <string name="app_name" translatable="false">CatApp</string>
 
     <string name="splash_screen_title" translatable="false">Cats App</string>
-
+    <string name="wall_cat_toolbar_title">Wall of cats</string>
+    <string name="wall_menu_search_cat">Search by breed</string>
+    <string name="wall_menu_settings">Settings</string>
+    <string name="back_pressed_common">Tap again to exit the app</string>
+    <string name="message_stub_wall_cat">Oops! Something went wrong :(</string>
+    <string name="name_cat_title">The name of the breed: %s</string>
+    <string name="origin_cat_title">Origin: %s</string>
+    <string name="weight_cat_title">Weight: %s kg</string>
+    <string name="temperament_cat_title">Temperament: %s</string>
+    <string name="description_cat_title">Description: %s</string>
+    <string name="life_span_cat_title">Life cycle: %s years</string>
+    <string name="wiki_cat_description_title">Show me Wikipedia</string>
+    <string name="description_cat_title_toolbar">Description of the cat</string>
+    <string name="query_hint_search_cat">Looking for cats</string>
+    <string name="title_toolbar_search_cat">Find the cat</string>
+    <string name="title_cats_stub_not_found">No cats found</string>
+    <string name="settings_light_title">Light cats</string>
+    <string name="settings_night_title">Dark cats</string>
+    <string name="settings_to_cat_title">The mood of the cat</string>
+    <string name="settings_update_button_title">Update the cat</string>
 </resources>

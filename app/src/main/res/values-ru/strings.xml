@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="wall_cat_toolbar_title">Стена котов</string>
+    <string name="wall_menu_search_cat">Поиск по породе</string>
+    <string name="wall_menu_settings">Настройки</string>
+    <string name="back_pressed_common">Нажмине еще раз для выхода из приложения</string>
+    <string name="message_stub_wall_cat">Упс! Что то пошло не так :(</string>
+    <string name="name_cat_title">Имя породы: %s</string>
+    <string name="origin_cat_title">Происхождение: %s</string>
+    <string name="weight_cat_title">Вес: %s кг</string>
+    <string name="temperament_cat_title">Темперамент: %s</string>
+    <string name="description_cat_title">Описание: %s</string>
+    <string name="life_span_cat_title">Жизненный цикл: %s лет</string>
+    <string name="wiki_cat_description_title">Show me Wikipedia</string>
+    <string name="description_cat_title_toolbar">Описание кота</string>
+    <string name="query_hint_search_cat">Ищем котиков</string>
+    <string name="title_toolbar_search_cat">Найди кота</string>
+    <string name="title_cats_stub_not_found">Котиков не найдено</string>
+    <string name="settings_light_title">Светлые котики</string>
+    <string name="settings_night_title">Темные котики</string>
+    <string name="settings_to_cat_title">Настрой кота</string>
+    <string name="settings_update_button_title">Обновить кота</string>
 </resources>
