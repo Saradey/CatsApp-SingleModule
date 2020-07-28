@@ -19,5 +19,4 @@
     <string name="settings_light_title">Светлые котики</string>
     <string name="settings_night_title">Темные котики</string>
     <string name="settings_to_cat_title">Настрой кота</string>
-    <string name="settings_update_button_title">Обновить кота</string>
 </resources>

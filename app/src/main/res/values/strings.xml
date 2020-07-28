@@ -21,5 +21,4 @@
     <string name="settings_light_title">Light cats</string>
     <string name="settings_night_title">Dark cats</string>
     <string name="settings_to_cat_title">The mood of the cat</string>
-    <string name="settings_update_button_title">Update the cat</string>
 </resources>

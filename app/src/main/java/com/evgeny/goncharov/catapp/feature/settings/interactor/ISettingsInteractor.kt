@@ -12,6 +12,6 @@ interface ISettingsInteractor {
 
     fun onNight()
 
-    fun clickButtonDone()
+    fun getThemeValue(): Int
 
 }

@@ -18,61 +18,26 @@
         app:popupTheme="@style/MyPopupToolbarStyle" />
 
 
-    <androidx.cardview.widget.CardView
+    <TextView
+        android:id="@+id/txvThemeApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/imitation_cardview_background"
+        android:clickable="true"
         android:clipToPadding="true"
-        app:cardCornerRadius="5dp"
+        android:drawableStart="@drawable/ic_theme"
+        android:drawablePadding="16dp"
+        android:elevation="6dp"
+        android:focusable="true"
+        android:padding="8dp"
+        android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/CostumeBackground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txvTitleValueNow"
-                style="@style/ColorTextDescription.LargeTextDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/settings_light_title" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/swtChooseTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:checked="true" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btnUpdateSettings"
-        style="@style/ButtonMainStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="12dp"
-        android:text="@string/settings_update_button_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:text="Тема приложения\nСветлые котики" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

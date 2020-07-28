@@ -13,10 +13,8 @@ interface ISettingsViewModel {
 
     fun initThemeToView()
 
-    fun onLight()
+    fun getThemeValue(): Int
 
-    fun onNight()
-
-    fun clickButtonDone()
+    fun setChooseThemeIndex(item: Int)
 
 }

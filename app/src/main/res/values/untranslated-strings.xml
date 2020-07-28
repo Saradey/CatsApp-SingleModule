@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-
+    <string name="theme_title_settings">Тема приложения</string>
+    <string name="title_cancel_dialog_common">Отмена</string>
+    <string-array name="themes_title">
+        <item>Светлые котики</item>
+        <item>Темные котики</item>
+    </string-array>
 </resources>

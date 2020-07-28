@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.interactor.ISettingsInteractor
+import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractorImpl
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import javax.inject.Inject
 
@@ -37,17 +38,14 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
     }
 
 
-    override fun onLight() {
-        interactor.onLight()
+    override fun getThemeValue(): Int = interactor.getThemeValue()
+
+
+    override fun setChooseThemeIndex(item: Int) {
+        when (item) {
+            SettingsInteractorImpl.INDEX_NIGHT_DIALOG -> interactor.onNight()
+            else -> interactor.onLight()
+        }
     }
 
-
-    override fun onNight() {
-        interactor.onNight()
-    }
-
-
-    override fun clickButtonDone() {
-        interactor.clickButtonDone()
-    }
 }

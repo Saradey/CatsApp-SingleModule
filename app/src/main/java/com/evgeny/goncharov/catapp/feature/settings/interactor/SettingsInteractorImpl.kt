@@ -11,6 +11,11 @@ class SettingsInteractorImpl @Inject constructor(
     private val mainRouter: IMainRouter
 ) : ISettingsInteractor {
 
+    companion object {
+        const val INDEX_LIGHT_DIALOG = 0
+        const val INDEX_NIGHT_DIALOG = 1
+    }
+
     private var themeValue = repository.getThemeModeAppNow().themeValue
 
 
@@ -26,15 +31,19 @@ class SettingsInteractorImpl @Inject constructor(
 
     override fun onLight() {
         themeValue = AppCompatDelegate.MODE_NIGHT_NO
+        repository.saveChooseTheme(themeValue)
     }
 
 
     override fun onNight() {
         themeValue = AppCompatDelegate.MODE_NIGHT_YES
-    }
-
-
-    override fun clickButtonDone() {
         repository.saveChooseTheme(themeValue)
     }
+
+
+    override fun getThemeValue(): Int = when (themeValue) {
+        AppCompatDelegate.MODE_NIGHT_YES -> INDEX_NIGHT_DIALOG
+        else -> INDEX_LIGHT_DIALOG
+    }
+
 }

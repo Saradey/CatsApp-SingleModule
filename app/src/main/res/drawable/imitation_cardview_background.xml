@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="false">
+    <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/orange_title" />
+            <solid android:color="@color/white" />
             <corners android:radius="5dp" />
         </shape>
     </item>
-
     <item>
         <selector>
             <item>
-                <ripple android:color="@color/white" />
+                <ripple android:color="@color/color_grey" />
             </item>
         </selector>
     </item>
-
 </layer-list>
