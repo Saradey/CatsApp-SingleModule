@@ -169,6 +169,7 @@ class SearchCatFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
         SearchCatSubcomponent.component = null
+        hideKeyboard()
         (uiLiveData as SingleLiveEvent<SearchCatEvents>).call()
     }
 }

@@ -1,9 +1,11 @@
 package com.evgeny.goncharov.catapp.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import kotlinx.android.synthetic.main.fragment_cat_description.*
@@ -42,5 +44,12 @@ abstract class BaseFragment : Fragment() {
 
     protected fun hideStubSomethingWrong() {
         grpStubWallCat?.setVisibilityBool(false)
+    }
+
+
+    protected fun hideKeyboard() {
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }
