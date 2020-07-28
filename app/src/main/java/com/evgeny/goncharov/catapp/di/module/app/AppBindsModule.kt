@@ -2,6 +2,8 @@ package com.evgeny.goncharov.catapp.di.module.app
 
 import android.content.Context
 import com.evgeny.goncharov.catapp.App
+import com.evgeny.goncharov.catapp.common.language.manager.ILanguageManager
+import com.evgeny.goncharov.catapp.common.language.manager.LanguageManagerImpl
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.common.navigation.INavigation
 import com.evgeny.goncharov.catapp.common.navigation.MainRouterImpl
@@ -32,5 +34,9 @@ interface AppBindsModule {
     @Binds
     @AppScope
     fun bindMainRouter(routerImpl: MainRouterImpl): IMainRouter
+
+    @Binds
+    @AppScope
+    fun bindLanguageManager(manager: LanguageManagerImpl): ILanguageManager
 
 }

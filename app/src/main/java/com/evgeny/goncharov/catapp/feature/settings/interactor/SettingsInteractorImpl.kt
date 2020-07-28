@@ -1,6 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.settings.interactor
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.evgeny.goncharov.catapp.common.Language
 import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.gateway.ISettingsGateway
@@ -46,4 +47,9 @@ class SettingsInteractorImpl @Inject constructor(
         else -> INDEX_LIGHT_DIALOG
     }
 
+
+    override fun getAppLanguage(): Language = repository.getAppLanguage()
+
+
+    override fun getTheme(): Int = themeValue
 }

@@ -1,5 +1,6 @@
 package com.evgeny.goncharov.catapp.feature.settings.interactor
 
+import com.evgeny.goncharov.catapp.common.Language
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 
 interface ISettingsInteractor {
@@ -13,5 +14,9 @@ interface ISettingsInteractor {
     fun onNight()
 
     fun getThemeValue(): Int
+
+    fun getAppLanguage(): Language
+
+    fun getTheme(): Int
 
 }

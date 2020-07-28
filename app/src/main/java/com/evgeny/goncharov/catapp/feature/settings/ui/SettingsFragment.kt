@@ -4,14 +4,21 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.widget.TextView
+import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.text.set
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
+import com.evgeny.goncharov.catapp.common.Language
+import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
+import com.evgeny.goncharov.catapp.feature.settings.events.SettingUiEvents
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -29,6 +36,12 @@ class SettingsFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: ISettingsViewModel
+
+    private var lang: Language = Language.RU()
+
+    private lateinit var themeLiveData: LiveData<ThemeModel>
+    private lateinit var languageLiveData: LiveData<Language>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +69,24 @@ class SettingsFragment : BaseFragment() {
         initLiveData()
         viewModel.initInjection()
         viewModel.initThemeToView()
+        viewModel.initLanguageToView()
     }
 
 
     private fun initLiveData() {
-        viewModel.getThemeLiveData().observe(this, Observer {
-            setThemeModel(it)
+        themeLiveData = viewModel.getThemeLiveData()
+        languageLiveData = viewModel.getLanguageLiveData()
+        themeLiveData.observe(this, Observer { model ->
+            model?.let {
+                setThemeModel(model)
+            }
+        })
+
+        languageLiveData.observe(this, Observer { lang ->
+            lang?.let {
+                this.lang = lang
+                setLanguageApp(lang)
+            }
         })
     }
 
@@ -76,31 +101,41 @@ class SettingsFragment : BaseFragment() {
 
 
     private fun initNightTheme() {
-        val themeTitle = requireActivity().getString(R.string.theme_title_settings)
-        val darkTheme = requireActivity().getString(R.string.settings_night_title)
-        val resultTitle = SpannableString("$themeTitle\n$darkTheme")
-        resultTitle[0..themeTitle.length] = ForegroundColorSpan(
-            ContextCompat.getColor(requireContext(), R.color.white)
+        initSpannableTextView(
+            title = R.string.theme_title_settings,
+            subTitle = R.string.settings_night_title,
+            textView = txvThemeApp
         )
-        resultTitle[themeTitle.length..themeTitle.length + darkTheme.length] = ForegroundColorSpan(
-            ContextCompat.getColor(requireContext(), R.color.white_hint)
-        )
-        txvThemeApp.text = resultTitle
     }
 
 
     private fun initLightTheme() {
-        val themeTitle = requireActivity().getString(R.string.theme_title_settings)
-        val darkTheme = requireActivity().getString(R.string.settings_light_title)
-        val resultTitle = SpannableString("$themeTitle\n$darkTheme")
-        resultTitle[0..themeTitle.length] = ForegroundColorSpan(
-            ContextCompat.getColor(requireContext(), R.color.text_toolbar_title_light)
+        initSpannableTextView(
+            title = R.string.theme_title_settings,
+            subTitle = R.string.settings_light_title,
+            textView = txvThemeApp
         )
-        resultTitle[themeTitle.length..themeTitle.length + darkTheme.length + 1] =
+    }
+
+
+    private fun initSpannableTextView(
+        @StringRes title: Int,
+        @StringRes subTitle: Int,
+        @ColorRes colorTitle: Int = getColorTitle(),
+        @ColorRes colorSubTitle: Int = getColorSubtitle(),
+        textView: TextView
+    ) {
+        val titleStr = requireActivity().getString(title)
+        val subTitleStr = requireActivity().getString(subTitle)
+        val resultTitle = SpannableString("$titleStr\n$subTitleStr")
+        resultTitle[0..titleStr.length] = ForegroundColorSpan(
+            ContextCompat.getColor(requireContext(), colorTitle)
+        )
+        resultTitle[titleStr.length..titleStr.length + subTitleStr.length + 1] =
             ForegroundColorSpan(
-                ContextCompat.getColor(requireContext(), R.color.color_dark_grey)
+                ContextCompat.getColor(requireContext(), colorSubTitle)
             )
-        txvThemeApp.text = resultTitle
+        textView.text = resultTitle
     }
 
 
@@ -123,8 +158,49 @@ class SettingsFragment : BaseFragment() {
     }
 
 
+    private fun setLanguageApp(language: Language) {
+        when (language) {
+            is Language.RU -> initRuLanguageTitle()
+            is Language.EN -> initEnLanguageTitle()
+        }
+    }
+
+
+    private fun initRuLanguageTitle() {
+        initSpannableTextView(
+            title = R.string.language_app_title,
+            subTitle = R.string.language_app_title_ru,
+            textView = txvLanguageApp
+        )
+    }
+
+
+    private fun initEnLanguageTitle() {
+        initSpannableTextView(
+            title = R.string.language_app_title,
+            subTitle = R.string.language_app_title_en,
+            textView = txvLanguageApp
+        )
+    }
+
+
+    private fun getColorTitle(): Int = when (viewModel.getThemeNow()) {
+        AppCompatDelegate.MODE_NIGHT_YES -> R.color.white
+        else -> R.color.text_toolbar_title_light
+    }
+
+
+    private fun getColorSubtitle(): Int = when (viewModel.getThemeNow()) {
+        AppCompatDelegate.MODE_NIGHT_YES -> R.color.white_hint
+        else -> R.color.color_dark_grey
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         SettingsSubcomponent.component = null
+        (themeLiveData as SingleLiveEvent).call()
+        (languageLiveData as SingleLiveEvent).call()
     }
+
 }

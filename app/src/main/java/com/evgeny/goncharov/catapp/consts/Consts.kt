@@ -18,3 +18,7 @@ const val CAT_BREED_TABLE_NAME = "cat_breed"
 const val CHOOSE_CAT_BREED_TABLE_NAME = "choose_cat_breed"
 
 const val DATA_BASE_NAME = "pisa"
+
+//code
+const val RU_CODE = "ru"
+const val EN_CODE = "en"
