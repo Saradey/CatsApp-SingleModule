@@ -13,6 +13,8 @@
         <item name="color_main_text">@color/white</item>
         <item name="color_card_background">@color/color_light_black</item>
         <item name="color_text_description">@color/white</item>
+        <item name="color_text_button">@color/white</item>
+        <item name="color_background_button">@color/color_light_black</item>
 
         <item name="android:navigationBarColor">?attr/color_card_background</item>
         <item name="android:statusBarColor">?attr/color_card_background</item>

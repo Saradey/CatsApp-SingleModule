@@ -118,7 +118,7 @@ class CatDescriptionFragment : BaseFragment() {
                 resources.getString(R.string.temperament_cat_title, model.temperament)
             txvDescription.text =
                 resources.getString(R.string.description_cat_title, model.description)
-            llButtonWiki.setOnClickListener {
+            mbtnWikiLink.setOnClickListener {
                 val uri = Uri.parse(model.urlWiki)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 if (intent.resolveActivity(context!!.packageManager) != null) {

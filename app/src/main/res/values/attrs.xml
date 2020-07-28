@@ -3,7 +3,9 @@
 
     <attr name="color_all_background" format="color|reference" />
     <attr name="color_main_text" format="color|reference" />
-    <attr name="color_card_background" format="color|reference"/>
-    <attr name="color_text_description" format="color|reference"/>
+    <attr name="color_card_background" format="color|reference" />
+    <attr name="color_text_description" format="color|reference" />
+    <attr name="color_text_button" format="color|reference" />
+    <attr name="color_background_button" format="color|reference" />
 
 </resources>

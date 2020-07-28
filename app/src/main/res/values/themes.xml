@@ -13,9 +13,12 @@
         <item name="color_main_text">@color/color_light_black</item>
         <item name="color_card_background">@color/white</item>
         <item name="color_text_description">@color/text_toolbar_title_light</item>
+        <item name="color_text_button">@color/white</item>
+        <item name="color_background_button">@color/orange_title</item>
 
         <item name="android:navigationBarColor">@color/color_dark_grey</item>
         <item name="android:statusBarColor">@color/color_dark_grey</item>
+
     </style>
 
 
