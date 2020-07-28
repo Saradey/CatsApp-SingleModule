@@ -43,5 +43,4 @@ class DialogChooseThemeApp : DialogFragment() {
         return builderDialog.create()
     }
 
-
 }
