@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/myView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,107 +17,129 @@
         app:popupTheme="@style/MyPopupToolbarStyle" />
 
 
-    <ImageView
-        android:id="@+id/imvCat"
-        style="@style/ImageBackground.CatAvatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-
-    <TextView
-        android:id="@+id/txvNameCat"
-        style="@style/ColorMainText.LargeText.TextTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imvCat"
-        app:layout_constraintTop_toTopOf="@+id/imvCat"
-        tools:text="Name: Aegean" />
-
-    <TextView
-        android:id="@+id/txvOrigin"
-        style="@style/ColorMainText.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imvCat"
-        app:layout_constraintTop_toBottomOf="@+id/txvNameCat"
-        tools:text="Origin: Greece" />
-
-
-    <TextView
-        android:id="@+id/txvLifeSpan"
-        style="@style/ColorMainText.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imvCat"
-        app:layout_constraintTop_toBottomOf="@+id/txvOrigin"
-        tools:text="Life span: 9 - 12 Age" />
-
-
-    <TextView
-        android:id="@+id/txvWeight"
-        style="@style/ColorMainText.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imvCat"
-        app:layout_constraintTop_toBottomOf="@+id/txvLifeSpan"
-        tools:text="Weight: 3 - 5 kg" />
-
-
-    <TextView
-        android:id="@+id/txvTemperament"
-        style="@style/ColorMainText.SmallText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:lines="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imvCat"
-        app:layout_constraintTop_toBottomOf="@+id/txvWeight"
-        tools:text="Temperament: Affectionate, Social, Intelligent, Playful, Active" />
-
-
-    <TextView
-        android:id="@+id/txvDescription"
-        style="@style/ColorTextDescription.LargeTextDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imvCat"
-        tools:text="Native to the Greek islands known as the Cyclades in the Aegean Sea, these are natural cats, meaning they developed without humans getting involved in their breeding. As a breed, Aegean Cats are rare, although they are numerous on their home islands. They are generally friendly toward people and can be excellent cats for families with children." />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imvCat"
+                style="@style/ImageBackground.CatAvatar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/mbtnWikiLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/wiki_cat_description_title"
-        app:icon="@drawable/ic_symbol"
-        app:iconGravity="end"
-        app:iconPadding="16dp"
-        style="@style/Costume_MaterialButtonStyle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvDescription" />
+            <TextView
+                android:id="@+id/txvNameCat"
+                style="@style/ColorMainText.LargeText.TextTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imvCat"
+                app:layout_constraintTop_toTopOf="@+id/imvCat"
+                tools:text="Name: Aegean" />
 
+            <TextView
+                android:id="@+id/txvOrigin"
+                style="@style/ColorMainText.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imvCat"
+                app:layout_constraintTop_toBottomOf="@+id/txvNameCat"
+                tools:text="Origin: Greece" />
+
+
+            <TextView
+                android:id="@+id/txvLifeSpan"
+                style="@style/ColorMainText.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imvCat"
+                app:layout_constraintTop_toBottomOf="@+id/txvOrigin"
+                tools:text="Life span: 9 - 12 Age" />
+
+
+            <TextView
+                android:id="@+id/txvWeight"
+                style="@style/ColorMainText.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imvCat"
+                app:layout_constraintTop_toBottomOf="@+id/txvLifeSpan"
+                tools:text="Weight: 3 - 5 kg" />
+
+
+            <TextView
+                android:id="@+id/txvTemperament"
+                style="@style/ColorMainText.SmallText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:lines="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imvCat"
+                app:layout_constraintTop_toBottomOf="@+id/txvWeight"
+                tools:text="Temperament: Affectionate, Social, Intelligent, Playful, Active" />
+
+
+            <TextView
+                android:id="@+id/txvDescription"
+                style="@style/ColorTextDescription.LargeTextDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imvCat"
+                tools:text="Native to the Greek islands known as the Cyclades in the Aegean Sea, these are natural cats, meaning they developed without humans getting involved in their breeding. As a breed, Aegean Cats are rare, although they are numerous on their home islands. They are generally friendly toward people and can be excellent cats for families with children." />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mbtnWikiLink"
+                style="@style/Costume_MaterialButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/wiki_cat_description_title"
+                app:icon="@drawable/ic_symbol"
+                app:iconGravity="end"
+                app:iconPadding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txvDescription" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/grpAllContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:constraint_referenced_ids="imvCat,txvNameCat,txvOrigin,txvLifeSpan,txvWeight,txvTemperament,txvDescription,mbtnWikiLink"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/imvStubWallCat"
@@ -130,6 +151,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.40" />
+
 
     <TextView
         android:id="@+id/txvMessageStubWallCat"
@@ -151,7 +173,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
 
     <androidx.constraintlayout.widget.Group
@@ -161,13 +184,5 @@
         android:visibility="gone"
         app:constraint_referenced_ids="imvStubWallCat,txvMessageStubWallCat"
         tools:visibility="gone" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/grpAllContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="imvCat,txvNameCat,txvOrigin,txvLifeSpan,txvWeight,txvTemperament,txvDescription,mbtnWikiLink"
-        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

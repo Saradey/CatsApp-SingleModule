@@ -27,8 +27,8 @@ class SettingsGatewayImpl @Inject constructor(
 
     override fun getAppLanguage(): Language {
         return when (languageManager.getAppLanguage()) {
-            RU_CODE -> Language.RU()
-            else -> Language.EN()
+            RU_CODE -> Language.RU
+            else -> Language.EN
         }
     }
 

@@ -37,7 +37,7 @@ class SettingsFragment : BaseFragment() {
     @Inject
     lateinit var viewModel: ISettingsViewModel
 
-    private var lang: Language = Language.RU()
+    private var lang: Language = Language.RU
 
     private lateinit var themeLiveData: LiveData<ThemeModel>
     private lateinit var languageLiveData: LiveData<Language>
@@ -160,8 +160,8 @@ class SettingsFragment : BaseFragment() {
 
     private fun setLanguageApp(language: Language) {
         when (language) {
-            is Language.RU -> initRuLanguageTitle()
-            is Language.EN -> initEnLanguageTitle()
+            Language.RU -> initRuLanguageTitle()
+            Language.EN -> initEnLanguageTitle()
         }
     }
 

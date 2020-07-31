@@ -51,9 +51,7 @@ class CatDescriptionFragment : BaseFragment() {
     }
 
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_cat_description
-    }
+    override fun getLayoutId(): Int = R.layout.fragment_cat_description
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -144,4 +142,6 @@ class CatDescriptionFragment : BaseFragment() {
         CatDescriptionSubcomponent.component = null
         (uiLiveData as SingleLiveEvent<CatDescriptionEvents>).call()
     }
+    
+    
 }
