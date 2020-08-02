@@ -27,4 +27,8 @@ interface ISettingsViewModel {
 
     fun getThemeNow(): Int
 
+    fun getSelectLanguage(): Int
+
+    fun chooseLanguage(itemIndex: Int)
+
 }

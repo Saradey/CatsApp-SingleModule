@@ -11,4 +11,8 @@ interface ISettingsGateway {
 
     fun getAppLanguage(): Language
 
+    fun getSelectLanguage(): Int
+
+    fun chooseLanguage(lang: Language)
+
 }

@@ -41,6 +41,7 @@ class SettingsFragment : BaseFragment() {
 
     private lateinit var themeLiveData: LiveData<ThemeModel>
     private lateinit var languageLiveData: LiveData<Language>
+    private lateinit var uiEventLiveData: LiveData<SettingUiEvents>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +63,7 @@ class SettingsFragment : BaseFragment() {
     private fun initUi() {
         initToolbar()
         initClickThemeApp()
+        initClickLanguageChoose()
     }
 
 
@@ -76,16 +78,21 @@ class SettingsFragment : BaseFragment() {
     private fun initLiveData() {
         themeLiveData = viewModel.getThemeLiveData()
         languageLiveData = viewModel.getLanguageLiveData()
+        uiEventLiveData = viewModel.getUiEvents()
         themeLiveData.observe(this, Observer { model ->
             model?.let {
                 setThemeModel(model)
             }
         })
-
         languageLiveData.observe(this, Observer { lang ->
             lang?.let {
                 this.lang = lang
                 setLanguageApp(lang)
+            }
+        })
+        uiEventLiveData.observe(this, Observer { event ->
+            when (event) {
+                SettingUiEvents.ChooseLanguageApp -> activity?.recreate()
             }
         })
     }
@@ -196,11 +203,20 @@ class SettingsFragment : BaseFragment() {
     }
 
 
+    private fun initClickLanguageChoose() {
+        txvLanguageApp.setOnClickListener {
+            val dialog = DialogChooseLanguageApp()
+            dialog.show(requireFragmentManager(), DialogChooseLanguageApp::class.java.name)
+        }
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         SettingsSubcomponent.component = null
         (themeLiveData as SingleLiveEvent).call()
         (languageLiveData as SingleLiveEvent).call()
+        (uiEventLiveData as SingleLiveEvent).call()
     }
 
 }

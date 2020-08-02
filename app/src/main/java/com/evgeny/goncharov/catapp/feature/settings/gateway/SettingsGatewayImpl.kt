@@ -5,6 +5,8 @@ import com.evgeny.goncharov.catapp.common.language.manager.ILanguageManager
 import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
 import com.evgeny.goncharov.catapp.consts.RU_CODE
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
+import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp.Companion.INDEX_CHOOSE_EN
+import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp.Companion.INDEX_CHOOSE_RU
 import javax.inject.Inject
 
 class SettingsGatewayImpl @Inject constructor(
@@ -31,5 +33,19 @@ class SettingsGatewayImpl @Inject constructor(
             else -> Language.EN
         }
     }
+
+
+    override fun getSelectLanguage(): Int {
+        return when (languageManager.getAppLanguageEnum()) {
+            Language.RU -> INDEX_CHOOSE_RU
+            Language.EN -> INDEX_CHOOSE_EN
+        }
+    }
+
+
+    override fun chooseLanguage(lang: Language) {
+        languageManager.chooseLanguage(lang.code)
+    }
+
 
 }

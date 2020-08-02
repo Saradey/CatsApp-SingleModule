@@ -19,4 +19,10 @@ interface ISettingsInteractor {
 
     fun getTheme(): Int
 
+    fun getSelectLanguage(): Int
+
+    fun chooseLanguage(itemIndex: Int)
+
+    fun getChooseLanguageIndex(): Int
+
 }

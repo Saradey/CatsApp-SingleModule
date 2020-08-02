@@ -1,6 +1,7 @@
 package com.evgeny.goncharov.catapp.feature.settings.di
 
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
+import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp
 import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseThemeApp
 import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModelImpl
 import dagger.Subcomponent
@@ -20,6 +21,8 @@ interface SettingsSubcomponent {
     fun inject(settingsViewModelImpl: SettingsViewModelImpl)
 
     fun inject(dialog: DialogChooseThemeApp)
+
+    fun inject(dialog: DialogChooseLanguageApp)
 
     @Subcomponent.Factory
     interface Factory {

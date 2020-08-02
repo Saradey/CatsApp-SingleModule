@@ -21,4 +21,17 @@
     <string name="settings_light_title">Light cats</string>
     <string name="settings_night_title">Dark cats</string>
     <string name="settings_to_cat_title">The mood of the cat</string>
+    <string name="theme_title_settings">Theme Application</string>
+    <string name="title_cancel_dialog_common">Cancel</string>
+    <string-array name="themes_titles">
+        <item>Light cats</item>
+        <item>Dark cats</item>
+    </string-array>
+    <string name="language_app_title">Language application</string>
+    <string name="language_app_title_ru">Russian</string>
+    <string name="language_app_title_en">English</string>
+    <string-array name="language_titles">
+        <item>Russian</item>
+        <item>English</item>
+    </string-array>
 </resources>

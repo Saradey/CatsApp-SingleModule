@@ -19,4 +19,17 @@
     <string name="settings_light_title">Светлые котики</string>
     <string name="settings_night_title">Темные котики</string>
     <string name="settings_to_cat_title">Настрой кота</string>
+    <string name="theme_title_settings">Тема приложения</string>
+    <string name="title_cancel_dialog_common">Отмена</string>
+    <string-array name="themes_titles">
+        <item>Светлые котики</item>
+        <item>Темные котики</item>
+    </string-array>
+    <string name="language_app_title">Язык приложения</string>
+    <string name="language_app_title_ru">Русский</string>
+    <string name="language_app_title_en">Английский</string>
+    <string-array name="language_titles">
+        <item>Русский</item>
+        <item>Английский</item>
+    </string-array>
 </resources>

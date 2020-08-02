@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="theme_title_settings">Тема приложения</string>
-    <string name="title_cancel_dialog_common">Отмена</string>
-    <string-array name="themes_title">
-        <item>Светлые котики</item>
-        <item>Темные котики</item>
-    </string-array>
-    <string name="language_app_title">Язык приложения</string>
-    <string name="language_app_title_ru">Русский</string>
-    <string name="language_app_title_en">Английский</string>
+
 </resources>

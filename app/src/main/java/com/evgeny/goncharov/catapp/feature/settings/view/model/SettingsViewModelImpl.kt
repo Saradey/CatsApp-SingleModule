@@ -37,7 +37,7 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
 
     override fun initThemeToView() {
         val theme = interactor.getThemeNow()
-        themeLiveDataModel.postValue(theme)
+        themeLiveDataModel.value = theme
     }
 
 
@@ -49,7 +49,6 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
             SettingsInteractorImpl.INDEX_NIGHT_DIALOG -> interactor.onNight()
             else -> interactor.onLight()
         }
-        uiLiveDataEvent.value = SettingUiEvents.UpdateThemeUi
     }
 
 
@@ -68,4 +67,15 @@ class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
 
 
     override fun getThemeNow(): Int = interactor.getTheme()
+
+
+    override fun getSelectLanguage(): Int = interactor.getSelectLanguage()
+
+
+    override fun chooseLanguage(itemIndex: Int) {
+        if (interactor.getChooseLanguageIndex() != itemIndex) {
+            interactor.chooseLanguage(itemIndex)
+            uiLiveDataEvent.value = SettingUiEvents.ChooseLanguageApp
+        }
+    }
 }
