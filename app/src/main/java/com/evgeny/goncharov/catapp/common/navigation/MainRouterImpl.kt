@@ -1,22 +1,17 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
-import android.content.Context
+
 import android.os.Bundle
-import android.widget.Toast
-import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.consts.KEY_BUNDLE_CAT_ID
-import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
 import javax.inject.Inject
-import javax.inject.Named
 
 class MainRouterImpl @Inject constructor(
-    private val navigation: INavigation,
-    @Named(TAG_APPLICATION_CONTEXT) val context: Context
+    private val navigation: INavigation
 ) : IMainRouter {
 
     private var countBackPressed = 0
@@ -41,11 +36,7 @@ class MainRouterImpl @Inject constructor(
             if (countBackPressed == 1) {
                 navigation.appFinish()
             } else {
-                Toast.makeText(
-                    context,
-                    R.string.back_pressed_common,
-                    Toast.LENGTH_SHORT
-                ).show()
+                navigation.showBackPressedWarning()
             }
             countBackPressed++
             delay(2000)

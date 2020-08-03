@@ -1,6 +1,7 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
 import android.os.Bundle
+import android.widget.Toast
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.base.BaseFragment
@@ -121,5 +122,14 @@ class NavigationImpl @Inject constructor() : INavigation {
 
     override fun popStack() {
         activity?.supportFragmentManager?.popBackStack()
+    }
+
+
+    override fun showBackPressedWarning() {
+        Toast.makeText(
+            activity,
+            R.string.back_pressed_common,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

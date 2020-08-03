@@ -31,7 +31,7 @@
     <string name="language_app_title_ru">Russian</string>
     <string name="language_app_title_en">English</string>
     <string-array name="language_titles">
-        <item>Russian</item>
+        <item>Русский</item>
         <item>English</item>
     </string-array>
 </resources>

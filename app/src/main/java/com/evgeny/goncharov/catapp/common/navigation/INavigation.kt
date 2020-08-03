@@ -19,5 +19,7 @@ interface INavigation {
 
     fun popStack()
 
+    fun showBackPressedWarning()
+
 
 }

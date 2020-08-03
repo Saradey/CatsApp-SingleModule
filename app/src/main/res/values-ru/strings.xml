@@ -28,8 +28,4 @@
     <string name="language_app_title">Язык приложения</string>
     <string name="language_app_title_ru">Русский</string>
     <string name="language_app_title_en">Английский</string>
-    <string-array name="language_titles">
-        <item>Русский</item>
-        <item>Английский</item>
-    </string-array>
 </resources>
