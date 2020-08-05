@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -16,7 +15,7 @@ import com.evgeny.goncharov.catapp.extension.setVisibilityBool
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModel
 import kotlinx.android.synthetic.main.fragment_cat_description.*
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class CatDescriptionFragment : BaseFragment() {
     lateinit var factory: CatDescriptionSubcomponent.Factory
 
     @Inject
-    lateinit var viewModel: ICatDescriptionViewModel
+    lateinit var viewModel: CatDescriptionViewModel
 
     private var catId: String? = null
 

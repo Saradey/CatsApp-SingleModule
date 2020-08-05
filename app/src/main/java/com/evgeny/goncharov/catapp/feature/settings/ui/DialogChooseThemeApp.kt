@@ -5,15 +5,14 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
-import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractorImpl
-import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
+import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
 class DialogChooseThemeApp : DialogFragment() {
 
     @Inject
-    lateinit var vm: ISettingsViewModel
+    lateinit var vm: SettingsViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

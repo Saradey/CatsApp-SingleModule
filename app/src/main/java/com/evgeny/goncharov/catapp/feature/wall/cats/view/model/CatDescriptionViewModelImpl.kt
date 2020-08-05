@@ -5,21 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptionSubcomponent
-import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.ICatDescriptionInteractor
+import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.CatDescriptionInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class CatDescriptionViewModelImpl : ViewModel(), ICatDescriptionViewModel {
+class CatDescriptionViewModelImpl : ViewModel(), CatDescriptionViewModel {
 
     private val catDescriptionLiveData = MutableLiveData<CatDescription>()
 
 
     @Inject
-    lateinit var interactor: ICatDescriptionInteractor
+    lateinit var interactor: CatDescriptionInteractor
 
 
     override fun setCatId(catId: String) {

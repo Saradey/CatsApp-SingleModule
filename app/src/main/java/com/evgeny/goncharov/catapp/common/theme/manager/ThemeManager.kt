@@ -1,6 +1,6 @@
 package com.evgeny.goncharov.catapp.common.theme.manager
 
-interface IThemeManager {
+interface ThemeManager {
 
     fun getThemeModeAppNow(): Int
 

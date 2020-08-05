@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 
-interface IWallCatInteractor {
+interface WallCatInteractor {
 
     suspend fun loadWallCat(): List<CatBreedView>
 

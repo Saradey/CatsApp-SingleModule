@@ -2,7 +2,7 @@ package com.evgeny.goncharov.catapp.feature.search.cats.gateway
 
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 
-interface ISearchCatGateway {
+interface SearchCatGateway {
 
     suspend fun loadFromInternet(request: Map<String, String>): List<CatCatched>
 

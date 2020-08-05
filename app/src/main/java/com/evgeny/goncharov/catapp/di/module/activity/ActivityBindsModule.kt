@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.di.module.activity
 import android.content.Context
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.consts.TAG_ACTIVITY_CONTEXT
-import com.evgeny.goncharov.catapp.feature.splash.screen.router.ISplashScreenRouter
+import com.evgeny.goncharov.catapp.feature.splash.screen.router.SplashScreenRouter
 import com.evgeny.goncharov.catapp.feature.splash.screen.router.SplashScreenRouterImpl
 import dagger.Binds
 import dagger.Module
@@ -17,5 +17,5 @@ interface ActivityBindsModule {
     fun bindActivityContext(mainActivity: MainActivity): Context
 
     @Binds
-    fun bindScreenRouter(router: SplashScreenRouterImpl): ISplashScreenRouter
+    fun bindScreenRouter(router: SplashScreenRouterImpl): SplashScreenRouter
 }

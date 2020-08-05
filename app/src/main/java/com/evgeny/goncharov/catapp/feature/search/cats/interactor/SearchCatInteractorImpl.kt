@@ -3,17 +3,17 @@ package com.evgeny.goncharov.catapp.feature.search.cats.interactor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
-import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
+import com.evgeny.goncharov.catapp.common.navigation.MainRouter
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
-import com.evgeny.goncharov.catapp.feature.search.cats.gateway.ISearchCatGateway
+import com.evgeny.goncharov.catapp.feature.search.cats.gateway.SearchCatGateway
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetChooseCatRequest
 import javax.inject.Inject
 
 class SearchCatInteractorImpl @Inject constructor(
-    private val repository: ISearchCatGateway,
-    private val router: IMainRouter
-) : ISearchCatInteractor {
+    private val repository: SearchCatGateway,
+    private val router: MainRouter
+) : SearchCatInteractor {
 
     private val liveDataUiEvents = SingleLiveEvent<SearchCatEvents>()
     private val liveDataCatsCathed = MutableLiveData<List<CatCatched>>()

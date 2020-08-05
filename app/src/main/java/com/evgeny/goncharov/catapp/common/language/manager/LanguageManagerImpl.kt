@@ -10,7 +10,7 @@ import javax.inject.Named
 
 class LanguageManagerImpl @Inject constructor(
     @Named(TAG_APPLICATION_CONTEXT) val context: Context
-) : ILanguageManager {
+) : LanguageManager {
 
 
     companion object {

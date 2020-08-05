@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.gateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 
-interface IWallCatGateway {
+interface WallCatGateway {
 
     suspend fun loadWallCatFromInternet(request: WallCatRequest): List<CatBreedView>
 

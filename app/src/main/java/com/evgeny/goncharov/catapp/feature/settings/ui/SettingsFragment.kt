@@ -20,7 +20,7 @@ import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.events.SettingUiEvents
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
-import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
+import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModel
 import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
 
@@ -35,7 +35,7 @@ class SettingsFragment : BaseFragment() {
     lateinit var factory: SettingsSubcomponent.Factory
 
     @Inject
-    lateinit var viewModel: ISettingsViewModel
+    lateinit var viewModel: SettingsViewModel
 
     private var lang: Language = Language.RU
 

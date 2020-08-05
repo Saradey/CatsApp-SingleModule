@@ -2,18 +2,18 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
-import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
+import com.evgeny.goncharov.catapp.common.navigation.MainRouter
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
-import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.ICatDescriptionGateway
+import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.CatDescriptionGateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CatDescriptionInteractorImpl @Inject constructor(
-    private val repository: ICatDescriptionGateway,
-    private val router: IMainRouter
-) : ICatDescriptionInteractor {
+    private val repository: CatDescriptionGateway,
+    private val router: MainRouter
+) : CatDescriptionInteractor {
 
     private var catId = ""
 

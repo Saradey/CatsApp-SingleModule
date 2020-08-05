@@ -13,7 +13,7 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import javax.inject.Inject
 
-class NavigationImpl @Inject constructor() : INavigation {
+class NavigationImpl @Inject constructor() : Navigation {
 
     private var activity: MainActivity? = null
 

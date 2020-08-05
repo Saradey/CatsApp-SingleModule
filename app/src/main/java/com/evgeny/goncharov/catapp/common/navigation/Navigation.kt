@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.common.navigation
 import android.os.Bundle
 import com.evgeny.goncharov.catapp.MainActivity
 
-interface INavigation {
+interface Navigation {
 
     fun attachActivity(mainActivity: MainActivity)
 

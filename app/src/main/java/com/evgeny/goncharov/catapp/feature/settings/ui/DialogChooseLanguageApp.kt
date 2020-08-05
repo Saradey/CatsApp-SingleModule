@@ -1,13 +1,11 @@
 package com.evgeny.goncharov.catapp.feature.settings.ui
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
-import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
+import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
@@ -19,7 +17,7 @@ class DialogChooseLanguageApp : DialogFragment() {
     }
 
     @Inject
-    lateinit var vm: ISettingsViewModel
+    lateinit var vm: SettingsViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

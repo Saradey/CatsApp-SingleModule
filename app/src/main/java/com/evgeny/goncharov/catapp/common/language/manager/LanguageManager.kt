@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.common.language.manager
 import com.evgeny.goncharov.catapp.common.Language
 import java.util.*
 
-interface ILanguageManager {
+interface LanguageManager {
 
     fun getAppLanguage(): String
 

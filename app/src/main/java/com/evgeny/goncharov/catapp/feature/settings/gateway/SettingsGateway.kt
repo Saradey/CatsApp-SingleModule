@@ -3,7 +3,7 @@ package com.evgeny.goncharov.catapp.feature.settings.gateway
 import com.evgeny.goncharov.catapp.common.Language
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 
-interface ISettingsGateway {
+interface SettingsGateway {
 
     fun getThemeModeAppNow(): ThemeModel
 

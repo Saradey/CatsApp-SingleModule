@@ -4,11 +4,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.evgeny.goncharov.catapp.MainActivity
-import com.evgeny.goncharov.catapp.common.navigation.INavigation
+import com.evgeny.goncharov.catapp.common.navigation.Navigation
 
 class ActivityLifeCycle(
     private val mainActivity: MainActivity,
-    private val navigationImpl: INavigation
+    private val navigationImpl: Navigation
 ) : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)

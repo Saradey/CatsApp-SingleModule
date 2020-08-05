@@ -5,7 +5,7 @@ import com.evgeny.goncharov.catapp.common.Language
 import com.evgeny.goncharov.catapp.feature.settings.events.SettingUiEvents
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 
-interface ISettingsViewModel {
+interface SettingsViewModel {
 
     fun initInjection()
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 
-interface ISearchCatInteractor {
+interface SearchCatInteractor {
 
     fun clickNavigationBack()
 

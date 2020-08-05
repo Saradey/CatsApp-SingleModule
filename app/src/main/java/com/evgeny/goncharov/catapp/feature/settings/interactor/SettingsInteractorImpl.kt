@@ -2,17 +2,17 @@ package com.evgeny.goncharov.catapp.feature.settings.interactor
 
 import androidx.appcompat.app.AppCompatDelegate
 import com.evgeny.goncharov.catapp.common.Language
-import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
+import com.evgeny.goncharov.catapp.common.navigation.MainRouter
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
-import com.evgeny.goncharov.catapp.feature.settings.gateway.ISettingsGateway
+import com.evgeny.goncharov.catapp.feature.settings.gateway.SettingsGateway
 import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp.Companion.INDEX_CHOOSE_EN
 import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp.Companion.INDEX_CHOOSE_RU
 import javax.inject.Inject
 
 class SettingsInteractorImpl @Inject constructor(
-    private val gateway: ISettingsGateway,
-    private val mainRouter: IMainRouter
-) : ISettingsInteractor {
+    private val gateway: SettingsGateway,
+    private val mainRouter: MainRouter
+) : SettingsInteractor {
 
     companion object {
         const val INDEX_LIGHT_DIALOG = 0

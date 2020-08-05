@@ -2,7 +2,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.gateway
 
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 
-interface ICatDescriptionGateway {
+interface CatDescriptionGateway {
 
     suspend fun loadChooseCatFromInternet(catId: String): CatDescription?
 

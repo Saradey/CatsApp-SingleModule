@@ -4,15 +4,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.evgeny.goncharov.catapp.MainActivity
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.SearchCatFragment
-import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
+import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModel
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModelImpl
 import com.evgeny.goncharov.catapp.feature.settings.ui.SettingsFragment
-import com.evgeny.goncharov.catapp.feature.settings.view.model.ISettingsViewModel
+import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModel
 import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModelImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.CatDescriptionFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModelImpl
-import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.ICatDescriptionViewModel
+import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -39,7 +39,7 @@ object ActivityProvidesModule {
 
     @Provides
     @JvmStatic
-    fun provideCatDescriptionViewModel(fragment: CatDescriptionFragment): ICatDescriptionViewModel =
+    fun provideCatDescriptionViewModel(fragment: CatDescriptionFragment): CatDescriptionViewModel =
         ViewModelProviders.of(fragment).get(CatDescriptionViewModelImpl::class.java)
 
 
@@ -61,7 +61,7 @@ object ActivityProvidesModule {
 
     @Provides
     @JvmStatic
-    fun provideSearchCatViewModel(fragment: SearchCatFragment): ISearchCatViewModel =
+    fun provideSearchCatViewModel(fragment: SearchCatFragment): SearchCatViewModel =
         ViewModelProviders.of(fragment).get(SearchCatViewModelImpl::class.java)
 
 
@@ -74,7 +74,7 @@ object ActivityProvidesModule {
 
     @Provides
     @JvmStatic
-    fun provideSettingsViewModel(fragment: SettingsFragment): ISettingsViewModel =
+    fun provideSettingsViewModel(fragment: SettingsFragment): SettingsViewModel =
         ViewModelProviders.of(fragment).get(SettingsViewModelImpl::class.java)
 
 }

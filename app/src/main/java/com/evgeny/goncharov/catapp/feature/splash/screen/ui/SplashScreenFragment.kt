@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
-import com.evgeny.goncharov.catapp.feature.splash.screen.router.ISplashScreenRouter
+import com.evgeny.goncharov.catapp.feature.splash.screen.router.SplashScreenRouter
 import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +29,7 @@ class SplashScreenFragment : Fragment() {
     private val mainScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     @Inject
-    lateinit var router: ISplashScreenRouter
+    lateinit var router: SplashScreenRouter
 
     override fun onCreateView(
         inflater: LayoutInflater,

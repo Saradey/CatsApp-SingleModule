@@ -8,7 +8,7 @@ import javax.inject.Named
 
 class ThemeManagerImpl @Inject constructor(
     @Named(TAG_APPLICATION_CONTEXT) private val context: Context
-) : IThemeManager {
+) : ThemeManager {
 
     init {
         AppCompatDelegate.setDefaultNightMode(getThemeModeAppNow())

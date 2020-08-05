@@ -1,6 +1,6 @@
 package com.evgeny.goncharov.catapp.common.navigation
 
-interface IMainRouter {
+interface MainRouter {
 
     fun showSlashScreen()
 

@@ -14,7 +14,7 @@ import kotlin.coroutines.suspendCoroutine
 class SearchCatGatewayImpl @Inject constructor(
     private val api: ApiCatSearch,
     private val dao: CatsWallDao
-) : ISearchCatGateway {
+) : SearchCatGateway {
 
 
     override suspend fun loadFromDatabase(text: String): List<CatCatched> =

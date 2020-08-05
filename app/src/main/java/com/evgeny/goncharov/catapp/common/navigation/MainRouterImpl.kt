@@ -11,8 +11,8 @@ import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class MainRouterImpl @Inject constructor(
-    private val navigation: INavigation
-) : IMainRouter {
+    private val navigation: Navigation
+) : MainRouter {
 
     private var countBackPressed = 0
 

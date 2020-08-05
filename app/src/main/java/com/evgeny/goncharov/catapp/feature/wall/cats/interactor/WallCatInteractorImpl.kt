@@ -2,11 +2,11 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 
 import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
-import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
+import com.evgeny.goncharov.catapp.common.navigation.MainRouter
 import com.evgeny.goncharov.catapp.consts.LIMIT_PAGE_SIZE_CAT_WALL
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
-import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.IWallCatGateway
+import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.WallCatGateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,9 +15,9 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class WallCatInteractorImpl @Inject constructor(
-    private val repository: IWallCatGateway,
-    private val mainRouter: IMainRouter
-) : IWallCatInteractor {
+    private val repository: WallCatGateway,
+    private val mainRouter: MainRouter
+) : WallCatInteractor {
 
 
     private val liveDataUiEvents = SingleLiveEvent<WallCatsEvents>()

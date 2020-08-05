@@ -1,13 +1,9 @@
 package com.evgeny.goncharov.catapp.feature.search.cats.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,16 +18,15 @@ import com.evgeny.goncharov.catapp.feature.search.cats.di.SearchCatSubcomponent
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdapter
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
-import com.evgeny.goncharov.catapp.feature.search.cats.view.model.ISearchCatViewModel
+import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModel
 import kotlinx.android.synthetic.main.fragment_search_cat.*
-import kotlinx.android.synthetic.main.fragment_search_cat.view.*
 import javax.inject.Inject
 
 
 class SearchCatFragment : BaseFragment() {
 
     @Inject
-    lateinit var viewModel: ISearchCatViewModel
+    lateinit var viewModel: SearchCatViewModel
 
     @Inject
     lateinit var factory: SearchCatSubcomponent.Factory

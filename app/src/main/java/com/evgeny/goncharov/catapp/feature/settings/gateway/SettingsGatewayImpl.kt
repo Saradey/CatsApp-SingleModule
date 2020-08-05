@@ -1,8 +1,8 @@
 package com.evgeny.goncharov.catapp.feature.settings.gateway
 
 import com.evgeny.goncharov.catapp.common.Language
-import com.evgeny.goncharov.catapp.common.language.manager.ILanguageManager
-import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
+import com.evgeny.goncharov.catapp.common.language.manager.LanguageManager
+import com.evgeny.goncharov.catapp.common.theme.manager.ThemeManager
 import com.evgeny.goncharov.catapp.consts.RU_CODE
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp.Companion.INDEX_CHOOSE_EN
@@ -10,9 +10,9 @@ import com.evgeny.goncharov.catapp.feature.settings.ui.DialogChooseLanguageApp.C
 import javax.inject.Inject
 
 class SettingsGatewayImpl @Inject constructor(
-    private val themeManager: IThemeManager,
-    private val languageManager: ILanguageManager
-) : ISettingsGateway {
+    private val themeManager: ThemeManager,
+    private val languageManager: LanguageManager
+) : SettingsGateway {
 
 
     override fun getThemeModeAppNow(): ThemeModel {

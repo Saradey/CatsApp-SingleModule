@@ -5,7 +5,7 @@ import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 
 
-interface ISearchCatViewModel {
+interface SearchCatViewModel {
 
     fun initInject()
 

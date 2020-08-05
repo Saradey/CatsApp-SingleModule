@@ -16,7 +16,7 @@ import kotlin.coroutines.suspendCoroutine
 class WallCatGatewayImpl @Inject constructor(
     private val api: ApiBreeds,
     private val daoWallCat: CatsWallDao
-) : IWallCatGateway {
+) : WallCatGateway {
 
     private val coroutineScopeIo = CoroutineScope(Dispatchers.IO + SupervisorJob())
 

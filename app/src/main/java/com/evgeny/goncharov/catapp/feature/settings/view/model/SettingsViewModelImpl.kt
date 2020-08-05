@@ -1,21 +1,20 @@
 package com.evgeny.goncharov.catapp.feature.settings.view.model
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.evgeny.goncharov.catapp.common.Language
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.events.SettingUiEvents
-import com.evgeny.goncharov.catapp.feature.settings.interactor.ISettingsInteractor
+import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractor
 import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractorImpl
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import javax.inject.Inject
 
-class SettingsViewModelImpl : ViewModel(), ISettingsViewModel {
+class SettingsViewModelImpl : ViewModel(), SettingsViewModel {
 
     @Inject
-    lateinit var interactor: ISettingsInteractor
+    lateinit var interactor: SettingsInteractor
 
     private val themeLiveDataModel = SingleLiveEvent<ThemeModel>()
     private val languageLiveData = SingleLiveEvent<Language>()

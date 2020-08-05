@@ -1,15 +1,14 @@
 package com.evgeny.goncharov.catapp
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.evgeny.goncharov.catapp.common.ActivityLifeCycle
-import com.evgeny.goncharov.catapp.common.language.manager.ILanguageManager
-import com.evgeny.goncharov.catapp.common.navigation.IMainRouter
-import com.evgeny.goncharov.catapp.common.navigation.INavigation
-import com.evgeny.goncharov.catapp.common.theme.manager.IThemeManager
+import com.evgeny.goncharov.catapp.common.language.manager.LanguageManager
+import com.evgeny.goncharov.catapp.common.navigation.MainRouter
+import com.evgeny.goncharov.catapp.common.navigation.Navigation
+import com.evgeny.goncharov.catapp.common.theme.manager.ThemeManager
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.di.components.AppComponent
 import java.util.*
@@ -21,16 +20,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var factory: ActivitySubcomponent.Factory
 
     @Inject
-    lateinit var navigation: INavigation
+    lateinit var navigation: Navigation
 
     @Inject
-    lateinit var themeManager: IThemeManager
+    lateinit var themeManager: ThemeManager
 
     @Inject
-    lateinit var router: IMainRouter
+    lateinit var router: MainRouter
 
     @Inject
-    lateinit var languageManager: ILanguageManager
+    lateinit var languageManager: LanguageManager
 
     init {
         initDaggerGraph()

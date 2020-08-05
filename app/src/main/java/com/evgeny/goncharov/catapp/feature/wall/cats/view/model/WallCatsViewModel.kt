@@ -2,7 +2,7 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.view.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.IWallCatInteractor
+import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractor
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class WallCatsViewModel @Inject constructor(
-    private var interactor: IWallCatInteractor
+    private var interactor: WallCatInteractor
 ) : ViewModel() {
 
 

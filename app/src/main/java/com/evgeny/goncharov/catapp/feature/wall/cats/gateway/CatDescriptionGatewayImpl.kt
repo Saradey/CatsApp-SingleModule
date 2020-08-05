@@ -16,7 +16,7 @@ class CatDescriptionGatewayImpl @Inject constructor(
     private val api: ApiCatSearch,
     private val dao: CatDescriptionDAO,
     private val daoWallCat: CatsWallDao
-) : ICatDescriptionGateway {
+) : CatDescriptionGateway {
 
 
     override suspend fun loadChooseCatFromInternet(catId: String): CatDescription? =
