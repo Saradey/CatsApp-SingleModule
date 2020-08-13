@@ -11,5 +11,4 @@ interface MainRouter {
     fun goToTheSearchCatFragment()
 
     fun goToTheSettingFragment()
-
 }

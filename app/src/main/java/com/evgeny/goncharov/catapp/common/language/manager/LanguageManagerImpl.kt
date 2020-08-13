@@ -3,13 +3,12 @@ package com.evgeny.goncharov.catapp.common.language.manager
 import android.content.Context
 import com.evgeny.goncharov.catapp.common.Language
 import com.evgeny.goncharov.catapp.consts.RU_CODE
-import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
-import java.util.*
+import com.evgeny.goncharov.catapp.di.qualified.AppContext
+import java.util.Locale
 import javax.inject.Inject
-import javax.inject.Named
 
 class LanguageManagerImpl @Inject constructor(
-    @Named(TAG_APPLICATION_CONTEXT) val context: Context
+    @AppContext val context: Context
 ) : LanguageManager {
 
 
@@ -18,12 +17,10 @@ class LanguageManagerImpl @Inject constructor(
         private const val LANGUAGE_VALUE_PREF_CODE = "LANGUAGE_VALUE_PREF_CODE"
     }
 
-
     override fun getAppLanguage(): String {
         val shared = context.getSharedPreferences(LANGUAGE_SHARED_PREF_CODE, Context.MODE_PRIVATE)
         return shared.getString(LANGUAGE_VALUE_PREF_CODE, null) ?: RU_CODE
     }
-
 
     override fun getAppLanguageEnum(): Language {
         return when (getAppLanguage()) {
@@ -32,7 +29,6 @@ class LanguageManagerImpl @Inject constructor(
         }
     }
 
-
     override fun chooseLanguage(langCode: String) {
         val shared = context.getSharedPreferences(LANGUAGE_SHARED_PREF_CODE, Context.MODE_PRIVATE)
         val editor = shared.edit()
@@ -40,9 +36,7 @@ class LanguageManagerImpl @Inject constructor(
         editor.apply()
     }
 
-
     override fun getUserSelectedLanguageBlocking(): Locale {
         return Locale(getAppLanguage())
     }
-
 }

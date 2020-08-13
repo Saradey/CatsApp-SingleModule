@@ -2,11 +2,11 @@ package com.evgeny.goncharov.catapp.di.module.app
 
 import android.content.Context
 import com.evgeny.goncharov.catapp.BuildConfig
+import com.evgeny.goncharov.catapp.consts.BASE_URL
 import com.evgeny.goncharov.catapp.consts.CONNECTION_TIMEOUT
-import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
 import com.evgeny.goncharov.catapp.consts.READ_TIMEOUT
 import com.evgeny.goncharov.catapp.consts.WRITE_TIMEOUT
-import com.evgeny.goncharov.catapp.consts.BASE_URL
+import com.evgeny.goncharov.catapp.di.qualified.AppContext
 import com.evgeny.goncharov.catapp.di.scope.AppScope
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.readystatesoftware.chuck.ChuckInterceptor
@@ -17,7 +17,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 
 @Module
 object RestModule {
@@ -29,13 +28,12 @@ object RestModule {
         if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     )
 
-
     @Provides
     @AppScope
     @JvmStatic
     fun provideHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        @Named(TAG_APPLICATION_CONTEXT) context: Context
+        @AppContext context: Context
     ): OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
         .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
@@ -43,7 +41,6 @@ object RestModule {
         .addInterceptor(ChuckInterceptor(context))
         .addInterceptor(loggingInterceptor)
         .build()
-
 
     @Provides
     @AppScope

@@ -8,5 +8,4 @@ interface WallCatGateway {
     suspend fun loadWallCatFromInternet(request: WallCatRequest): List<CatBreedView>
 
     suspend fun loadWallCatFromDatabase(): List<CatBreedView>
-
 }

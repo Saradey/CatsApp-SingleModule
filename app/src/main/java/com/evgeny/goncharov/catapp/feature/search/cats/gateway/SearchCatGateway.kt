@@ -7,5 +7,4 @@ interface SearchCatGateway {
     suspend fun loadFromInternet(request: Map<String, String>): List<CatCatched>
 
     suspend fun loadFromDatabase(text: String): List<CatCatched>
-
 }

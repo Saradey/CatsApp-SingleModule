@@ -12,5 +12,4 @@ class DiffUtilsCatBreeds : DiffUtil.ItemCallback<CatBreedView>() {
     override fun areContentsTheSame(oldItem: CatBreedView, newItem: CatBreedView): Boolean {
         return oldItem == newItem
     }
-
 }

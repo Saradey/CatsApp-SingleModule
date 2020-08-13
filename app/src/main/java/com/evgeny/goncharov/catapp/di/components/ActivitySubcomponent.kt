@@ -15,7 +15,6 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.WallCatsFragment
 import dagger.BindsInstance
 import dagger.Subcomponent
 
-
 @ActivityScope
 @Subcomponent(
     modules = [
@@ -44,9 +43,9 @@ interface ActivitySubcomponent {
 
     @Subcomponent.Factory
     interface Factory {
+
         fun plus(
             @BindsInstance activity: MainActivity
         ): ActivitySubcomponent
     }
-
 }

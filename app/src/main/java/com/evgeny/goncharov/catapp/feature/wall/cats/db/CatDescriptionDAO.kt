@@ -14,5 +14,4 @@ interface CatDescriptionDAO {
 
     @Query("SELECT * FROM choose_cat_breed WHERE name = :name")
     fun selectModelFromId(name: String): ChooseCatBreed
-
 }

@@ -3,7 +3,8 @@ package com.evgeny.goncharov.catapp.feature.search.cats.ui.holder
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
-import kotlinx.android.synthetic.main.holder_cathed_cat.view.*
+import kotlinx.android.synthetic.main.holder_cathed_cat.view.txvIdTitle
+import kotlinx.android.synthetic.main.holder_cathed_cat.view.txvTitleName
 
 class CatsCathedHolder(private val listener: (id: String) -> Unit, view: View) :
     RecyclerView.ViewHolder(view) {
@@ -17,5 +18,4 @@ class CatsCathedHolder(private val listener: (id: String) -> Unit, view: View) :
             }
         }
     }
-
 }

@@ -11,5 +11,4 @@ object WallCatsProvideModule {
     @Provides
     @JvmStatic
     fun provideApiBreeds(retrofit: Retrofit): ApiBreeds = retrofit.create(ApiBreeds::class.java)
-
 }

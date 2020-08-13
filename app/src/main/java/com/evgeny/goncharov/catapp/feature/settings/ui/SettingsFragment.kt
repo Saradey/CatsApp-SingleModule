@@ -21,9 +21,10 @@ import com.evgeny.goncharov.catapp.feature.settings.di.SettingsSubcomponent
 import com.evgeny.goncharov.catapp.feature.settings.events.SettingUiEvents
 import com.evgeny.goncharov.catapp.feature.settings.models.ThemeModel
 import com.evgeny.goncharov.catapp.feature.settings.view.model.SettingsViewModel
-import kotlinx.android.synthetic.main.fragment_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.toolbar
+import kotlinx.android.synthetic.main.fragment_settings.txvLanguageApp
+import kotlinx.android.synthetic.main.fragment_settings.txvThemeApp
 import javax.inject.Inject
-
 
 class SettingsFragment : BaseFragment() {
 
@@ -43,22 +44,19 @@ class SettingsFragment : BaseFragment() {
     private lateinit var languageLiveData: LiveData<Language>
     private lateinit var uiEventLiveData: LiveData<SettingUiEvents>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
         SettingsSubcomponent.component = factory.plus()
+        savedInstanceState ?: viewModel.initInjection()
         init()
     }
 
-
     override fun getLayoutId(): Int = R.layout.fragment_settings
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
     }
-
 
     private fun initUi() {
         initToolbar()
@@ -66,14 +64,11 @@ class SettingsFragment : BaseFragment() {
         initClickLanguageChoose()
     }
 
-
     private fun init() {
         initLiveData()
-        viewModel.initInjection()
         viewModel.initThemeToView()
         viewModel.initLanguageToView()
     }
-
 
     private fun initLiveData() {
         themeLiveData = viewModel.getThemeLiveData()
@@ -97,7 +92,6 @@ class SettingsFragment : BaseFragment() {
         })
     }
 
-
     private fun setThemeModel(value: ThemeModel) {
         if (value.themeValue == AppCompatDelegate.MODE_NIGHT_NO) {
             initLightTheme()
@@ -105,7 +99,6 @@ class SettingsFragment : BaseFragment() {
             initNightTheme()
         }
     }
-
 
     private fun initNightTheme() {
         initSpannableTextView(
@@ -115,7 +108,6 @@ class SettingsFragment : BaseFragment() {
         )
     }
 
-
     private fun initLightTheme() {
         initSpannableTextView(
             title = R.string.theme_title_settings,
@@ -123,7 +115,6 @@ class SettingsFragment : BaseFragment() {
             textView = txvThemeApp
         )
     }
-
 
     private fun initSpannableTextView(
         @StringRes title: Int,
@@ -145,14 +136,12 @@ class SettingsFragment : BaseFragment() {
         textView.text = resultTitle
     }
 
-
     private fun initClickThemeApp() {
         txvThemeApp.setOnClickListener {
             val dialog = DialogChooseThemeApp()
             dialog.show(requireFragmentManager(), DialogChooseThemeApp::class.java.name)
         }
     }
-
 
     private fun initToolbar() {
         toolbar.apply {
@@ -164,14 +153,12 @@ class SettingsFragment : BaseFragment() {
         }
     }
 
-
     private fun setLanguageApp(language: Language) {
         when (language) {
             Language.RU -> initRuLanguageTitle()
             Language.EN -> initEnLanguageTitle()
         }
     }
-
 
     private fun initRuLanguageTitle() {
         initSpannableTextView(
@@ -181,7 +168,6 @@ class SettingsFragment : BaseFragment() {
         )
     }
 
-
     private fun initEnLanguageTitle() {
         initSpannableTextView(
             title = R.string.language_app_title,
@@ -190,18 +176,15 @@ class SettingsFragment : BaseFragment() {
         )
     }
 
-
     private fun getColorTitle(): Int = when (viewModel.getThemeNow()) {
         AppCompatDelegate.MODE_NIGHT_YES -> R.color.white
         else -> R.color.text_toolbar_title_light
     }
 
-
     private fun getColorSubtitle(): Int = when (viewModel.getThemeNow()) {
         AppCompatDelegate.MODE_NIGHT_YES -> R.color.white_hint
         else -> R.color.color_dark_grey
     }
-
 
     private fun initClickLanguageChoose() {
         txvLanguageApp.setOnClickListener {
@@ -210,7 +193,6 @@ class SettingsFragment : BaseFragment() {
         }
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         SettingsSubcomponent.component = null
@@ -218,5 +200,4 @@ class SettingsFragment : BaseFragment() {
         (languageLiveData as SingleLiveEvent).call()
         (uiEventLiveData as SingleLiveEvent).call()
     }
-
 }

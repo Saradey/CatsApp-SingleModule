@@ -20,9 +20,7 @@ class CatBreedsPagedAdapter(
         return CatBreedViewHolder(view, listener)
     }
 
-
     override fun onBindViewHolder(holder: CatBreedViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
 }

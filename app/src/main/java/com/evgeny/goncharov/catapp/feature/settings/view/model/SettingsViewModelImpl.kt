@@ -20,28 +20,22 @@ class SettingsViewModelImpl : ViewModel(), SettingsViewModel {
     private val languageLiveData = SingleLiveEvent<Language>()
     private val uiLiveDataEvent = SingleLiveEvent<SettingUiEvents>()
 
-
     override fun initInjection() {
         SettingsSubcomponent.component?.inject(this)
     }
 
-
     override fun getThemeLiveData(): LiveData<ThemeModel> = themeLiveDataModel
-
 
     override fun clickBack() {
         interactor.clickBack()
     }
-
 
     override fun initThemeToView() {
         val theme = interactor.getThemeNow()
         themeLiveDataModel.value = theme
     }
 
-
     override fun getThemeValue(): Int = interactor.getThemeValue()
-
 
     override fun setChooseThemeIndex(item: Int) {
         when (item) {
@@ -50,26 +44,20 @@ class SettingsViewModelImpl : ViewModel(), SettingsViewModel {
         }
     }
 
-
     override fun getLanguageLiveData(): LiveData<Language> {
         return languageLiveData
     }
-
 
     override fun initLanguageToView() {
         val lan = interactor.getAppLanguage()
         languageLiveData.value = lan
     }
 
-
     override fun getUiEvents(): LiveData<SettingUiEvents> = uiLiveDataEvent
-
 
     override fun getThemeNow(): Int = interactor.getTheme()
 
-
     override fun getSelectLanguage(): Int = interactor.getSelectLanguage()
-
 
     override fun chooseLanguage(itemIndex: Int) {
         if (interactor.getChooseLanguageIndex() != itemIndex) {

@@ -26,5 +26,4 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun createCatsWallDao(): CatsWallDao
 
     abstract fun createCatDescriptionDAO(): CatDescriptionDAO
-
 }

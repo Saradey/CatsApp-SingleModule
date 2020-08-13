@@ -1,7 +1,7 @@
 package com.evgeny.goncharov.catapp.common.language.manager
 
 import com.evgeny.goncharov.catapp.common.Language
-import java.util.*
+import java.util.Locale
 
 interface LanguageManager {
 
@@ -12,5 +12,4 @@ interface LanguageManager {
     fun chooseLanguage(langCode: String)
 
     fun getUserSelectedLanguageBlocking(): Locale
-
 }

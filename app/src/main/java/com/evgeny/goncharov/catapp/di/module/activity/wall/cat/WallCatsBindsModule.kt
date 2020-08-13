@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.evgeny.goncharov.catapp.common.ViewModelFactory
 import com.evgeny.goncharov.catapp.di.ViewModelKey
-import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractor
-import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractorImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.WallCatGateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.WallCatGatewayImpl
+import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractor
+import com.evgeny.goncharov.catapp.feature.wall.cats.interactor.WallCatInteractorImpl
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
 import dagger.Binds
 import dagger.Module
@@ -29,5 +29,4 @@ interface WallCatsBindsModule {
 
     @Binds
     fun bindWallCatRepository(repository: WallCatGatewayImpl): WallCatGateway
-
 }

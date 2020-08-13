@@ -3,15 +3,19 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.gateway
 import com.evgeny.goncharov.catapp.feature.wall.cats.db.CatsWallDao
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.GetImageRequest
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.request.WallCatRequest
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImage
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreed
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.response.CatBreedImage
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
 import com.evgeny.goncharov.catapp.feature.wall.cats.rest.ApiBreeds
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-
 
 class WallCatGatewayImpl @Inject constructor(
     private val api: ApiBreeds,
@@ -19,7 +23,6 @@ class WallCatGatewayImpl @Inject constructor(
 ) : WallCatGateway {
 
     private val coroutineScopeIo = CoroutineScope(Dispatchers.IO + SupervisorJob())
-
 
     override suspend fun loadWallCatFromInternet(request: WallCatRequest) =
         withContext(Dispatchers.IO) {
@@ -32,7 +35,6 @@ class WallCatGatewayImpl @Inject constructor(
             resultMap
         }
 
-
     override suspend fun loadWallCatFromDatabase(): List<CatBreedView> =
         withContext(Dispatchers.IO) {
             val result = daoWallCat.getCatBreed()
@@ -41,7 +43,6 @@ class WallCatGatewayImpl @Inject constructor(
             })
             mapResult
         }
-
 
     private fun mapResponse(modelResponse: List<CatBreed>): List<CatBreedView> {
         return modelResponse.map { modelDb ->
@@ -54,7 +55,6 @@ class WallCatGatewayImpl @Inject constructor(
             )
         }
     }
-
 
     private suspend fun loadAllImage(result: List<CatBreed>) {
         val jobs = mutableListOf<Job>()
@@ -71,7 +71,6 @@ class WallCatGatewayImpl @Inject constructor(
         }
     }
 
-
     private suspend fun getUrlImage(request: GetImageRequest): String? {
         var result = emptyList<CatBreedImage>()
         try {
@@ -85,6 +84,4 @@ class WallCatGatewayImpl @Inject constructor(
             continuation.resume(result.firstOrNull()?.url)
         }
     }
-
-
 }

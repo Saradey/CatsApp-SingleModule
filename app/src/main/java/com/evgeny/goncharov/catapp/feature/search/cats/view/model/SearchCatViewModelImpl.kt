@@ -22,11 +22,9 @@ class SearchCatViewModelImpl : ViewModel(), SearchCatViewModel {
         SearchCatSubcomponent.component?.inject(this)
     }
 
-
     override fun clickNavigationBack() {
         interactor.clickNavigationBack()
     }
-
 
     override fun setInputTextSearchView(text: String) {
         job?.cancel()
@@ -35,19 +33,15 @@ class SearchCatViewModelImpl : ViewModel(), SearchCatViewModel {
         }
     }
 
-
     override fun getUiEventsLiveData(): LiveData<SearchCatEvents> {
         return interactor.getUiEventsLiveData()
     }
-
 
     override fun getLiveDataCatsCathed(): LiveData<List<CatCatched>> {
         return interactor.getLiveDataCatsCathed()
     }
 
-
     override fun chooseCat(id: String) {
         interactor.chooseCat(id)
     }
-
 }

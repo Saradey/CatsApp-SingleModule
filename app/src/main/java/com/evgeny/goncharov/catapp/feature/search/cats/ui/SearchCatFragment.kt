@@ -19,9 +19,12 @@ import com.evgeny.goncharov.catapp.feature.search.cats.model.CatCatched
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.adapter.CatsCathedAdapter
 import com.evgeny.goncharov.catapp.feature.search.cats.ui.events.SearchCatEvents
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModel
-import kotlinx.android.synthetic.main.fragment_search_cat.*
+import kotlinx.android.synthetic.main.fragment_search_cat.crvContainerCats
+import kotlinx.android.synthetic.main.fragment_search_cat.rcvCathedCats
+import kotlinx.android.synthetic.main.fragment_search_cat.srcSearchCat
+import kotlinx.android.synthetic.main.fragment_search_cat.toolbar
+import kotlinx.android.synthetic.main.fragment_search_cat.txvCatsStubNotFound
 import javax.inject.Inject
-
 
 class SearchCatFragment : BaseFragment() {
 
@@ -35,7 +38,6 @@ class SearchCatFragment : BaseFragment() {
 
     private lateinit var adapter: CatsCathedAdapter
 
-
     companion object {
         fun getInstance() = SearchCatFragment()
     }
@@ -44,18 +46,15 @@ class SearchCatFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
         SearchCatSubcomponent.component = factory.plus()
-        viewModel.initInject()
+        savedInstanceState ?: viewModel.initInject()
         initLiveData()
     }
 
-
     override fun getLayoutId(): Int = R.layout.fragment_search_cat
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
     }
-
 
     private fun initUi() {
         initAdapterAndRecycle()
@@ -63,19 +62,16 @@ class SearchCatFragment : BaseFragment() {
         initSearchView()
     }
 
-
     private fun initLiveData() {
         initUiEvents()
         initCatsCathed()
     }
-
 
     private fun initCatsCathed() {
         viewModel.getLiveDataCatsCathed().observe(this, Observer {
             setCatsCatched(it)
         })
     }
-
 
     private fun initUiEvents() {
         uiLiveData = viewModel.getUiEventsLiveData()
@@ -88,18 +84,15 @@ class SearchCatFragment : BaseFragment() {
         })
     }
 
-
     private fun chooseCat(id: String) {
         viewModel.chooseCat(id)
     }
-
 
     private fun initAdapterAndRecycle() {
         adapter = CatsCathedAdapter(::chooseCat)
         rcvCathedCats.layoutManager = LinearLayoutManager(context)
         rcvCathedCats.adapter = adapter
     }
-
 
     private fun initToolbar() {
         toolbar.apply {
@@ -110,7 +103,6 @@ class SearchCatFragment : BaseFragment() {
             setTitle(R.string.title_toolbar_search_cat)
         }
     }
-
 
     private fun initSearchView() {
         srcSearchCat.onActionViewExpanded()
@@ -126,7 +118,6 @@ class SearchCatFragment : BaseFragment() {
         initEditTextSearchView(srcSearchCat)
     }
 
-
     private fun initEditTextSearchView(searchView: SearchView) {
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             searchView.setHintTextColor(R.color.color_dark_grey_hint)
@@ -136,30 +127,25 @@ class SearchCatFragment : BaseFragment() {
         }
     }
 
-
     private fun hideStubAndListAndShowProgress() {
         crvContainerCats.setVisibilityBool(false)
         txvCatsStubNotFound.setVisibilityBool(false)
         showProgress()
     }
 
-
     private fun hideProgressAndShowStub() {
         txvCatsStubNotFound.setVisibilityBool(true)
         hideProgress()
     }
-
 
     private fun hideProgressAndShowModels() {
         hideProgress()
         crvContainerCats.setVisibilityBool(true)
     }
 
-
     private fun setCatsCatched(models: List<CatCatched>?) {
         adapter.models = models ?: emptyList()
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

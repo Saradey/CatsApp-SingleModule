@@ -23,7 +23,7 @@ interface CatDescriptionSubcomponent {
 
     @Subcomponent.Factory
     interface Factory {
+
         fun plus(): CatDescriptionSubcomponent
     }
-
 }

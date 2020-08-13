@@ -7,5 +7,4 @@ sealed class SearchCatEvents {
     object EventHideProgressAndShowStub : SearchCatEvents()
 
     object EventHideProgressAndShowRecycleView : SearchCatEvents()
-
 }

@@ -2,12 +2,11 @@ package com.evgeny.goncharov.catapp.common.theme.manager
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import com.evgeny.goncharov.catapp.consts.TAG_APPLICATION_CONTEXT
+import com.evgeny.goncharov.catapp.di.qualified.AppContext
 import javax.inject.Inject
-import javax.inject.Named
 
 class ThemeManagerImpl @Inject constructor(
-    @Named(TAG_APPLICATION_CONTEXT) private val context: Context
+    @AppContext private val context: Context
 ) : ThemeManager {
 
     init {
@@ -25,7 +24,6 @@ class ThemeManagerImpl @Inject constructor(
         return shared.getInt(MODE_NIGHT_NAME, AppCompatDelegate.MODE_NIGHT_NO)
     }
 
-
     override fun setThemeMode(modeNight: Int) {
         val shared =
             context.getSharedPreferences(SHARED_THEME_PREFERENCES_NAME, Context.MODE_PRIVATE)
@@ -34,5 +32,4 @@ class ThemeManagerImpl @Inject constructor(
         edit.apply()
         AppCompatDelegate.setDefaultNightMode(modeNight)
     }
-
 }

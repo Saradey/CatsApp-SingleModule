@@ -20,6 +20,4 @@ interface Navigation {
     fun popStack()
 
     fun showBackPressedWarning()
-
-
 }

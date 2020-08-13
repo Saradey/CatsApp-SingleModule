@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatBreedView
-import kotlinx.android.synthetic.main.holder_cat_breed.view.*
+import kotlinx.android.synthetic.main.holder_cat_breed.view.cnlContainerCat
+import kotlinx.android.synthetic.main.holder_cat_breed.view.imbWiki
+import kotlinx.android.synthetic.main.holder_cat_breed.view.imvShowCat
+import kotlinx.android.synthetic.main.holder_cat_breed.view.txvBreedDescription
+import kotlinx.android.synthetic.main.holder_cat_breed.view.txvBreedName
 
 class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderListener) :
     RecyclerView.ViewHolder(view) {
@@ -32,10 +36,8 @@ class CatBreedViewHolder(view: View, private val listener: CatBreedViewHolderLis
         }
     }
 
-
     interface CatBreedViewHolderListener {
         fun clickCatBreed(id: String?)
         fun clickCatUrlBreed(urlImage: String?)
     }
-
 }

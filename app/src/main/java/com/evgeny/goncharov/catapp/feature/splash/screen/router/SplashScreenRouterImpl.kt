@@ -12,6 +12,4 @@ class SplashScreenRouterImpl @Inject constructor(
     override fun gotoTheWallCatFragment() {
         navigation.goTo(Destination.CatWallScreen)
     }
-
-
 }

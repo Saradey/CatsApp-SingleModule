@@ -11,7 +11,7 @@ import com.evgeny.goncharov.catapp.common.navigation.Navigation
 import com.evgeny.goncharov.catapp.common.theme.manager.ThemeManager
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.di.components.AppComponent
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         initDaggerGraph()
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,28 +43,23 @@ class MainActivity : AppCompatActivity() {
         savedInstanceState ?: router.showSlashScreen()
     }
 
-
     private fun initDaggerGraph() {
         AppComponent.component.inject(this)
         ActivitySubcomponent.component = factory.plus(this)
     }
-
 
     private fun initLifeCycle() {
         val cycle = ActivityLifeCycle(this, navigation)
         lifecycle.addObserver(cycle)
     }
 
-
     override fun onBackPressed() {
         router.onBackPressed()
     }
 
-
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(applySelectedAppLanguage(base))
     }
-
 
     private fun applySelectedAppLanguage(context: Context): Context {
         val locale = languageManager.getUserSelectedLanguageBlocking()
@@ -74,7 +68,4 @@ class MainActivity : AppCompatActivity() {
         config.setLocale(locale)
         return context.createConfigurationContext(config)
     }
-
-
 }
-

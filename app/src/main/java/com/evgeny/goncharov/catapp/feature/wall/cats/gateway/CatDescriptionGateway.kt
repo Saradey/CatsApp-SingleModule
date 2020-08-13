@@ -9,5 +9,4 @@ interface CatDescriptionGateway {
     suspend fun loadChooseCatFromDatabase(catId: String): CatDescription?
 
     suspend fun loadChooseCatFromDatabaseSpare(catId: String): CatDescription?
-
 }

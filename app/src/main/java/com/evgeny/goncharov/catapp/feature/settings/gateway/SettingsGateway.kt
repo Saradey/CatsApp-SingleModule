@@ -14,5 +14,4 @@ interface SettingsGateway {
     fun getSelectLanguage(): Int
 
     fun chooseLanguage(lang: Language)
-
 }

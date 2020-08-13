@@ -11,5 +11,4 @@ class MainThreadExecutor : Executor {
     override fun execute(task: Runnable) {
         handler.post(task)
     }
-
 }

@@ -32,13 +32,11 @@ class CatDescriptionGatewayImpl @Inject constructor(
             mapModel(model)
         }
 
-
     override suspend fun loadChooseCatFromDatabase(catId: String): CatDescription? =
         withContext(Dispatchers.IO) {
             val model = dao.selectModelFromId(catId)
             mapModel(model)
         }
-
 
     private fun mapModel(model: ChooseCatBreed?): CatDescription? {
         return if (model != null) {
@@ -57,16 +55,13 @@ class CatDescriptionGatewayImpl @Inject constructor(
         }
     }
 
-
     private fun getUrlImageFromDataBase(id: String?) = daoWallCat.getCatFromId(id ?: "")?.urlImageCat
-
 
     override suspend fun loadChooseCatFromDatabaseSpare(catId: String) =
         withContext(Dispatchers.IO) {
             val model = daoWallCat.getCatFromId(catId)
             mapModel(model)
         }
-
 
     private fun mapModel(model: CatBreed?): CatDescription? {
         return CatDescription(
@@ -80,5 +75,4 @@ class CatDescriptionGatewayImpl @Inject constructor(
             urlWiki = model?.wikipediaUrl ?: "-"
         )
     }
-
 }

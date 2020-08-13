@@ -21,11 +21,9 @@ class SettingsGatewayImpl @Inject constructor(
         )
     }
 
-
     override fun saveChooseTheme(themeValue: Int) {
         themeManager.setThemeMode(themeValue)
     }
-
 
     override fun getAppLanguage(): Language {
         return when (languageManager.getAppLanguage()) {
@@ -34,7 +32,6 @@ class SettingsGatewayImpl @Inject constructor(
         }
     }
 
-
     override fun getSelectLanguage(): Int {
         return when (languageManager.getAppLanguageEnum()) {
             Language.RU -> INDEX_CHOOSE_RU
@@ -42,10 +39,7 @@ class SettingsGatewayImpl @Inject constructor(
         }
     }
 
-
     override fun chooseLanguage(lang: Language) {
         languageManager.chooseLanguage(lang.code)
     }
-
-
 }

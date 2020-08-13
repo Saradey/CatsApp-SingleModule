@@ -28,7 +28,6 @@ class SearchCatGatewayImpl @Inject constructor(
             }
         }
 
-
     private fun mapModelsFromDatabase(list: List<CatBreed>): List<CatCatched> {
         return list.map {
             CatCatched(
@@ -37,7 +36,6 @@ class SearchCatGatewayImpl @Inject constructor(
             )
         }
     }
-
 
     override suspend fun loadFromInternet(request: Map<String, String>): List<CatCatched> {
         val response = api.getCatDescriptionAsync(request)
@@ -49,7 +47,6 @@ class SearchCatGatewayImpl @Inject constructor(
         }
     }
 
-
     private fun mapModels(list: List<ChooseCatBreed>): List<CatCatched> {
         return list.map {
             CatCatched(
@@ -58,6 +55,4 @@ class SearchCatGatewayImpl @Inject constructor(
             )
         }
     }
-
-
 }

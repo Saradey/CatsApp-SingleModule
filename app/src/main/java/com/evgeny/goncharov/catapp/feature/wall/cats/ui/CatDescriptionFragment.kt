@@ -16,7 +16,16 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.di.components.CatDescriptio
 import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.CatDescriptionViewModel
-import kotlinx.android.synthetic.main.fragment_cat_description.*
+import kotlinx.android.synthetic.main.fragment_cat_description.grpAllContent
+import kotlinx.android.synthetic.main.fragment_cat_description.imvCat
+import kotlinx.android.synthetic.main.fragment_cat_description.mbtnWikiLink
+import kotlinx.android.synthetic.main.fragment_cat_description.toolbar
+import kotlinx.android.synthetic.main.fragment_cat_description.txvDescription
+import kotlinx.android.synthetic.main.fragment_cat_description.txvLifeSpan
+import kotlinx.android.synthetic.main.fragment_cat_description.txvNameCat
+import kotlinx.android.synthetic.main.fragment_cat_description.txvOrigin
+import kotlinx.android.synthetic.main.fragment_cat_description.txvTemperament
+import kotlinx.android.synthetic.main.fragment_cat_description.txvWeight
 import javax.inject.Inject
 
 class CatDescriptionFragment : BaseFragment() {
@@ -37,45 +46,38 @@ class CatDescriptionFragment : BaseFragment() {
 
     private lateinit var uiLiveData: LiveData<CatDescriptionEvents>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
         CatDescriptionSubcomponent.component = factory.plus()
-        if (savedInstanceState == null) {
+        savedInstanceState ?: run {
             viewModel.initInjection()
             viewModel.setCatId(catId ?: "")
         }
         viewModel.loadChooseCat()
     }
 
-
     override fun getLayoutId(): Int = R.layout.fragment_cat_description
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
         initLiveData()
     }
 
-
     private fun initUi() {
         initToolbar()
     }
-
 
     private fun initLiveData() {
         initUiEventsLiveData()
         initCatDescriptionLiveData()
     }
 
-
     private fun initCatDescriptionLiveData() {
         viewModel.getCatDescriptionLiveData().observe(this, Observer {
             setCatDescription(it)
         })
     }
-
 
     private fun initUiEventsLiveData() {
         uiLiveData = viewModel.getLiveDataUiEvents()
@@ -88,11 +90,9 @@ class CatDescriptionFragment : BaseFragment() {
         })
     }
 
-
     fun setCatId(catId: String) {
         this.catId = catId
     }
-
 
     private fun initToolbar() {
         toolbar.apply {
@@ -103,7 +103,6 @@ class CatDescriptionFragment : BaseFragment() {
             setTitle(R.string.description_cat_title_toolbar)
         }
     }
-
 
     private fun setCatDescription(model: CatDescription?) {
         model?.let {
@@ -129,18 +128,14 @@ class CatDescriptionFragment : BaseFragment() {
         }
     }
 
-
     private fun showAllContent() {
         hideProgress()
         grpAllContent.setVisibilityBool(true)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
         CatDescriptionSubcomponent.component = null
         (uiLiveData as SingleLiveEvent<CatDescriptionEvents>).call()
     }
-    
-    
 }

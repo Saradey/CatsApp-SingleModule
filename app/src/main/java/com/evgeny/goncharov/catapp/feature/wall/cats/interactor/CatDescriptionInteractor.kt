@@ -13,5 +13,4 @@ interface CatDescriptionInteractor {
     fun getLiveDataUiEvents(): LiveData<CatDescriptionEvents>
 
     fun clickBack()
-
 }

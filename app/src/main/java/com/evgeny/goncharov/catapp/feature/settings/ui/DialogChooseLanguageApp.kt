@@ -19,12 +19,10 @@ class DialogChooseLanguageApp : DialogFragment() {
     @Inject
     lateinit var vm: SettingsViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SettingsSubcomponent.component?.inject(this)
     }
-
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builderDialog = MaterialAlertDialogBuilder(
@@ -46,6 +44,4 @@ class DialogChooseLanguageApp : DialogFragment() {
             }
         return builderDialog.create()
     }
-
-
 }

@@ -1,10 +1,10 @@
 package com.evgeny.goncharov.catapp.feature.settings.di
 
 import com.evgeny.goncharov.catapp.di.scope.FragmentScope
-import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractor
-import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractorImpl
 import com.evgeny.goncharov.catapp.feature.settings.gateway.SettingsGateway
 import com.evgeny.goncharov.catapp.feature.settings.gateway.SettingsGatewayImpl
+import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractor
+import com.evgeny.goncharov.catapp.feature.settings.interactor.SettingsInteractorImpl
 import dagger.Binds
 import dagger.Module
 
@@ -18,5 +18,4 @@ interface SettingsBindModule {
     @Binds
     @FragmentScope
     fun bindSettingsInteractor(interactor: SettingsInteractorImpl): SettingsInteractor
-
 }

@@ -30,5 +30,4 @@ interface SettingsViewModel {
     fun getSelectLanguage(): Int
 
     fun chooseLanguage(itemIndex: Int)
-
 }

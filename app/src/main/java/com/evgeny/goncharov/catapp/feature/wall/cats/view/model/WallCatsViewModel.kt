@@ -21,7 +21,6 @@ class WallCatsViewModel @Inject constructor(
         }
     }
 
-
     suspend fun loadNextCats(key: Int): List<CatBreedView> {
         val result = interactor.loadNexPage(key)
         return suspendCoroutine { continuation ->
@@ -29,21 +28,17 @@ class WallCatsViewModel @Inject constructor(
         }
     }
 
-
     fun clickCatBreed(id: String) {
         interactor.clickCatBreed(id)
     }
-
 
     fun getUiEventsLiveData(): LiveData<WallCatsEvents> {
         return interactor.getUiEventsLiveData()
     }
 
-
     fun clickMenuSearchCat() {
         interactor.clickMenuSearchCat()
     }
-
 
     fun clickMenuSettings() {
         interactor.clickMenuSettings()

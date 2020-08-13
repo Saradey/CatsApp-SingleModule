@@ -24,5 +24,4 @@ interface SettingsInteractor {
     fun chooseLanguage(itemIndex: Int)
 
     fun getChooseLanguageIndex(): Int
-
 }

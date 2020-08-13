@@ -10,12 +10,13 @@ import androidx.fragment.app.Fragment
 import com.evgeny.goncharov.catapp.R
 import com.evgeny.goncharov.catapp.di.components.ActivitySubcomponent
 import com.evgeny.goncharov.catapp.feature.splash.screen.router.SplashScreenRouter
-import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
+import kotlinx.android.synthetic.main.fragment_splash_screen.view.imvCat
+import kotlinx.android.synthetic.main.fragment_splash_screen.view.txvTitle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SplashScreenFragment : Fragment() {
@@ -41,18 +42,15 @@ class SplashScreenFragment : Fragment() {
         return view
     }
 
-
     private fun init(content: View) {
         initFountSplashScreenTitle(content)
         animationView(content)
     }
 
-
     private fun initFountSplashScreenTitle(content: View) {
         val typeFace = Typeface.createFromAsset(activity?.assets, "19144.ttf")
         content.txvTitle.typeface = typeFace
     }
-
 
     private fun animationView(content: View) {
         mainScope.launch {
@@ -62,13 +60,11 @@ class SplashScreenFragment : Fragment() {
         }
     }
 
-
     private fun startAnimation(content: View) {
         val animationShow = AnimationUtils.loadAnimation(activity, R.anim.show_logo)
         content.imvCat.startAnimation(animationShow)
         content.txvTitle.startAnimation(animationShow)
     }
-
 
     private fun goToTheNextFragment() {
         router.gotoTheWallCatFragment()

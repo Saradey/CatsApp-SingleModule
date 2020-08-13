@@ -6,7 +6,6 @@ import com.evgeny.goncharov.catapp.feature.search.cats.di.modules.SearchCatProvi
 import com.evgeny.goncharov.catapp.feature.search.cats.view.model.SearchCatViewModelImpl
 import dagger.Subcomponent
 
-
 @FragmentScope
 @Subcomponent(
     modules = [
@@ -24,7 +23,7 @@ interface SearchCatSubcomponent {
 
     @Subcomponent.Factory
     interface Factory {
+
         fun plus(): SearchCatSubcomponent
     }
-
 }

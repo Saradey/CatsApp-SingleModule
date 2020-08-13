@@ -13,5 +13,4 @@ interface ApiCatSearch {
     @Headers(HEADERS_VALUE)
     @GET(BREEDS_SEARCH_URL)
     fun getCatDescriptionAsync(@QueryMap request: Map<String, String>): Deferred<List<ChooseCatBreed>>
-
 }

@@ -2,7 +2,6 @@ package com.evgeny.goncharov.catapp.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -15,5 +14,4 @@ class ViewModelFactory @Inject constructor(
             ?: throw IllegalArgumentException("ViewModel class ${modelClass.name} not found")
         return viewModelProvider.get() as T
     }
-
 }

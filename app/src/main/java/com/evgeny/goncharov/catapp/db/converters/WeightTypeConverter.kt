@@ -19,5 +19,4 @@ class WeightTypeConverter {
             metric = models[1]
         )
     }
-
 }

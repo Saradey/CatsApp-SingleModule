@@ -3,8 +3,8 @@ package com.evgeny.goncharov.catapp.feature.wall.cats.interactor
 import androidx.lifecycle.LiveData
 import com.evgeny.goncharov.catapp.common.SingleLiveEvent
 import com.evgeny.goncharov.catapp.common.navigation.MainRouter
-import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.gateway.CatDescriptionGateway
+import com.evgeny.goncharov.catapp.feature.wall.cats.model.to.view.CatDescription
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,11 +19,9 @@ class CatDescriptionInteractorImpl @Inject constructor(
 
     private var liveDataUiEvents = SingleLiveEvent<CatDescriptionEvents>()
 
-
     override fun setCatId(catId: String) {
         this.catId = catId
     }
-
 
     override suspend fun loadChooseCat(): CatDescription? =
         withContext(Dispatchers.Main) {
@@ -39,14 +37,12 @@ class CatDescriptionInteractorImpl @Inject constructor(
             cat
         }
 
-
     private suspend fun loadChooseCatFromDatabase(): CatDescription? {
         val model = repository.loadChooseCatFromDatabase(catId)
         return model ?: kotlin.run {
             repository.loadChooseCatFromDatabaseSpare(catId)
         }
     }
-
 
     private fun validateData(model: CatDescription?) {
         if (model == null) {
@@ -56,11 +52,9 @@ class CatDescriptionInteractorImpl @Inject constructor(
         }
     }
 
-
     override fun getLiveDataUiEvents(): LiveData<CatDescriptionEvents> {
         return liveDataUiEvents
     }
-
 
     override fun clickBack() {
         router.onBackPressed()

@@ -17,16 +17,13 @@ class NavigationImpl @Inject constructor() : Navigation {
 
     private var activity: MainActivity? = null
 
-
     override fun attachActivity(mainActivity: MainActivity) {
         activity = mainActivity
     }
 
-
     override fun detachActivity() {
         activity = null
     }
-
 
     override fun goTo(destination: Destination) {
         activity?.let {
@@ -38,7 +35,6 @@ class NavigationImpl @Inject constructor() : Navigation {
             }
         }
     }
-
 
     private fun goToTheSettingsScreen() {
         val fragment = SettingsFragment.getInstance()
@@ -53,7 +49,6 @@ class NavigationImpl @Inject constructor() : Navigation {
             ?.commit()
     }
 
-
     override fun goTo(destination: Destination, bundle: Bundle) {
         activity?.let {
             when (destination) {
@@ -61,7 +56,6 @@ class NavigationImpl @Inject constructor() : Navigation {
             }
         }
     }
-
 
     private fun goToTheCatDescription(bundle: Bundle) {
         val id = bundle.getString(KEY_BUNDLE_CAT_ID)
@@ -77,7 +71,6 @@ class NavigationImpl @Inject constructor() : Navigation {
             ?.commit()
     }
 
-
     private fun goToSplashScreenScreen() {
         val fragment = SplashScreenFragment.getInstance()
         activity?.supportFragmentManager?.beginTransaction()
@@ -85,14 +78,12 @@ class NavigationImpl @Inject constructor() : Navigation {
             ?.commit()
     }
 
-
     private fun goToCatWallScreen() {
         val fragment = WallCatsFragment.getInstance()
         activity?.supportFragmentManager?.beginTransaction()
             ?.replace(R.id.frmRootField, fragment, WallCatsFragment::class.java.name)
             ?.commit()
     }
-
 
     private fun goToTheSearchCatScreen() {
         val fragment = SearchCatFragment.getInstance()
@@ -107,23 +98,19 @@ class NavigationImpl @Inject constructor() : Navigation {
             ?.commit()
     }
 
-
     override fun getNowMatchFromStack(): Int {
         return activity?.supportFragmentManager?.fragments?.count {
             it is BaseFragment
         } ?: 0
     }
 
-
     override fun appFinish() {
         activity?.finish()
     }
 
-
     override fun popStack() {
         activity?.supportFragmentManager?.popBackStack()
     }
-
 
     override fun showBackPressedWarning() {
         Toast.makeText(

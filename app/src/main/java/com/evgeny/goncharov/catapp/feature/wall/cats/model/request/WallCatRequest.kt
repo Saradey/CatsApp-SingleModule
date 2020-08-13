@@ -7,6 +7,7 @@ class WallCatRequest(
     private val limit: Int,
     private val page: Int
 ) {
+
     fun createRequest(): Map<String, Int> = hashMapOf(
         Pair(GET_PARAM_LIMIT, limit),
         Pair(GET_PARAM_PAGE, page)

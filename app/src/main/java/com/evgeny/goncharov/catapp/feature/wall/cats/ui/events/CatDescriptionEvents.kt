@@ -7,5 +7,4 @@ sealed class CatDescriptionEvents {
     object EventHideProgressAndShowContent : CatDescriptionEvents()
 
     object EventHideProgressAndShowSomethingWrong : CatDescriptionEvents()
-
 }

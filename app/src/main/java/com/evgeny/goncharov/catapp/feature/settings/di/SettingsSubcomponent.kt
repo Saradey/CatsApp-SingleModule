@@ -26,7 +26,7 @@ interface SettingsSubcomponent {
 
     @Subcomponent.Factory
     interface Factory {
+
         fun plus(): SettingsSubcomponent
     }
-
 }

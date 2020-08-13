@@ -23,7 +23,10 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.adapters.PageKeyedDataSo
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.WallCatsEvents
 import com.evgeny.goncharov.catapp.feature.wall.cats.ui.holders.CatBreedViewHolder
 import com.evgeny.goncharov.catapp.feature.wall.cats.view.model.WallCatsViewModel
-import kotlinx.android.synthetic.main.fragment_wall_cats.*
+import kotlinx.android.synthetic.main.fragment_wall_cats.grpStubWallCat
+import kotlinx.android.synthetic.main.fragment_wall_cats.rcvCatBreeds
+import kotlinx.android.synthetic.main.fragment_wall_cats.swrlContainer
+import kotlinx.android.synthetic.main.fragment_wall_cats.toolbar
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
@@ -46,7 +49,6 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
 
     private lateinit var adapter: CatBreedsPagedAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivitySubcomponent.component.inject(this)
@@ -54,23 +56,19 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
         initLiveData()
     }
 
-
     override fun getLayoutId(): Int {
         return R.layout.fragment_wall_cats
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
     }
-
 
     private fun initUi() {
         initToolbar()
         initPagedAdapterAndRecycle()
         initFirstSwipeRefreshLayout()
     }
-
 
     private fun initLiveData() {
         uiLiveData = viewModel.getUiEventsLiveData()
@@ -91,7 +89,6 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
         })
     }
 
-
     override fun clickCatUrlBreed(urlImage: String?) {
         urlImage?.let {
             val uri = Uri.parse(urlImage)
@@ -102,20 +99,17 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
         }
     }
 
-
     override fun clickCatBreed(id: String?) {
         id?.let {
             viewModel.clickCatBreed(id)
         }
     }
 
-
     private fun initFirstSwipeRefreshLayout() {
         swrlContainer.setOnRefreshListener {
             swrlContainer.isRefreshing = false
         }
     }
-
 
     private fun initSwipeRefreshLayout() {
         grpStubWallCat?.setVisibilityBool(false)
@@ -125,7 +119,6 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
             initFirstSwipeRefreshLayout()
         }
     }
-
 
     private fun initPagedAdapterAndRecycle() {
         adapter = CatBreedsPagedAdapter(DiffUtilsCatBreeds(), this)
@@ -142,7 +135,6 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
         rcvCatBreeds.layoutManager = LinearLayoutManager(context)
         rcvCatBreeds.adapter = adapter
     }
-
 
     private fun initToolbar() {
         toolbar.setTitle(R.string.wall_cat_toolbar_title)
@@ -163,7 +155,6 @@ class WallCatsFragment : BaseFragment(), CatBreedViewHolder.CatBreedViewHolderLi
             }
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

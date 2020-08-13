@@ -17,7 +17,6 @@ class CatsCathedAdapter constructor(
             notifyDataSetChanged()
         }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsCathedHolder {
         return CatsCathedHolder(
             listener,
@@ -25,12 +24,10 @@ class CatsCathedAdapter constructor(
         )
     }
 
-
     override fun getItemCount(): Int {
         return models.size
     }
 
-    
     override fun onBindViewHolder(holder: CatsCathedHolder, position: Int) {
         holder.bind(models[position])
     }

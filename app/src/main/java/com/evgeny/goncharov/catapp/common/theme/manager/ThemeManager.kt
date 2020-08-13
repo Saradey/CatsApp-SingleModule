@@ -5,5 +5,4 @@ interface ThemeManager {
     fun getThemeModeAppNow(): Int
 
     fun setThemeMode(modeNight: Int)
-
 }

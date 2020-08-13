@@ -11,20 +11,16 @@ import com.evgeny.goncharov.catapp.feature.wall.cats.ui.events.CatDescriptionEve
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 class CatDescriptionViewModelImpl : ViewModel(), CatDescriptionViewModel {
 
     private val catDescriptionLiveData = MutableLiveData<CatDescription>()
 
-
     @Inject
     lateinit var interactor: CatDescriptionInteractor
-
 
     override fun setCatId(catId: String) {
         interactor.setCatId(catId)
     }
-
 
     override fun loadChooseCat() {
         viewModelScope.launch {
@@ -35,21 +31,17 @@ class CatDescriptionViewModelImpl : ViewModel(), CatDescriptionViewModel {
         }
     }
 
-
     override fun getCatDescriptionLiveData(): LiveData<CatDescription> {
         return catDescriptionLiveData
     }
-
 
     override fun initInjection() {
         CatDescriptionSubcomponent.component?.inject(this)
     }
 
-
     override fun getLiveDataUiEvents(): LiveData<CatDescriptionEvents> {
         return interactor.getLiveDataUiEvents()
     }
-
 
     override fun clickBack() {
         interactor.clickBack()

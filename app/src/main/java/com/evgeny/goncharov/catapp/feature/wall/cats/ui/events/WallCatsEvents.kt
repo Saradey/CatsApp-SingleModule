@@ -7,5 +7,4 @@ sealed class WallCatsEvents {
     object EventSomethingWrong : WallCatsEvents()
 
     object EventHideProgressAndInitRefreshLayout : WallCatsEvents()
-
 }

@@ -14,5 +14,4 @@ object RestCatDescriptionModule {
     @JvmStatic
     fun provideApiSearchCatFromName(retrofit: Retrofit):
             ApiCatSearch = retrofit.create(ApiCatSearch::class.java)
-
 }
