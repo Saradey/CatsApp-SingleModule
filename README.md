@@ -6,7 +6,7 @@
 - Chuck
 - Room
 - Glide
-- Dagger
+- Dagger (subcomponents)
 - Coroutines
 - Paging
 - Material
